@@ -1,0 +1,2565 @@
+
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Generator Test</title>
+    <style>
+        body {
+            font-family: "Khmer OS", "Noto Sans Khmer", Arial, sans-serif;
+            padding: 24px;
+            background: #f7f7f7;
+        }
+        .case {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .input {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .tokens {
+            color: #555;
+            margin-top: 12px;
+        }
+        .candidate {
+            display: inline-block;
+            font-size: 28px;
+            padding: 8px 12px;
+            margin: 6px;
+            border-radius: 6px;
+            background: #eef3ff;
+            border: 1px solid #ccd8ff;
+        }
+        .meta {
+            font-size: 13px;
+            color: #666;
+        }
+        .ranked {
+            background: #f4fff4;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+<h1>Candidate Generator Test</h1>
+
+<div class="case">
+    <div class="input">Input: somtos</div>
+    <div>Normalized: <b>somtos</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">សុំតុស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">សុំតូស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">សុំទោស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">សំតុស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">សំតូស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">សំទោស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">ស៊ុំតុស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">ស៊ុំតូស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">ស៊ុំទោស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+        <div class="candidate">ស៊ំតុស</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.7267,
+            rule score: 0.555,
+            tokens: ['s', 'om', 't', 'o', 's']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['s', 'om', 't', 'os']</div>
+
+    <div class="candidate">សុំតអុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សុំតអោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សុំទអុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សុំទអោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សំតអុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សំតអោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សំទអុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">សំទអោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">ស៊ុំតអុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="candidate">ស៊ុំតអោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.475
+    </div>
+
+    <div class="tokens">Tokens: ['s', 'om', 't', 'o', 's']</div>
+
+    <div class="candidate">សុំតអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">សុំទអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">សំតអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">សំទអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">ស៊ុំតអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">ស៊ុំទអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">ស៊ំតអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">ស៊ំទអ៊ស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.43
+    </div>
+
+    <div class="candidate">សុំតុស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">សុំតូស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="tokens">Tokens: ['s', 'o', 'm', 't', 'os']</div>
+
+    <div class="candidate">សុមតុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">សុមតោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">សូមតុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">សូមតោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">ស៊ោមតុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">ស៊ោមតោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.555
+    </div>
+
+    <div class="candidate">សមតុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.495
+    </div>
+
+    <div class="candidate">សមតោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.495
+    </div>
+
+    <div class="candidate">ស៊មតុះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.495
+    </div>
+
+    <div class="candidate">ស៊មតោះ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.495
+    </div>
+
+    <div class="tokens">Tokens: ['s', 'o', 'm', 't', 'o', 's']</div>
+
+    <div class="candidate">សុមតុស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សុមតូស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សុមទោស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សុមតស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.5
+    </div>
+
+    <div class="candidate">សុមទស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.5
+    </div>
+
+    <div class="candidate">សូមតុស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សូមតូស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សូមទោស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.56
+    </div>
+
+    <div class="candidate">សូមតស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.5
+    </div>
+
+    <div class="candidate">សូមទស</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.5
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: bea</div>
+    <div>Normalized: <b>bea</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">បៀ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['b', 'ea']
+        </div>
+
+        <div class="candidate">ប៊ា</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['b', 'ea']
+        </div>
+
+        <div class="candidate">ប៊ែ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['b', 'ea']
+        </div>
+
+        <div class="candidate">បេអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">បេអា</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">បិអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">បិអា</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">ប៊េអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">ប៊េអា</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+        <div class="candidate">ប៊ិអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['b', 'e', 'a']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'ea']</div>
+
+    <div class="candidate">បៀ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៊ា</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៊ែ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'e', 'a']</div>
+
+    <div class="candidate">បេអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">បេអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">បិអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">បិអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៊េអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៊េអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៊ិអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៊ិអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: bear</div>
+    <div>Normalized: <b>bear</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">បៀរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['b', 'ea', 'r']
+        </div>
+
+        <div class="candidate">ប៊ារ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['b', 'ea', 'r']
+        </div>
+
+        <div class="candidate">ប៊ែរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['b', 'ea', 'r']
+        </div>
+
+        <div class="candidate">បេអរ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">បេអ៊រ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">បិអរ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">បិអ៊រ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">ប៊េអរ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">ប៊េអ៊រ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+        <div class="candidate">ប៊ិអរ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['b', 'e', 'a', 'r']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'ea', 'r']</div>
+
+    <div class="candidate">បៀរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៊ារ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៊ែរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'e', 'a', 'r']</div>
+
+    <div class="candidate">បេអរ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">បេអ៊រ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">បិអរ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">បិអ៊រ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ប៊េអរ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ប៊េអ៊រ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ប៊ិអរ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ប៊ិអ៊រ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: bum</div>
+    <div>Normalized: <b>bum</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">បុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['b', 'um']
+        </div>
+
+        <div class="candidate">ប៊ុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['b', 'um']
+        </div>
+
+        <div class="candidate">ប៊ំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['b', 'um']
+        </div>
+
+        <div class="candidate">ប៊ុម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['b', 'u', 'm']
+        </div>
+
+        <div class="candidate">ប៊ូម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['b', 'u', 'm']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'um']</div>
+
+    <div class="candidate">បុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៊ុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៊ំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'u', 'm']</div>
+
+    <div class="candidate">ប៊ុម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៊ូម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: bur</div>
+    <div>Normalized: <b>bur</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ប៊ុរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['b', 'u', 'r']
+        </div>
+
+        <div class="candidate">ប៊ូរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['b', 'u', 'r']
+        </div>
+
+        <div class="candidate">បួ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['b', 'ur']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'ur']</div>
+
+    <div class="candidate">បួ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'u', 'r']</div>
+
+    <div class="candidate">ប៊ុរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៊ូរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: ba</div>
+    <div>Normalized: <b>ba</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">បា</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['b', 'a']
+        </div>
+
+        <div class="candidate">ប្អ</div>
+        <div class="meta">
+            source: rule_cc_subscript,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['b', 'a']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'a']</div>
+
+    <div class="candidate">បា</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប្អ</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        score: 0.7
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: bam</div>
+    <div>Normalized: <b>bam</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">បាំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['b', 'am']
+        </div>
+
+        <div class="candidate">បាម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['b', 'a', 'm']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'am']</div>
+
+    <div class="candidate">បាំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['b', 'a', 'm']</div>
+
+    <div class="candidate">បាម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: pam</div>
+    <div>Normalized: <b>pam</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ប៉ាំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['p', 'am']
+        </div>
+
+        <div class="candidate">ប៉ាម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'a', 'm']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'am']</div>
+
+    <div class="candidate">ប៉ាំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'a', 'm']</div>
+
+    <div class="candidate">ប៉ាម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: pi</div>
+    <div>Normalized: <b>pi</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ពិ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+        <div class="candidate">ពី</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+        <div class="candidate">ភិ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+        <div class="candidate">ភី</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+        <div class="candidate">ប៉ិ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+        <div class="candidate">ប៉ី</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'i']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'i']</div>
+
+    <div class="candidate">ពិ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ពី</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភិ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភី</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៉ិ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៉ី</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: pu</div>
+    <div>Normalized: <b>pu</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ពុ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'u']
+        </div>
+
+        <div class="candidate">ពូ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'u']
+        </div>
+
+        <div class="candidate">ភុ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'u']
+        </div>
+
+        <div class="candidate">ភូ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['p', 'u']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'u']</div>
+
+    <div class="candidate">ពុ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ពូ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភុ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភូ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: pur</div>
+    <div>Normalized: <b>pur</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ពុរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'u', 'r']
+        </div>
+
+        <div class="candidate">ពូរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'u', 'r']
+        </div>
+
+        <div class="candidate">ភុរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'u', 'r']
+        </div>
+
+        <div class="candidate">ភូរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'u', 'r']
+        </div>
+
+        <div class="candidate">ពួ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ur']
+        </div>
+
+        <div class="candidate">ភួ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ur']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'ur']</div>
+
+    <div class="candidate">ពួ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភួ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'u', 'r']</div>
+
+    <div class="candidate">ពុរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ពូរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ភុរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ភូរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: per</div>
+    <div>Normalized: <b>per</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ពេរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ពិរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ភេរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ភិរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ប៉េរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ប៉ិរ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['p', 'e', 'r']
+        </div>
+
+        <div class="candidate">ពើ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'er']
+        </div>
+
+        <div class="candidate">ពឿ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'er']
+        </div>
+
+        <div class="candidate">ភើ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'er']
+        </div>
+
+        <div class="candidate">ភឿ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'er']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'er']</div>
+
+    <div class="candidate">ពើ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ពឿ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភើ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភឿ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៉ឺ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៉ើ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'e', 'r']</div>
+
+    <div class="candidate">ពេរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ពិរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ភេរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ភិរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៉េរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ប៉ិរ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: pea</div>
+    <div>Normalized: <b>pea</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ពា</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ពៀ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ពែ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ភា</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ភៀ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ភែ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ប៉ៀ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.7933,
+            rule score: 0.7,
+            tokens: ['p', 'ea']
+        </div>
+
+        <div class="candidate">ពេអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['p', 'e', 'a']
+        </div>
+
+        <div class="candidate">ពេអា</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['p', 'e', 'a']
+        </div>
+
+        <div class="candidate">ពិអ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.66,
+            rule score: 0.57,
+            tokens: ['p', 'e', 'a']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'ea']</div>
+
+    <div class="candidate">ពា</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ពៀ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ពែ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភា</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភៀ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ភែ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ប៉ៀ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['p', 'e', 'a']</div>
+
+    <div class="candidate">ពេអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ពេអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ពិអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ពិអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ភេអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ភេអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ភិអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ភិអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៉េអ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+
+    <div class="candidate">ប៉េអា</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.57
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: lery</div>
+    <div>Normalized: <b>lery</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">លើយ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['l', 'er', 'y']
+        </div>
+
+        <div class="candidate">លឿយ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['l', 'er', 'y']
+        </div>
+
+        <div class="candidate">ឡឺយ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['l', 'er', 'y']
+        </div>
+
+        <div class="candidate">ឡើយ</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['l', 'er', 'y']
+        </div>
+
+        <div class="candidate">លេរ្យ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.64,
+            rule score: 0.55,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+        <div class="candidate">លិរ្យ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.64,
+            rule score: 0.55,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+        <div class="candidate">ឡេរ្យ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.64,
+            rule score: 0.55,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+        <div class="candidate">ឡិរ្យ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.64,
+            rule score: 0.55,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+        <div class="candidate">លេរយ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+        <div class="candidate">លេរ៉យ</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.515,
+            rule score: 0.425,
+            tokens: ['l', 'e', 'r', 'y']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['l', 'er', 'y']</div>
+
+    <div class="candidate">លើយ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">លឿយ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ឡឺយ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ឡើយ</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="tokens">Tokens: ['l', 'e', 'r', 'y']</div>
+
+    <div class="candidate">លេរយ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">លេរ៉យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">លេរ្យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.55
+    </div>
+
+    <div class="candidate">លិរយ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">លិរ៉យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">លិរ្យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.55
+    </div>
+
+    <div class="candidate">ឡេរយ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ឡេរ៉យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ឡេរ្យ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.55
+    </div>
+
+    <div class="candidate">ឡិរយ</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: neang</div>
+    <div>Normalized: <b>neang</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">នាង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['n', 'ea', 'ng']
+        </div>
+
+        <div class="candidate">នៀង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['n', 'ea', 'ng']
+        </div>
+
+        <div class="candidate">នែង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['n', 'ea', 'ng']
+        </div>
+
+        <div class="candidate">ណៀង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['n', 'ea', 'ng']
+        </div>
+
+        <div class="candidate">នេអង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+        <div class="candidate">នេអ៊ង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+        <div class="candidate">និអង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+        <div class="candidate">និអ៊ង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+        <div class="candidate">ណេអង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+        <div class="candidate">ណេអ៊ង</div>
+        <div class="meta">
+            source: rule_sequence,
+            final score: 0.517,
+            rule score: 0.425,
+            tokens: ['n', 'e', 'a', 'ng']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['n', 'ea', 'ng']</div>
+
+    <div class="candidate">នាង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">នៀង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">នែង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ណៀង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="tokens">Tokens: ['n', 'ea', 'n', 'g']</div>
+
+    <div class="meta">No candidates generated for this tokenization.</div>
+
+    <div class="tokens">Tokens: ['n', 'e', 'a', 'ng']</div>
+
+    <div class="candidate">នេអង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">នេអ៊ង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">និអង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">និអ៊ង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ណេអង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ណេអ៊ង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ណិអង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="candidate">ណិអ៊ង</div>
+    <div class="meta">
+        source: rule_sequence,
+        score: 0.425
+    </div>
+
+    <div class="tokens">Tokens: ['n', 'e', 'a', 'n', 'g']</div>
+
+    <div class="meta">No candidates generated for this tokenization.</div>
+</div>
+<div class="case">
+    <div class="input">Input: kom</div>
+    <div>Normalized: <b>kom</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">កុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['k', 'om']
+        </div>
+
+        <div class="candidate">កំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['k', 'om']
+        </div>
+
+        <div class="candidate">គុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['k', 'om']
+        </div>
+
+        <div class="candidate">គំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.8733,
+            rule score: 0.7,
+            tokens: ['k', 'om']
+        </div>
+
+        <div class="candidate">កុម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'm']
+        </div>
+
+        <div class="candidate">កូម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'm']
+        </div>
+
+        <div class="candidate">គោម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'm']
+        </div>
+
+        <div class="candidate">កម</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.74,
+            rule score: 0.65,
+            tokens: ['k', 'o', 'm']
+        </div>
+
+        <div class="candidate">គម</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.74,
+            rule score: 0.65,
+            tokens: ['k', 'o', 'm']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['k', 'om']</div>
+
+    <div class="candidate">កុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">កំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">គុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">គំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['k', 'o', 'm']</div>
+
+    <div class="candidate">កុម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">កូម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">គោម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">កម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">គម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: mj</div>
+    <div>Normalized: <b>mj</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ម្ច</div>
+        <div class="meta">
+            source: rule_cc_subscript,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['m', 'j']
+        </div>
+
+        <div class="candidate">ម្ជ</div>
+        <div class="meta">
+            source: rule_cc_subscript,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['m', 'j']
+        </div>
+
+        <div class="candidate">មច</div>
+        <div class="meta">
+            source: rule_cc_plain,
+            final score: 0.54,
+            rule score: 0.45,
+            tokens: ['m', 'j']
+        </div>
+
+        <div class="candidate">ម៉ច</div>
+        <div class="meta">
+            source: rule_cc_plain,
+            final score: 0.54,
+            rule score: 0.45,
+            tokens: ['m', 'j']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['m', 'j']</div>
+
+    <div class="candidate">មច</div>
+    <div class="meta">
+        source: rule_cc_plain,
+        score: 0.45
+    </div>
+
+    <div class="candidate">ម៉ច</div>
+    <div class="meta">
+        source: rule_cc_plain,
+        score: 0.45
+    </div>
+
+    <div class="candidate">ម្ច</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ម្ជ</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        score: 0.7
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: kr</div>
+    <div>Normalized: <b>kr</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ក្រ</div>
+        <div class="meta">
+            source: rule_cc_subscript,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['k', 'r']
+        </div>
+
+        <div class="candidate">គ្រ</div>
+        <div class="meta">
+            source: rule_cc_subscript,
+            final score: 0.79,
+            rule score: 0.7,
+            tokens: ['k', 'r']
+        </div>
+
+        <div class="candidate">ករ</div>
+        <div class="meta">
+            source: rule_cc_plain,
+            final score: 0.54,
+            rule score: 0.45,
+            tokens: ['k', 'r']
+        </div>
+
+        <div class="candidate">គរ</div>
+        <div class="meta">
+            source: rule_cc_plain,
+            final score: 0.54,
+            rule score: 0.45,
+            tokens: ['k', 'r']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['k', 'r']</div>
+
+    <div class="candidate">ករ</div>
+    <div class="meta">
+        source: rule_cc_plain,
+        score: 0.45
+    </div>
+
+    <div class="candidate">គរ</div>
+    <div class="meta">
+        source: rule_cc_plain,
+        score: 0.45
+    </div>
+
+    <div class="candidate">ក្រ</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        score: 0.7
+    </div>
+
+    <div class="candidate">គ្រ</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        score: 0.7
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: kok</div>
+    <div>Normalized: <b>kok</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">កុក</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'k']
+        </div>
+
+        <div class="candidate">កូក</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'k']
+        </div>
+
+        <div class="candidate">គោក</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.84,
+            rule score: 0.75,
+            tokens: ['k', 'o', 'k']
+        </div>
+
+        <div class="candidate">កក</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.74,
+            rule score: 0.65,
+            tokens: ['k', 'o', 'k']
+        </div>
+
+        <div class="candidate">គក</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.74,
+            rule score: 0.65,
+            tokens: ['k', 'o', 'k']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['k', 'o', 'k']</div>
+
+    <div class="candidate">កុក</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">កូក</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">គោក</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">កក</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">គក</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: ngong</div>
+    <div>Normalized: <b>ngong</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ងោង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['ng', 'o', 'ng']
+        </div>
+
+        <div class="candidate">ង៉ុង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['ng', 'o', 'ng']
+        </div>
+
+        <div class="candidate">ង៉ូង</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.844,
+            rule score: 0.75,
+            tokens: ['ng', 'o', 'ng']
+        </div>
+
+        <div class="candidate">ងង</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.744,
+            rule score: 0.65,
+            tokens: ['ng', 'o', 'ng']
+        </div>
+
+        <div class="candidate">ង៉ង</div>
+        <div class="meta">
+            source: rule_inherent_vowel,
+            final score: 0.744,
+            rule score: 0.65,
+            tokens: ['ng', 'o', 'ng']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['ng', 'o', 'ng']</div>
+
+    <div class="candidate">ងោង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ង៉ុង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ង៉ូង</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ងង</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">ង៉ង</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="tokens">Tokens: ['ng', 'o', 'n', 'g']</div>
+
+    <div class="meta">No candidates generated for this tokenization.</div>
+
+    <div class="tokens">Tokens: ['n', 'g', 'o', 'ng']</div>
+
+    <div class="meta">No candidates generated for this tokenization.</div>
+
+    <div class="tokens">Tokens: ['n', 'g', 'o', 'n', 'g']</div>
+
+    <div class="meta">No candidates generated for this tokenization.</div>
+</div>
+<div class="case">
+    <div class="input">Input: chom</div>
+    <div>Normalized: <b>chom</b></div>
+    <div class="ranked">
+        <b>Ranked candidates</b>
+
+        <div class="candidate">ចុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ចំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ឆុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ឆំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ជុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ជំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ឈុំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ឈំ</div>
+        <div class="meta">
+            source: rule_cv,
+            final score: 0.875,
+            rule score: 0.7,
+            tokens: ['ch', 'om']
+        </div>
+
+        <div class="candidate">ចុម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['ch', 'o', 'm']
+        </div>
+
+        <div class="candidate">ចូម</div>
+        <div class="meta">
+            source: rule_cvc,
+            final score: 0.8425,
+            rule score: 0.75,
+            tokens: ['ch', 'o', 'm']
+        </div>
+
+    </div>
+
+    <div class="tokens">Tokens: ['ch', 'om']</div>
+
+    <div class="candidate">ចុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ចំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ឆុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ឆំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ជុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ជំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ឈុំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="candidate">ឈំ</div>
+    <div class="meta">
+        source: rule_cv,
+        score: 0.7
+    </div>
+
+    <div class="tokens">Tokens: ['ch', 'o', 'm']</div>
+
+    <div class="candidate">ចុម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ចូម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ឆុម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ឆូម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ជោម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ឈោម</div>
+    <div class="meta">
+        source: rule_cvc,
+        score: 0.75
+    </div>
+
+    <div class="candidate">ចម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">ឆម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">ជម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+
+    <div class="candidate">ឈម</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        score: 0.65
+    </div>
+</div>
+</body>
+</html>

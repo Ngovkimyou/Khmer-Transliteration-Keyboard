@@ -1,0 +1,2351 @@
+
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggestion Engine Test</title>
+    <style>
+        body {
+            font-family: "Khmer OS", "Noto Sans Khmer", Arial, sans-serif;
+            padding: 24px;
+            background: #f7f7f7;
+        }
+        .case {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .input {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .suggestion {
+            display: inline-block;
+            font-size: 28px;
+            padding: 8px 12px;
+            margin: 6px;
+            border-radius: 6px;
+            background: #f4fff4;
+            border: 1px solid #c8e6c9;
+        }
+        .meta {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+<h1>Suggestion Engine Test</h1>
+
+<div class="case">
+    <div class="input">Input: k</div>
+    <div>Normalized: <b>k</b></div>
+
+    <div class="suggestion">1. ក</div>
+    <div class="meta">
+        source: direct_consonant,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">2. គ</div>
+    <div class="meta">
+        source: direct_consonant,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">3. ក៏</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0035,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: k
+,
+        ML score: 0.1523
+
+    </div>
+
+    <div class="suggestion">4. គេ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.44,
+        rank score: 303.4402,
+        rank reason: left-to-right completion
+,
+        frequency: 100
+,
+        dataset score: 0.85,
+        dataset similarity: 0.6667,
+        dataset romanized: ke
+,
+        ML score: 0.0162
+
+    </div>
+
+    <div class="suggestion">5. ខឹង</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.43,
+        rank score: 303.4302,
+        rank reason: left-to-right completion
+,
+        frequency: 95
+,
+        dataset score: 0.845,
+        dataset similarity: 0.6667,
+        dataset romanized: kg
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">6. គេង</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.43,
+        rank score: 303.4302,
+        rank reason: left-to-right completion
+,
+        frequency: 95
+,
+        dataset score: 0.845,
+        dataset similarity: 0.6667,
+        dataset romanized: kg
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">7. ការ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.42,
+        rank score: 303.4202,
+        rank reason: left-to-right completion
+,
+        frequency: 90
+,
+        dataset score: 0.84,
+        dataset similarity: 0.6667,
+        dataset romanized: ka
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">8. គូរ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.244,
+        rank score: 303.2442,
+        rank reason: left-to-right completion
+,
+        frequency: 2
+,
+        dataset score: 0.752,
+        dataset similarity: 0.6667,
+        dataset romanized: ku
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">9. កិរ្តិ៍</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2427,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: ke
+,
+        ML score: 0.0673
+
+    </div>
+
+    <div class="suggestion">10. កេរ្តិ៍</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2427,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: ke
+,
+        ML score: 0.0673
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: kh</div>
+    <div>Normalized: <b>kh</b></div>
+
+    <div class="suggestion">1. ខ</div>
+    <div class="meta">
+        source: direct_consonant,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.002,
+        rank reason: direct token
+,
+        ML score: 0.2044
+
+    </div>
+
+    <div class="suggestion">2. ឃ</div>
+    <div class="meta">
+        source: direct_consonant,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.002,
+        rank reason: direct token
+,
+        ML score: 0.2044
+
+    </div>
+
+    <div class="suggestion">3. ឃើញ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0052,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kh
+,
+        ML score: 0.3167
+
+    </div>
+
+    <div class="suggestion">4. ខៗ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0046,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kh
+,
+        ML score: 0.2565
+
+    </div>
+
+    <div class="suggestion">5. ខឹង</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.53,
+        rank score: 303.5304,
+        rank reason: left-to-right completion
+,
+        frequency: 95
+,
+        dataset score: 0.945,
+        dataset similarity: 0.8,
+        dataset romanized: khg
+,
+        ML score: 0.0408
+
+    </div>
+
+    <div class="suggestion">6. គ្រូ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3425,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: khu
+,
+        ML score: 0.0541
+
+    </div>
+
+    <div class="suggestion">7. ខេ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3423,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: khe
+,
+        ML score: 0.0307
+
+    </div>
+
+    <div class="suggestion">8. ខែ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3423,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: khe
+,
+        ML score: 0.0307
+
+    </div>
+
+    <div class="suggestion">9. ខុស</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.234,
+        rank score: 303.234,
+        rank reason: left-to-right completion
+,
+        frequency: 2
+,
+        dataset score: 0.752,
+        dataset similarity: 0.6667,
+        dataset romanized: khos
+,
+        ML score: 0.0039
+
+    </div>
+
+    <div class="suggestion">10. ខេត្ត</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.232,
+        rank score: 303.2321,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: khet
+,
+        ML score: 0.007
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: a</div>
+    <div>Normalized: <b>a</b></div>
+
+    <div class="suggestion">1. អ</div>
+    <div class="meta">
+        source: direct_consonant,
+        priority: 5,
+        manual score: 5.001,
+        rank score: 505.0022,
+        rank reason: direct token
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: a
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">2. ា</div>
+    <div class="meta">
+        source: direct_vowel,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">3. អា</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0035,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: a
+,
+        ML score: 0.1523
+
+    </div>
+
+    <div class="suggestion">4. ឲ្យ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.295,
+        rank score: 303.295,
+        rank reason: left-to-right completion
+,
+        frequency: 95
+,
+        dataset score: 0.72,
+        dataset similarity: 0.5,
+        dataset romanized: aoy
+,
+        ML score: 0.002
+
+    </div>
+
+    <div class="suggestion">5. អា៎</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: aa
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">6. អ្ហ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: ah
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">7. អាន</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: an
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">8. អាវ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: av
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">9. អាយ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: ay
+,
+        ML score: 0.0217
+
+    </div>
+
+    <div class="suggestion">10. ឯ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2421,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: ae
+,
+        ML score: 0.0121
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: aa</div>
+    <div>Normalized: <b>aa</b></div>
+
+    <div class="suggestion">1. ា</div>
+    <div class="meta">
+        source: direct_vowel,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.002,
+        rank reason: direct token
+,
+        ML score: 0.2044
+
+    </div>
+
+    <div class="suggestion">2. អា</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.004,
+        rank score: 404.0066,
+        rank reason: exact dictionary
+,
+        frequency: 2
+,
+        dataset score: 1.002,
+        dataset similarity: 1.0,
+        dataset romanized: aa
+,
+        ML score: 0.2565
+
+    </div>
+
+    <div class="suggestion">3. អា៎</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0052,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: aa
+,
+        ML score: 0.3167
+
+    </div>
+
+    <div class="suggestion">4. អាស</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.344,
+        rank score: 303.3444,
+        rank reason: left-to-right completion
+,
+        frequency: 2
+,
+        dataset score: 0.852,
+        dataset similarity: 0.8,
+        dataset romanized: aas
+,
+        ML score: 0.0408
+
+    </div>
+
+    <div class="suggestion">5. អាប់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3425,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aab
+,
+        ML score: 0.0541
+
+    </div>
+
+    <div class="suggestion">6. អាក់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3425,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aak
+,
+        ML score: 0.0541
+
+    </div>
+
+    <div class="suggestion">7. អាត់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3425,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aat
+,
+        ML score: 0.0541
+
+    </div>
+
+    <div class="suggestion">8. អាប</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3424,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aab
+,
+        ML score: 0.0408
+
+    </div>
+
+    <div class="suggestion">9. អាល</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3424,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aal
+,
+        ML score: 0.0408
+
+    </div>
+
+    <div class="suggestion">10. អាម</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.342,
+        rank score: 303.3424,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: aam
+,
+        ML score: 0.0408
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: u</div>
+    <div>Normalized: <b>u</b></div>
+
+    <div class="suggestion">1. ឧ</div>
+    <div class="meta">
+        source: direct_independent_vowel,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">2. ុ</div>
+    <div class="meta">
+        source: direct_vowel,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">3. ូ</div>
+    <div class="meta">
+        source: direct_vowel,
+        priority: 5,
+        manual score: 4.0,
+        rank score: 504.0012,
+        rank reason: direct token
+,
+        ML score: 0.118
+
+    </div>
+
+    <div class="suggestion">4. យូរ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0039,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: u
+,
+        ML score: 0.1944
+
+    </div>
+
+    <div class="suggestion">5. ឧក</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: uk
+,
+        ML score: 0.0162
+
+    </div>
+
+    <div class="suggestion">6. ឧស</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.242,
+        rank score: 303.2422,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: us
+,
+        ML score: 0.0162
+
+    </div>
+
+    <div class="suggestion">7. ឧសា</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.107,
+        rank score: 303.107,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.626,
+        dataset similarity: 0.5,
+        dataset romanized: usa
+,
+        ML score: 0.002
+
+    </div>
+
+    <div class="suggestion">8. ឧតុ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.107,
+        rank score: 303.107,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.626,
+        dataset similarity: 0.5,
+        dataset romanized: uto
+,
+        ML score: 0.002
+
+    </div>
+
+    <div class="suggestion">9. ឩម</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.107,
+        rank score: 303.107,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.626,
+        dataset similarity: 0.5,
+        dataset romanized: uum
+,
+        ML score: 0.0015
+
+    </div>
+
+    <div class="suggestion">10. ឩន</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.107,
+        rank score: 303.107,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.626,
+        dataset similarity: 0.5,
+        dataset romanized: uun
+,
+        ML score: 0.0015
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: sala</div>
+    <div>Normalized: <b>sala</b></div>
+
+    <div class="suggestion">1. សាលា</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.004,
+        rank score: 404.011,
+        rank reason: exact dictionary
+,
+        frequency: 2
+,
+        dataset score: 1.002,
+        dataset similarity: 1.0,
+        dataset romanized: sala
+,
+        ML score: 0.6967
+
+    </div>
+
+    <div class="suggestion">2. សាឡង់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: salang
+,
+        ML score: 0.0254
+
+    </div>
+
+    <div class="suggestion">3. ស្អល្អ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.001
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+
+    <div class="suggestion">4. ស្អឡ្អ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.001
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+
+    <div class="suggestion">5. សាល្អ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.0007
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+
+    <div class="suggestion">6. សាឡ្អ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.0007
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+
+    <div class="suggestion">7. ស្អឡា</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.0007
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+
+    <div class="suggestion">8. សាឡា</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.0005
+,
+        tokens: ['s', 'a', 'l', 'a']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: mong</div>
+    <div>Normalized: <b>mong</b></div>
+
+    <div class="suggestion">1. ម៉ង់ៗ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0096,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: mong
+,
+        ML score: 0.7552
+
+    </div>
+
+    <div class="suggestion">2. ម៉ូង</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.009,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: mong
+,
+        ML score: 0.6967
+
+    </div>
+
+    <div class="suggestion">3. ហ្មង</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.009,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: mong
+,
+        ML score: 0.6967
+
+    </div>
+
+    <div class="suggestion">4. មង</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0076,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: mong
+,
+        ML score: 0.5601
+
+    </div>
+
+    <div class="suggestion">5. មោង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 2.7602,
+        rank score: 102.7602,
+        rank reason: rule generated
+,
+        dataset score: 0.9177,
+        dataset similarity: 0.8889,
+        dataset romanized: moung
+,
+        ML score: 0.0034
+,
+        tokens: ['m', 'o', 'ng']
+
+    </div>
+
+    <div class="suggestion">6. ម៉ុង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 2.656,
+        rank score: 102.656,
+        rank reason: rule generated
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: mung
+,
+        ML score: 0.0046
+,
+        tokens: ['m', 'o', 'ng']
+
+    </div>
+
+    <div class="suggestion">7. ម៉ង</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        priority: 1,
+        manual score: 1.7425,
+        rank score: 101.7426,
+        rank reason: rule generated
+,
+        ML score: 0.0057
+,
+        tokens: ['m', 'o', 'ng']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: vav</div>
+    <div>Normalized: <b>vav</b></div>
+
+    <div class="suggestion">1. វ៉ៅ</div>
+    <div class="meta">
+        source: rule_cv,
+        priority: 1,
+        manual score: 2.6243,
+        rank score: 102.6244,
+        rank reason: rule generated
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: vov
+,
+        ML score: 0.0051
+,
+        tokens: ['v', 'av']
+
+    </div>
+
+    <div class="suggestion">2. វ៉ាវ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.84,
+        rank score: 101.84,
+        rank reason: rule generated
+,
+        ML score: 0.0024
+,
+        tokens: ['v', 'a', 'v']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: veav</div>
+    <div>Normalized: <b>veav</b></div>
+
+    <div class="suggestion">1. វាវ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0083,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: veav
+,
+        ML score: 0.631
+
+    </div>
+
+    <div class="suggestion">2. វៀវ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['v', 'ea', 'v']
+
+    </div>
+
+    <div class="suggestion">3. វែវ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['v', 'ea', 'v']
+
+    </div>
+
+    <div class="suggestion">4. វ៉េអោ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.7425,
+        rank score: 101.7425,
+        rank reason: rule generated
+,
+        ML score: 0.0014
+,
+        tokens: ['v', 'e', 'av']
+
+    </div>
+
+    <div class="suggestion">5. វ៉ិអោ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.7425,
+        rank score: 101.7425,
+        rank reason: rule generated
+,
+        ML score: 0.0014
+,
+        tokens: ['v', 'e', 'av']
+
+    </div>
+
+    <div class="suggestion">6. វេអោ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.7425,
+        rank score: 101.7425,
+        rank reason: rule generated
+,
+        ML score: 0.0011
+,
+        tokens: ['v', 'e', 'av']
+
+    </div>
+
+    <div class="suggestion">7. វិអោ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.7425,
+        rank score: 101.7425,
+        rank reason: rule generated
+,
+        ML score: 0.0011
+,
+        tokens: ['v', 'e', 'av']
+
+    </div>
+
+    <div class="suggestion">8. វ៉េអ្វ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.001
+,
+        tokens: ['v', 'e', 'a', 'v']
+
+    </div>
+
+    <div class="suggestion">9. វ៉ិអ្វ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.001
+,
+        tokens: ['v', 'e', 'a', 'v']
+
+    </div>
+
+    <div class="suggestion">10. វេអ្វ</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 1.64,
+        rank score: 101.64,
+        rank reason: rule generated
+,
+        ML score: 0.0007
+,
+        tokens: ['v', 'e', 'a', 'v']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: kra</div>
+    <div>Normalized: <b>kra</b></div>
+
+    <div class="suggestion">1. ក្រា</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0074,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kra
+,
+        ML score: 0.5446
+
+    </div>
+
+    <div class="suggestion">2. ក្រាប់ៗ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.387,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krab
+,
+        ML score: 0.2103
+
+    </div>
+
+    <div class="suggestion">3. ក្រាក់ៗ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.387,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krak
+,
+        ML score: 0.2103
+
+    </div>
+
+    <div class="suggestion">4. ក្រាប់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3865,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krab
+,
+        ML score: 0.1654
+
+    </div>
+
+    <div class="suggestion">5. ក្រាក់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3865,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krak
+,
+        ML score: 0.1654
+
+    </div>
+
+    <div class="suggestion">6. ក្រាល់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3865,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: kral
+,
+        ML score: 0.1654
+
+    </div>
+
+    <div class="suggestion">7. ក្រាស់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3865,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: kras
+,
+        ML score: 0.1654
+
+    </div>
+
+    <div class="suggestion">8. ក្រាប</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3861,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krab
+,
+        ML score: 0.1286
+
+    </div>
+
+    <div class="suggestion">9. ក្រាក</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3861,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: krak
+,
+        ML score: 0.1286
+
+    </div>
+
+    <div class="suggestion">10. ក្រាល</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3849,
+        rank score: 303.3861,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8939,
+        dataset similarity: 0.8571,
+        dataset romanized: kral
+,
+        ML score: 0.1286
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: krom</div>
+    <div>Normalized: <b>krom</b></div>
+
+    <div class="suggestion">1. ក្រុម</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.006,
+        rank score: 404.0136,
+        rank reason: exact dictionary
+,
+        frequency: 3
+,
+        dataset score: 1.003,
+        dataset similarity: 1.0,
+        dataset romanized: krom
+,
+        ML score: 0.7552
+
+    </div>
+
+    <div class="suggestion">2. ក្រោម</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.004,
+        rank score: 404.0116,
+        rank reason: exact dictionary
+,
+        frequency: 2
+,
+        dataset score: 1.002,
+        dataset similarity: 1.0,
+        dataset romanized: krom
+,
+        ML score: 0.7552
+
+    </div>
+
+    <div class="suggestion">3. ក្រម</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.009,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: krom
+,
+        ML score: 0.6967
+
+    </div>
+
+    <div class="suggestion">4. ក្រមី</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.4087,
+        rank score: 303.4109,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.9177,
+        dataset similarity: 0.8889,
+        dataset romanized: kromi
+,
+        ML score: 0.2209
+
+    </div>
+
+    <div class="suggestion">5. ក្រមាល់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3324,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kromal
+,
+        ML score: 0.0449
+
+    </div>
+
+    <div class="suggestion">6. ក្រមប់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kromob
+,
+        ML score: 0.0338
+
+    </div>
+
+    <div class="suggestion">7. គ្រមល់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kromol
+,
+        ML score: 0.0338
+
+    </div>
+
+    <div class="suggestion">8. ក្រមុំ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kromum
+,
+        ML score: 0.0338
+
+    </div>
+
+    <div class="suggestion">9. ក្រមា</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kromea
+,
+        ML score: 0.0254
+
+    </div>
+
+    <div class="suggestion">10. ក្រមម</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.332,
+        rank score: 303.3323,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.851,
+        dataset similarity: 0.8,
+        dataset romanized: kramom
+,
+        ML score: 0.0254
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: stra</div>
+    <div>Normalized: <b>stra</b></div>
+
+    <div class="meta">No suggestions generated.</div>
+</div>
+<div class="case">
+    <div class="input">Input: slabpra</div>
+    <div>Normalized: <b>slabpra</b></div>
+
+    <div class="suggestion">1. ស្លាបព្រា</div>
+    <div class="meta">
+        source: rule_sequence,
+        priority: 1,
+        manual score: 2.581,
+        rank score: 102.581,
+        rank reason: rule generated
+,
+        dataset score: 0.951,
+        dataset similarity: 0.9333,
+        dataset romanized: slabprea
+,
+        ML score: 0.0016
+,
+        tokens: ['s', 'l', 'a', 'b', 'p', 'r', 'a']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: mj</div>
+    <div>Normalized: <b>mj</b></div>
+
+    <div class="suggestion">1. ម្ចាស់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.232,
+        rank score: 303.2321,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: mjas
+,
+        ML score: 0.0094
+
+    </div>
+
+    <div class="suggestion">2. ម្ចត់</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.232,
+        rank score: 303.2321,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.751,
+        dataset similarity: 0.6667,
+        dataset romanized: mjot
+,
+        ML score: 0.007
+
+    </div>
+
+    <div class="suggestion">3. ម្ច</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        priority: 1,
+        manual score: 1.79,
+        rank score: 101.79,
+        rank reason: rule generated
+,
+        ML score: 0.0026
+,
+        tokens: ['m', 'j']
+
+    </div>
+
+    <div class="suggestion">4. ម្ជ</div>
+    <div class="meta">
+        source: rule_cc_subscript,
+        priority: 1,
+        manual score: 1.79,
+        rank score: 101.79,
+        rank reason: rule generated
+,
+        ML score: 0.0026
+,
+        tokens: ['m', 'j']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: kom</div>
+    <div>Normalized: <b>kom</b></div>
+
+    <div class="suggestion">1. កុំ</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0067,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kom
+,
+        ML score: 0.471
+
+    </div>
+
+    <div class="suggestion">2. កម</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.006,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kom
+,
+        ML score: 0.3986
+
+    </div>
+
+    <div class="suggestion">3. គម</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.006,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: kom
+,
+        ML score: 0.3986
+
+    </div>
+
+    <div class="suggestion">4. កុមារ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.3869,
+        rank score: 303.3881,
+        rank reason: left-to-right completion
+,
+        frequency: 2
+,
+        dataset score: 0.8949,
+        dataset similarity: 0.8571,
+        dataset romanized: koma
+,
+        ML score: 0.1286
+
+    </div>
+
+    <div class="suggestion">5. កុំឲ្យ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2947,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: komoy
+,
+        ML score: 0.0179
+
+    </div>
+
+    <div class="suggestion">6. គម្ពីរ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2947,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: kompi
+,
+        ML score: 0.0179
+
+    </div>
+
+    <div class="suggestion">7. កំដឹង</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2946,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: komdg
+,
+        ML score: 0.0134
+
+    </div>
+
+    <div class="suggestion">8. កម្លា</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2946,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: komla
+,
+        ML score: 0.0134
+
+    </div>
+
+    <div class="suggestion">9. កម្ពុ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2946,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: kompu
+,
+        ML score: 0.0134
+
+    </div>
+
+    <div class="suggestion">10. កុមុទ</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.2945,
+        rank score: 303.2946,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.8135,
+        dataset similarity: 0.75,
+        dataset romanized: komut
+,
+        ML score: 0.0134
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: jong</div>
+    <div>Normalized: <b>jong</b></div>
+
+    <div class="suggestion">1. ចង់</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.19,
+        rank score: 404.1963,
+        rank reason: exact dictionary
+,
+        frequency: 95
+,
+        dataset score: 1.095,
+        dataset similarity: 1.0,
+        dataset romanized: jong
+,
+        ML score: 0.631
+
+    </div>
+
+    <div class="suggestion">2. ចុង</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.006,
+        rank score: 404.0123,
+        rank reason: exact dictionary
+,
+        frequency: 3
+,
+        dataset score: 1.003,
+        dataset similarity: 1.0,
+        dataset romanized: jong
+,
+        ML score: 0.631
+
+    </div>
+
+    <div class="suggestion">3. ចង</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        priority: 1,
+        manual score: 2.6602,
+        rank score: 102.6602,
+        rank reason: rule generated
+,
+        dataset score: 0.9177,
+        dataset similarity: 0.8889,
+        dataset romanized: jorng
+,
+        ML score: 0.0042
+,
+        tokens: ['j', 'o', 'ng']
+
+    </div>
+
+    <div class="suggestion">4. ជង</div>
+    <div class="meta">
+        source: rule_inherent_vowel,
+        priority: 1,
+        manual score: 2.6602,
+        rank score: 102.6602,
+        rank reason: rule generated
+,
+        dataset score: 0.9177,
+        dataset similarity: 0.8889,
+        dataset romanized: jorng
+,
+        ML score: 0.0042
+,
+        tokens: ['j', 'o', 'ng']
+
+    </div>
+
+    <div class="suggestion">5. ចូង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['j', 'o', 'ng']
+
+    </div>
+
+    <div class="suggestion">6. ជោង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['j', 'o', 'ng']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: neang</div>
+    <div>Normalized: <b>neang</b></div>
+
+    <div class="suggestion">1. នាង</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.004,
+        rank score: 404.0117,
+        rank reason: exact dictionary
+,
+        frequency: 2
+,
+        dataset score: 1.002,
+        dataset similarity: 1.0,
+        dataset romanized: neang
+,
+        ML score: 0.7666
+
+    </div>
+
+    <div class="suggestion">2. នៀង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['n', 'ea', 'ng']
+
+    </div>
+
+    <div class="suggestion">3. នែង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['n', 'ea', 'ng']
+
+    </div>
+
+    <div class="suggestion">4. ណៀង</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['n', 'ea', 'ng']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: khuk</div>
+    <div>Normalized: <b>khuk</b></div>
+
+    <div class="suggestion">1. ឃុក</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['kh', 'u', 'k']
+
+    </div>
+
+    <div class="suggestion">2. ឃូក</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.8425,
+        rank score: 101.8425,
+        rank reason: rule generated
+,
+        ML score: 0.0034
+,
+        tokens: ['kh', 'u', 'k']
+
+    </div>
+</div>
+<div class="case">
+    <div class="input">Input: chuch</div>
+    <div>Normalized: <b>chuch</b></div>
+
+    <div class="suggestion">1. ចុច</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0097,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: chuch
+,
+        ML score: 0.7666
+
+    </div>
+
+    <div class="suggestion">2. ជុច</div>
+    <div class="meta">
+        source: dictionary_exact,
+        priority: 4,
+        manual score: 4.002,
+        rank score: 404.0097,
+        rank reason: exact dictionary
+,
+        frequency: 1
+,
+        dataset score: 1.001,
+        dataset similarity: 1.0,
+        dataset romanized: chuch
+,
+        ML score: 0.7666
+
+    </div>
+
+    <div class="suggestion">3. ជូជក</div>
+    <div class="meta">
+        source: dictionary_completion,
+        priority: 3,
+        manual score: 3.357,
+        rank score: 303.3574,
+        rank reason: left-to-right completion
+,
+        frequency: 1
+,
+        dataset score: 0.876,
+        dataset similarity: 0.8333,
+        dataset romanized: chuchok
+,
+        ML score: 0.0359
+
+    </div>
+
+    <div class="suggestion">4. ឈូច</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 2.7768,
+        rank score: 102.7769,
+        rank reason: rule generated
+,
+        dataset score: 0.9328,
+        dataset similarity: 0.9091,
+        dataset romanized: chhuch
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">5. ជុជ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">6. ជូច</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">7. ជូជ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">8. ឈុច</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">9. ឈុជ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+
+    <div class="suggestion">10. ឈូជ</div>
+    <div class="meta">
+        source: rule_cvc,
+        priority: 1,
+        manual score: 1.844,
+        rank score: 101.8441,
+        rank reason: rule generated
+,
+        ML score: 0.0065
+,
+        tokens: ['ch', 'u', 'ch']
+
+    </div>
+</div>
+</body>
+</html>

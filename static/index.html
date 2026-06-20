@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khmer Transliteration Keyboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main class="shell">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">ML-ranked Khmer input</p>
+                <h1>Khmer Transliteration Keyboard</h1>
+            </div>
+            <div class="status" id="modelStatus">Model ready</div>
+        </section>
+
+        <section class="composer">
+            <label for="romanInput">Romanized input</label>
+            <div class="inputRow">
+                <input
+                    id="romanInput"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Try leap, leaphi, vav, kompi..."
+                    autofocus
+                >
+                <button id="clearButton" type="button" title="Clear input">Clear</button>
+                <button id="collectButton" type="button" title="Send candidates to review CSV">Confirm</button>
+            </div>
+            <div class="normalized">Normalized: <span id="normalizedText">empty</span></div>
+            <div class="collectStatus" id="collectStatus"></div>
+        </section>
+
+        <section class="suggestionPanel">
+            <div class="panelHeader">
+                <h2>Suggestions</h2>
+                <span id="countText">0 results</span>
+            </div>
+            <div class="suggestions" id="suggestions"></div>
+            <div class="emptyState" id="emptyState">
+                Type Romanized Khmer to see ranked script suggestions.
+            </div>
+        </section>
+
+        <section class="outputPanel">
+            <label for="outputText">Selected text</label>
+            <textarea id="outputText" rows="4" placeholder="Click a suggestion to insert it here."></textarea>
+        </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

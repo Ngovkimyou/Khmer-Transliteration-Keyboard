@@ -1,0 +1,25 @@
+{
+  "feature_names": [
+    "rule_score",
+    "remaining_length",
+    "input_length",
+    "romanized_length",
+    "khmer_length",
+    "length_difference",
+    "token_count",
+    "chunk_count"
+  ],
+  "training_candidates": 73186,
+  "manual_candidates": 1,
+  "positive_candidates": 4823,
+  "negative_candidates": 68363,
+  "train_candidates": 58548,
+  "test_candidates": 14638,
+  "accuracy": 0.9415220658559913,
+  "roc_auc": 0.9857651837572554,
+  "ranking_groups": 951,
+  "top_1_accuracy": 0.9400630914826499,
+  "top_3_accuracy": 0.9789695057833859,
+  "mrr": 0.9598208791775711,
+  "model_file": "models\\ranking_model.joblib"
+}

@@ -2,8 +2,10 @@
 .,ៈ,1
 .,៉,1
 .,៊,1
+.,់,1
 .,។,1
 .l.,។ល។,1
+etc,។ល។,1
 Afghanistan,អាហ្វហ្កានីស្ថាន,1
 Afghanistan,អាហ្វហ្គានីស្ថាន,1
 Albania,អាល់បានី,1
@@ -3021,6 +3023,7 @@ aovoyoveak,អវយវៈ,1
 aoy,អោយ,1
 aoy,អ៊ុយ,1
 aoy,ឱ្យ,1
+aoy,ឲ្យ,95
 aoyida,អយីដា,1
 aoyonokal,អយនកាល,1
 aoyonopheak,អយនភាគ,1
@@ -3053,6 +3056,7 @@ aphivath,អភិវឌ្ឍ,1
 aphorb,អភ័ព្វ,1
 arch,អាច,2
 arch nha,អាជ្ញា,1
+arkun,អរគុណ,90
 arn,អាន,1
 arng,អាង,1
 arom,អារម្មណ៍,1
@@ -3102,7 +3106,7 @@ ay,អាយ,1
 ayou,អាយុ,1
 ayu,អាយុ,1
 ayuk,អាយុ,2
-b,បង,1
+b,បង,95
 b,ប៉,1
 b,ប៊,1
 b'eus,ប្អ៊ឹះ,1
@@ -3288,6 +3292,7 @@ bahonkodthan,បាហុនកដ្ឋាន,1
 bahonokak,បាហុនកៈ,1
 bahpeal,ប៉ះពាល់,1
 bahpouv,ប៉ះប៉ូវ,1
+bai,បាយ,95
 bai,ប៉ៃ,2
 baideika,បៃដីកា,1
 bailam,ប៉ៃឡាំ,1
@@ -3484,7 +3489,7 @@ bamrung,បម្រុង,1
 bamsokoulikngkeak,បំសុកូលិកង្គៈ,1
 ban,បន,1
 ban,បន់,1
-ban,បាន,4
+ban,បាន,100
 ban,ប៉ន់,1
 ban,ប៉ាន,1
 ban,ប៉ាន់,1
@@ -4096,9 +4101,9 @@ bassasak,បស្សាសៈ,1
 bassaveak,បស្សាវៈ,1
 bassavmokk,បស្សាវមគ្គ,1
 bat,បត់,1
-bat,បាត,1
-bat,បាត់,1
-bat,បាទ,1
+bat,បាត,95
+bat,បាត់,95
+bat,បាទ,100
 bat,ប៉ាត,1
 bat,ប៉ាត់,1
 batabang,បាត់បង់,1
@@ -4154,6 +4159,9 @@ batosameas,បទសមាស,1
 batrar,បាត្រ,1
 batrnheat,ប៉ាត់រញ៉ាត់,1
 batror,បាត្រ,1
+batt,បាត,95
+batt,បាត់,95
+batt,បាទ,100
 battabendekngkeak,បត្តបិណ្ឌិកង្គៈ,1
 battanumoutneamoyeak,បត្តានុមោទនាមយៈ,1
 batteteanomoyeak,បត្តិទានមយៈ,1
@@ -4175,7 +4183,7 @@ bavor,បវរ,1
 bavorokanhnhea,បវរកញ្ញា,1
 bavotte,បវត្តិ,1
 bavpreav,បាវព្រាវ,1
-bay,បាយ,1
+bay,បាយ,100
 bay,ប៉យ,1
 bay,ប៉ាយ,1
 bayaakoumey,បាយអគោម័យ,1
@@ -4371,7 +4379,7 @@ blouk,ប្លក់,1
 blouk,ប្លូក,1
 bluek,ប្លឹកៗ,1
 bluok,ប្លួក,1
-bn,បាន,2
+bn,បាន,85
 boar,ប៊័រ,1
 bob,ប៉ប់,1
 bob,ប៉ុប,1
@@ -4618,7 +4626,7 @@ bondoullpov,បណ្ដូលល្ពៅ,1
 boneit,បណីត,1
 boneitahar,បណីតាហារ,1
 boneitopheap,បណីតភាព,1
-bong,បង,1
+bong,បង,100
 bong,បង់,1
 bong,ប៉ង,1
 bong,ប៉ុង,1
@@ -6980,7 +6988,7 @@ chboch,ច្បុច,1
 chbong,ច្បង,1
 chbouk,ច្បូក,1
 chbout,ច្បូត,1
-chea,ជា,2
+chea,ជា,90
 cheachmbong,ជាចម្បង,1
 cheadaeum,ជាដើម,1
 cheaeeah,ជែះ,1
@@ -7131,7 +7139,7 @@ chhaan,ឆ្អន់,1
 chhaau,ឆ្អៅ,1
 chhab,ឆប,1
 chhab,ឆាប,1
-chhab,ឆាប់,1
+chhab,ឆាប់,90
 chhachaol,ឆាចោល,1
 chhachhau,ឆាឆៅ,1
 chhada,ឆដា,1
@@ -7568,6 +7576,8 @@ chivontor,ជីវន្ត,1
 chivopheap,ជីវភាព,1
 chivopol,ជីវពល,1
 chkae,ឆ្កែ,1
+chkot,ឆ្កួត,85
+chkuot,ឆ្កួត,90
 chlart,ឆ្លាត,1
 chleat,ឆ្លៀត,1
 chlery,ឆ្លើយ,1
@@ -8085,7 +8095,7 @@ chramul,ច្រមូល,1
 chramunh,ច្រមូញ,1
 chramuon,ច្រមួន,1
 chran,ច្រាន,1
-chran,ច្រើន,1
+chran,ច្រើន,90
 chranaen,ច្រណែន,1
 chrang,ច្រង់,1
 chrang,ច្រាង,1
@@ -8145,7 +8155,7 @@ chrech,ច្រេច,1
 chreh,ច្រេះ,1
 chrel,ច្រិល,1
 chremchrom,ច្រិមច្រុម,1
-chren,ច្រើន,1
+chren,ច្រើន,95
 chrenh,ជ្រេញ,1
 chrenhchronh,ច្រេញច្រុញ,1
 chrerm,ជ្រើម,1
@@ -8634,10 +8644,10 @@ deikhmau,ដីខ្មៅ,1
 deileaeng,ដីលែង,1
 deisaet,ដីស្អិត,1
 deisor,ដីស,1
-dek,ដេក,1
+dek,ដេក,95
 del,ដែល,3
 den,ដែន,1
-deng,ដឹង,2
+deng,ដឹង,95
 denh,ដេញ,1
 der,ដើរ,2
 der,ដេរ,1
@@ -8648,12 +8658,12 @@ derm,ដើម,2
 derm3,ដើម្បី,1
 dermbey,ដើម្បី,2
 dermbie,ដើម្បី,1
-derng,ដឹង,2
+derng,ដឹង,100
 det,ដិត,1
 deu,ឌឺ,1
 deuk,ដឹក,1
 dey,ដី,2
-dg,ដឹង,2
+dg,ដឹង,95
 dieb,ដៀប,1
 diel,ដៀល,1
 diemdam,ដៀមដាម,1
@@ -8707,7 +8717,7 @@ dokokoam,ដកគាំ,1
 dokp,ដកព,1
 dokpeay,ដកពាយ,1
 doktong,ដកទង,1
-dol,ដល់,2
+dol,ដល់,95
 dol,ដុល,1
 dollar,ដុល្លារ,1
 dolouk,ដលោក,1
@@ -8770,7 +8780,9 @@ dongvin,ដង្វិន,1
 donleab,ដន្លាប់,1
 donlong,ដន្លង,1
 dontrei,តន្ត្រី,1
+dontrei,ឥន្ត្រី,100
 dontrey,តន្ត្រី,2
+dontrey,ឥន្ត្រី,100
 dor,ដរ,1
 dor,ដ៏,2
 dorb,ដប,1
@@ -8818,6 +8830,8 @@ duon,ដួន,1
 duong,ដួង,1
 duos,ដួស,1
 eaka,ឯកា,1
+eg,ឯង,95
+ei,អី,95
 ek,ឯក,1
 eka,ឯកា,1
 ekaaakkoreachotut,ឯកអគ្គរាជទូត,1
@@ -8846,7 +8860,7 @@ electronik,អេឡិចត្រូនិក,1
 eletronic,អេឡិចត្រូនិក,1
 email,អ៊ីមែល,2
 ena,ឯណា,1
-eng,ឯង,2
+eng,ឯង,95
 english,អង់គ្លេស,1
 er,អើ,1
 ereavoan,ឯរាវ័ណ,1
@@ -8864,7 +8878,7 @@ etotokk,ឯតទគ្គ,1
 etotokkeak,ឯតទគ្គៈ,1
 europe,អឺរ៉ុប,1
 evum,ឯវំ,1
-ey,អី,1
+ey,អី,100
 ey,អ្វី,1
 eylov,ឥឡូវ,2
 fav,ហ្វៅ,1
@@ -8982,6 +8996,7 @@ haeumsrork,ហើមស្រក,1
 haeur,ហើរ,1
 haeuy,ហ៊ើយ,1
 haev,ហេវ,1
+haey,ហើយ,100
 haeyak,ហេៈ,1
 haeyak,ហ៊ែៈ,1
 hah,ហាស,1
@@ -9440,6 +9455,7 @@ heut,ហឺត,2
 heutrok,ហិតរោគ,1
 heutrouk,ហិតរោគ,1
 heuy,ហឺយ,1
+heuy,ហើយ,100
 heuy,ហ៊ឺយ,1
 heuy,ហ៊ើយ,1
 hev,ហេវ,1
@@ -9447,6 +9463,7 @@ heyak,ហេៈ,1
 heyak,ហ៊ែៈ,1
 heyrak,ហីរ,1
 hg,ហែក,1
+hg,ហែង,95
 hi,ហ៊‌ី,1
 hie,ហៀ,1
 hiebneung,ហៀបនឹង,1
@@ -9887,7 +9904,8 @@ hvoungden,ហ្វូងដិន,1
 hvuek,ហ្វឹក,1
 hvuekhvuen,ហ្វឹកហ្វឺន,1
 hvuongden,ហ្វូងដិន,1
-hz,ហើយ,1
+hx,ហើយ,100
+hz,ហើយ,100
 ichchha,ឥច្ឆា,1
 idthar,ឥដ្ឋ,1
 idtharmmon,ឥដ្ឋារម្មណ៍,1
@@ -9993,15 +10011,18 @@ jakroval,ចក្រវាល,1
 jam,ចាំ,1
 jan,ចន្ទ,1
 janh,ចាញ់,1
+jao,ចោរ,95
+jao,ចោល,95
 jao,ចៅ,1
 jarit,ចរិត,1
-jas,ចាស់,1
+jas,ចាស,100
+jas,ចាស់,100
 jat,ចាត់,1
 jav,ចៅ,1
 jay,ចាយ,1
 jbab,ច្បាប់,1
 jbas,ច្បាស់,1
-jea,ជា,2
+jea,ជា,95
 jea jrern,ជាច្រើន,1
 jeaderm,ជាដើម,1
 jeamouy,ជាមួយ,1
@@ -10025,9 +10046,10 @@ jesthchey,ជេស្ឋជ័យ,1
 jet,ចិត្ត,1
 jethmeas,ជេដ្ឋមាស,1
 jetsnet,ជិតស្និទ្ធ,1
-jg,ចង់,1
+jg,ចង់,95
 jg,ចឹង,1
 jg,ជាង,1
+jg,អីចឹង,95
 jgay,ឆ្ងាយ,1
 jgg,ចង់,1
 jiom,ច្រឡំ,1
@@ -10062,12 +10084,13 @@ jnorng,ចំណង,1
 jnort,ឆ្នោត,1
 jnous,ជំនួស,1
 jnuch,ចំណុច,1
-job,ចប់,1
+job,ចប់,100
 joch,ចុច,1
 jok,ចុក,1
 jokchey,ជោគជ័យ,1
 jokjey,ជោគជ័យ,1
-jol,ចូល,1
+jol,ចូរ,95
+jol,ចូល,95
 jolroum,ចូលរួម,1
 jom,ចំ,1
 jom,ជុំ,1
@@ -10096,7 +10119,7 @@ jompel,ចំពេល,1
 jompous,ចំពោះ,1
 jomreab,ជម្រាប,1
 jomrern,ចម្រើន,1
-jong,ចង់,1
+jong,ចង់,95
 jong,ចុង,3
 jongbanhjob,ចុងបញ្ចប់,1
 jongg,ចង់,1
@@ -10178,7 +10201,7 @@ k'pleng,កំប្លែង,1
 k'pous,កម្ពស់,1
 k'rob,គោរព,1
 ka,កា,1
-ka,ការ,2
+ka,ការ,90
 kaae,ក្អែ,1
 kaaeb,ក្អែប,1
 kaaek,ក្អែក,1
@@ -11239,7 +11262,7 @@ kduol,ក្ដួល,1
 ke,កិរ្តិ៍,1
 ke,កេរ,1
 ke,កេរ្តិ៍,1
-ke,គេ,2
+ke,គេ,100
 kea,អង្គារ,1
 keab,គាប,1
 keab,គាប់,1
@@ -11316,7 +11339,7 @@ ken,កិន,1
 kend,កេណ្ឌ,1
 keng,កិង,1
 keng,កេង,1
-keng,គេង,1
+keng,គេង,95
 kengkang,កេងកង,1
 kengkang,កេងកាង,1
 kengkong,កេងកង,1
@@ -11370,7 +11393,8 @@ kev,កេវ,1
 kex,កិច្ច,1
 key,កី,1
 key,គៃ,1
-kg,គេង,1
+kg,ខឹង,95
+kg,គេង,95
 kh,ខៗ,1
 kh,ឃើញ,1
 khab,ខាប,1
@@ -11534,8 +11558,9 @@ khemreakpheasa,ខេមរភាសា,1
 khemroth,ខេមររដ្ឋ,1
 khen,ខេន,1
 kheng,ខិង,1
-kherng,ខឹង,1
-khernh,ឃើញ,2
+khern,ឃើញ,95
+kherng,ខឹង,95
+khernh,ឃើញ,90
 khert,ខិត,1
 khet,ខិត,1
 khet,ខេត្ត,1
@@ -11543,7 +11568,7 @@ khetkham,ខិតខំ,1
 khetkhat,ខិតខាត់,1
 khetkhom,ខិតខំ,1
 khettboann,ខិត្តប័ណ្ណ,1
-khg,ខឹង,1
+khg,ខឹង,95
 khien,ខៀន,1
 khiev,ខៀវ,1
 khinchhay,ឃិនឆាយ,1
@@ -11695,9 +11720,11 @@ khnhoeng,ខ្ញឹង,1
 khnhok,ខ្ញក,1
 khnhokkhnhouv,ខ្ញុកខ្ញូវ,1
 khnhom,ខ្ញម,1
+khnhom,ខ្ញុំ,80
 khnhong,ខ្ញង់,1
 khnhong,ខ្ញុង,1
 khnhouch,ខ្ញូច,1
+khnhum,ខ្ញុំ,80
 khnier,ខ្នៀរ,1
 khnies,ខ្នៀស,1
 khnob,ខ្នប់,1
@@ -12005,8 +12032,9 @@ klam,ក្លំ,1
 klampeak,ក្លាំពាក់,1
 klampu,ក្លាំពូ,1
 klan,ក្លន,1
+klang,កម្លាំង,90
 klang,ក្លង,1
-klang,ខ្លាំង,2
+klang,ខ្លាំង,90
 klangchhnak,ក្លងឆ្នៈ,1
 klanghay,ក្លាំងហាយ,1
 klangkhaek,ក្លងខែក,1
@@ -12045,10 +12073,11 @@ klongyoun,ក្លងយ៉ូន,1
 klos,ក្លស់,1
 kloun,ខ្លួន,3
 kls,ខ្លះ,1
+klun,ខ្លួន,95
 kmaeng,ក្មេង,1
 kmang,ក្មាង,1
 kmav,ខ្មៅ,1
-kmean,គ្មាន,1
+kmean,គ្មាន,90
 kmek,ក្មេក,1
 kmeng,ក្មេង,2
 kmom,ក្រមុំ,1
@@ -12095,17 +12124,20 @@ kngong,ក្ងុង,1
 kngor,ក្ង,1
 knguor,ក្ងួរ,1
 knh,ខ្ញុំ,1
-knhom,ខ្ញុំ,2
+knhom,ខ្ញុំ,100
+knhum,ខ្ញុំ,100
 kni,គ្នី,1
 knit,គំនិត,1
 knok,ក្នក់,1
 knong,ក្នុង,2
 knorng,ខ្នង,1
 knot,កំណត់,1
+knyom,ខ្ញុំ,85
+knyum,ខ្ញុំ,85
 ko,គោ,1
 koam,គាំ,1
 koamr,គាំពារ,1
-koat,គាត់,3
+koat,គាត់,100
 kob,កប,1
 kob,កប់,1
 kob,កុប,1
@@ -13123,7 +13155,7 @@ korononeam,ករណនាម,1
 korovik,ករវិក,1
 korsang,កសាង,1
 kort,កោត,1
-kort,គាត់,3
+kort,គាត់,90
 koru,គរុ,1
 korukaosal,គរុកោសល្យ,1
 korukaosol,គរុកោសល្យ,1
@@ -14143,7 +14175,7 @@ laok,ឡោក,1
 laom,ឡោម,1
 laon,ល្អន់,1
 laong,ល្អង,1
-laor,ល្អ,2
+laor,ល្អ,100
 laouch,ល្អោច,1
 laoum,ល្អោម,1
 laounh,ល្អោញ,1
@@ -14350,7 +14382,7 @@ lemlum,ឡិមឡុម,1
 len,ឡិន,1
 lendobat,លេណ្ឌុបាត,1
 lendthan,លេណដ្ឋាន,1
-leng,លេង,2
+leng,លេង,95
 lenglang,ឡិងឡាំង,1
 lenglong,ឡិងឡង់,1
 lenglorng,ឡិងឡង់,1
@@ -14412,7 +14444,7 @@ levoaav,ឡេវអាវ,1
 lex,លិច,1
 ley,លៃ,1
 leylok,លៃលក,1
-lg,លេង,2
+lg,លេង,95
 lg,លែង,1
 lgeach,ល្ងាច,1
 lgech,ល្ងាច,1
@@ -14553,7 +14585,7 @@ loams,លាំលើស,1
 loapthor,ល័ព្ធ,1
 lob,លប,1
 lob,លុប,1
-lob,ឡប់,1
+lob,ឡប់,100
 lob,ឡប់ៗ,1
 lob,ឡុបៗ,1
 lobb,លប់,1
@@ -14727,7 +14759,7 @@ lonotou,លន់តួ,1
 lonotuo,លន់តួ,1
 lonteae,លន្តែ,1
 loompeang,លំពាំង,1
-lop,ឡប់,1
+lop,ឡប់,100
 lop,ឡប់ៗ,1
 lopoborei,លពបុរី,1
 lopoborey,លពបុរី,1
@@ -14825,9 +14857,10 @@ louy,ឡូយ,1
 louythouy,ឡូយថូយ,1
 louythoy,ឡូយថូយ,1
 lov,លៅ,1
-lov,ឥឡូវ,1
+lov,ឥឡូវ,95
 lovou,លវោ,1
 loy,លយ,1
+loy,លុយ,95
 loy,ឡូយ,1
 loyeak,លយៈ,1
 loykaev,លយកែវ,1
@@ -14840,7 +14873,7 @@ lpov,ល្ពៅ,1
 lu,លូ,1
 lu,ឡូ,1
 lub,លប់,1
-lub,លុប,1
+lub,លុប,100
 lub,ឡុបៗ,1
 lubaney,លុបន័យ,1
 luboney,លុបន័យ,1
@@ -14983,6 +15016,7 @@ luonglang,ឡូងឡាង,1
 luongpreahbang,ហ្លួងព្រះបាង,1
 luos,លួស,1
 luot,លួត,1
+lup,លុប,100
 luri,ឡូរី,1
 lury,ឡូរី,1
 lus,លុះ,1
@@ -14991,8 +15025,8 @@ lut,លូត,1
 lutt,លុត្ត,1
 lutteak,លុទ្ទៈ,1
 lutthbokkol,លុទ្ធបុគ្គល,1
-luy,លុយ,1
-lv,ឥឡូវ,1
+luy,លុយ,100
+lv,ឥឡូវ,95
 lvauy,ល្វើយ,1
 lvea,ល្វា,1
 lveachek,ល្វាចេក,1
@@ -15005,6 +15039,7 @@ lvey,ល្វៃ,1
 lvieng,ល្វៀង,1
 lving,ល្វីង,1
 lvok,ល្វក់,1
+lvol,រវល់,95
 lvon,ល្វន់,1
 lvot,ល្វត,1
 lvueng,ល្វឹង,1
@@ -15027,8 +15062,8 @@ maekhum,មេឃុំ,1
 maen,មែន,1
 maet,ម៉ែត្រ,1
 maisak,ម៉ៃស័ក,1
-mak,ម៉ាក់,1
-man,មែន,1
+mak,ម៉ាក់,95
+man,មែន,80
 mang,ហ្មង,1
 manith,ម៉ានិត,1
 manout,ហ្មនួត,2
@@ -15132,7 +15167,7 @@ mealotei,មាលតី,1
 mealotey,មាលតី,1
 mealsala,មាលសាលា,1
 mealsalea,មាលសាលា,1
-mean,មាន,2
+mean,មាន,100
 meanap,មាណព,1
 meanap,មាណពក៍,1
 meanatour,មាន់ទោរ,1
@@ -15217,7 +15252,7 @@ meatror,មាត្រ,1
 meayea,មាយា,1
 meayi,មាយី,1
 meba,មេបា,1
-mech,ម៉េច,1
+mech,ម៉េច,95
 mechaor,មេចោរ,1
 mechaung,មេជើង,1
 mecheang,មេជាង,1
@@ -15265,9 +15300,10 @@ melum,មេលំ,1
 mem,ម៉ិមៗ,1
 memay,មេម៉ាយ,1
 memot,មេមត់,1
+men,មាន,50
 men,មិន,2
 men,មេន,1
-men,មែន,1
+men,មែន,80
 menum,មេនំ,1
 menuoh,មេនោះ,1
 mephleang,មេភ្លៀង,1
@@ -15359,7 +15395,7 @@ mim,ម៉ិមៗ,1
 min,មិន,2
 min,មីន,1
 minea,មីនា,1
-ming,មីង,1
+ming,មីង,90
 mingmeang,មិងមាំង,1
 minreasei,មីនរាសី,2
 mir,មីរ,1
@@ -15403,7 +15439,7 @@ mix,មិច,1
 mjas,ម្ចាស់,1
 mjeak,ម្ចាក់,1
 mjot,ម្ចត់,1
-mk,មក,1
+mk,មក,95
 mkang,ម្ខាង,1
 mkeak,ម្កាក់,1
 mkeal,ម្កាល,1
@@ -15598,7 +15634,7 @@ mohoscharyor,មហស្ចារ្យ,1
 mohotthon,មហទ្ធន,1
 mohoyyoka,មហយ្យកា,1
 mohoyyokao,មហយ្យកោ,1
-mok,មក,2
+mok,មក,100
 mok,មុខ,2
 mok,ម៉ក,1
 mok,ម៉ក់,1
@@ -16031,10 +16067,11 @@ myimy,ម្យីម្យ៉,1
 myimyea,ម្យីម្យា,1
 myimyor,ម្យីម្យ៉,1
 myob,ម្យប់,1
-na,ណា,2
+na,ណា,100
 na,ណា៎,1
 na,ន៏,1
 nae,ណែ,1
+nae,នែ,100
 naealonueng,ន្អាលនឹង,1
 naeknak,ណែកណក,1
 naeknok,ណែកណក,1
@@ -16049,7 +16086,7 @@ naennan,ណែនណាន់,1
 naenoam,ណែនាំ,1
 naenon,ណែណន,1
 naev,ណែវ,1
-nah,ណា,1
+nah,ណា,95
 nah,ណាស់,1
 nah,ណ៎ះ,1
 nah,ហ្ន៎ះ,1
@@ -16064,7 +16101,7 @@ namvea,ណាំវ៉ា,1
 nang,ណាំង,1
 nang,ហ្នាំង,1
 nang,ហ្ន័ង,1
-nas,ណាស់,1
+nas,ណាស់,100
 nassa,ណាស់សា,1
 nat,ណាត់,1
 natnay,ណតណយ,1
@@ -16088,8 +16125,8 @@ neaebnityar,នែបនិត្យ,1
 neaebnityor,នែបនិត្យ,1
 neaelonol,នែលនល,1
 neak,នាក់,4
-neak,នាគ,1
-neak,អ្នក,2
+neak,នាគ,100
+neak,អ្នក,100
 neakal,នាកាល,1
 neakbrak,នាគប្រក់,1
 neakbrok,នាគប្រក់,1
@@ -16196,7 +16233,7 @@ nel,ណិល,1
 nemireach,នេមិរាជ,1
 nemnom,ណិមណុម,1
 nen,នេន,1
-neng,និង,2
+neng,និង,90
 neng,នឹង,5
 neng,ហ្នឹង,1
 nengnong,ណិងណុង,1
@@ -16219,7 +16256,7 @@ neung,ណឺង,1
 neung,ហ្នឹង,1
 ney,នៃ,2
 ney,ន័យ,2
-ng,និង,2
+ng,និង,95
 ng,នឹង,3
 ng,ហ្នឹង,2
 ngai,ថ្ងៃ,1
@@ -16308,12 +16345,13 @@ ngus,ងូសៗ,1
 ngut,ងូត,1
 ngut,ង៉ូតៗ,1
 nguv,ង៉ូវៗ,1
-nh,ខ្ញុំ,1
+nh,ខ្ញុំ,90
 nhab,ញាប់,1
 nhae,ញ៉ែ,1
 nhaeuy,ណ្ហើយ,1
 nhaeuyochoh,ណ្ហើយចុះ,1
 nham,ញាំ,1
+nham,ញ៉ាំ,90
 nhaub,ញើបៗ,1
 nhauk,ញ៉ើក,1
 nhaunh,ញើញ,1
@@ -16377,7 +16415,7 @@ nhoch,ញច់,1
 nhok,ញក,1
 nhok,ញក់,1
 nhol,ញល់,1
-nhom,ខ្ញុំ,1
+nhom,ខ្ញុំ,100
 nhom,ញ៉ម,1
 nhom,ញ៉ុមៗ,1
 nhon,ញន,1
@@ -16411,6 +16449,7 @@ nhuem,ញ៉ឹម,1
 nhuen,ញឹន,1
 nhueng,ញ៉ឹង,1
 nhuh,ញុះ,1
+nhum,ខ្ញុំ,100
 nhum,ញំៗ,1
 nhunh,ញូញ,1
 nhunh,ញ៉ុញ,1
@@ -16624,6 +16663,7 @@ noreathib,នរាធិប,1
 noreathibtentor,នរាធិបតិន្ទ,1
 noresour,នរេសូរ,1
 norintor,នរិន្ទ,1
+nork,ណក,100
 norm,នាំ,1
 norobatei,នរបតី,1
 norobotei,នរបតី,1
@@ -16662,7 +16702,7 @@ noung,ណូង,1
 nouri,ណូរី,1
 nouri,នោរី,1
 nov,នូវ,2
-nov,នៅ,3
+nov,នៅ,95
 noveakot,នវាគត,1
 noveaktaphond,នវាគតភណ្ឌ,1
 noveaktophond,នវាគតភណ្ឌ,1
@@ -16711,12 +16751,13 @@ nung,ហ្នឹង,1
 nuon,នួន,1
 nuonlaong,នួនល្អង,1
 nuonsrei,នួនស្រី,1
-nus,នោះ,2
+nus,នុះ,100
+nus,នោះ,100
 nuy,នុយ,1
 nv,នូវ,1
-nv,នៅ,3
+nv,នៅ,95
 nvtea,នៅតែ,1
-o,អូន,1
+o,អូន,95
 oak,អក,1
 oay,អោយ,1
 ob,អប,1
@@ -16729,6 +16770,7 @@ ok,អូខេ,1
 okaslaor,ឱកាសល្អ,1
 okay,អូខេ,1
 oke,អូខេ,1
+okun,អរគុណ,95
 olarik,ឱឡារិក,1
 om,អ៊ំ,1
 omlong,អំឡុង,1
@@ -16741,6 +16783,7 @@ ong,អង្គ,1
 ongkea,អង្គារ,1
 ongkor,អង្គរ,2
 ongkuy,អង្គុយ,1
+oon,អូន,95
 opakthom,ឧបត្ថម្ភ,1
 or,អ,1
 or,អរ,1
@@ -16750,6 +16793,7 @@ ork,អក,1
 orkah,ឱកាស,1
 orkas,ឱកាស,1
 orkun,អគុណ,1
+orkun,អរគុណ,95
 orm,អម,1
 orm pi,អំពី,1
 ormper,អំពើ,1
@@ -16761,7 +16805,7 @@ orngkor,អង្គរ,1
 orngkuy,អង្គុយ,1
 orr,អរ,1
 ors,អស់,1
-ort,អត់,1
+ort,អត់,95
 os,អស់,2
 os ja,អស្ចារ្យ,1
 oscha,អស្ចារ្យ,1
@@ -16769,10 +16813,10 @@ osja,អស្ចារ្យ,1
 osrap,ឱស្រព,1
 osrop,ឱស្រព,1
 ostali,អូស្រ្តាលី,1
-ot,អត់,1
+ot,អត់,100
 oteahoh,ឧទាហរណ៏,1
 oum tuk,អ៊ុំទូក,1
-oun,អូន,1
+oun,អូន,100
 ous,អូស,1
 ouvpuk,ឪពុក,1
 ouy,ឱ្យ,1
@@ -16782,7 +16826,7 @@ ovlerk,ឪឡឹក,1
 ovpuk,ឪពុក,1
 oy,អោយ,1
 oy,ឱ្យ,2
-oy,ឲ្យ,1
+oy,ឲ្យ,100
 oydg,ឲ្យដឹង,1
 oydoeng,ឲ្យដឹង,1
 p'aek,ផ្អែក,1
@@ -16807,6 +16851,7 @@ p'torb,បន្ទាប់,1
 p'tuk,ពិន្ទុ,1
 p'yut,ប្រយុទ្ធ,1
 p'yuth,ប្រយុទ្ធ,1
+pa,ប៉ា,95
 pach chobon,បច្ចុប្បន្ន,1
 pachobon,បច្ចុប្បន្ន,1
 pachobon pheap,បច្ចុប្បន្នភាព,1
@@ -16948,7 +16993,7 @@ peil,ពេល,1
 pek,ពេក,1
 pek poin,ពាក់ព័ន្ធ,1
 pek porn,ពាក់ព័ន្ធ,1
-pel,ពេល,3
+pel,ពេល,95
 pelea,ពេលា,1
 pelna,ពេលណា,1
 pelvelea,ពេលវេលា,1
@@ -17765,6 +17810,7 @@ phtaong,ផ្ទោង,1
 phtar,ផ្ទារ,1
 phtat,ផ្ទាត់,1
 phte,ផ្ទេរ,1
+phteah,ផ្ទះ,95
 phteang,ផ្ទេរ,1
 phteh,ផ្ទះ,1
 phtei,ផ្ទី,1
@@ -17858,7 +17904,7 @@ phuvoney,ភូវន័យ,1
 phuy,ផុយ,1
 phuy,ភុយ,1
 phuyphay,ផុយផាយ,1
-pi,ពី,2
+pi,ពី,95
 pi,ពីរ,2
 pibak,ពិបាក,1
 piben,ពិបិន,1
@@ -17909,7 +17955,7 @@ pimperm,ពីមពើម,1
 pimpisar,ពិម្ពិសារ,1
 pimpor,ពិម្ព,1
 pin,ពិណ,1
-pin,ពិន,1
+pin,ពិន,100
 pina,ពីណា,1
 pinei,ពិន័យ,1
 piney,ពិន័យ,1
@@ -18147,6 +18193,7 @@ pluk,ប្លូក,1
 pluk,ព្លុក,1
 pluok,ប្លួក,1
 pm,ពួកម៉ាក,1
+pman,ប៉ុន្មាន,95
 pnaek,ផ្នែក,2
 pneakngea,ភ្នាក់ងារ,1
 pneat,ព្នៀត,1
@@ -18367,7 +18414,7 @@ ponlung,ពន្លុង,1
 ponluonh,ពន្លួញ,1
 ponlut,ពន្លុត,1
 ponlut,ពន្លូត,1
-ponman,ប៉ុន្មាន,1
+ponman,ប៉ុន្មាន,95
 ponmarn,ប៉ុន្មាន,1
 ponnareay,ពណ្ណរាយ,1
 ponnoh,ប៉ុណ្ណោះ,1
@@ -18999,7 +19046,7 @@ ptaeh,ផ្ទះ,1
 ptah,ផ្ទះ,1
 ptas,ផ្ទះ,2
 pte,ផ្ទេរ,1
-pteas,ផ្ទះ,2
+pteas,ផ្ទះ,90
 pteh,ផ្ទះ,1
 ptei,ផ្ទៃ,1
 ptey,ផ្ទៃ,1
@@ -19014,7 +19061,7 @@ ptorn,បន្ទាន់,1
 ptorn,ផ្ទាន់,1
 ptub,បន្ទប់,1
 ptuk,ផ្ទុក,1
-pu,ពូ,1
+pu,ពូ,90
 pub,ពុប,1
 puch,ពូជ,1
 puchpong,ពូជពង្ស,1
@@ -19074,6 +19121,7 @@ punler,ពន្លឺ,1
 punleu,ពន្លឺ,1
 punleur,ពន្លឺ,1
 punlot,ពន្លុត,1
+punman,ប៉ុន្មាន,90
 punnoh,ប៉ុណ្ណោះ,1
 puntae,ប៉ុន្តែ,1
 punte,ប៉ុន្តែ,1
@@ -19620,7 +19668,7 @@ robong,របុង,1
 robonh,របុញ,1
 robor,របរ,1
 roborb,របប,1
-robos,របស់,2
+robos,របស់,90
 robot,របត់,1
 robotim,របទិម,1
 roboul,របួល,1
@@ -20658,7 +20706,7 @@ rovoandar,រវ័ណ្ឌ,1
 rovoandor,រវ័ណ្ឌ,1
 rovoch,រវច,1
 rovok,រវ៉ក់,1
-rovol,រវល់,1
+rovol,រវល់,95
 rovom,រវម,1
 rovorndar,រវ័ណ្ឌ,1
 rovorndor,រវ័ណ្ឌ,1
@@ -21058,12 +21106,13 @@ sab,សប់,1
 sab,សាប,1
 sab,សាប់,1
 sab,ស៊ប់,1
+sabai,សប្បាយ,90
 sabal,សាបាល,1
 saban,សាបាន,1
 sabataiy,សាបតៃយ,1
 sabath,សបថ,1
 sabattachon,សបត្តជន,1
-sabay,សប្បាយ,1
+sabay,សប្បាយ,90
 sabb,សប្ប,1
 sabbadepheak,សប្បដិភាគ,1
 sabbadephey,សប្បដិភ័យ,1
@@ -22430,7 +22479,7 @@ sbaong,ស្បោង,1
 sbat,ស្បាត,1
 sbat,ស្បាត់,1
 sbath,ស្បថ,1
-sbay,សប្បាយ,1
+sbay,សប្បាយ,90
 sbek,ស្បែក,1
 sbery,ស្បើយ,1
 sbet,ស្បិត,1
@@ -22749,6 +22798,7 @@ skay,ស្គាយ,1
 skel,ស្កិល,1
 skeu,ស្គឺ,1
 skieb,ស្កៀប,1
+skoal,ស្គាល់,95
 skob,ស្កប់,1
 skoeah,ស្គឹះ,1
 skoemskai,ស្កឹមស្កៃ,1
@@ -22756,7 +22806,7 @@ skoh,ស្គុះ,1
 skok,ស្កក,1
 skol,ស្កល់,1
 skol,ស្កុល,1
-skol,ស្គាល់,1
+skol,ស្គាល់,95
 skol,ស្គុល,1
 skom,ស្គម,1
 skon,ស្កុន,1
@@ -22778,7 +22828,7 @@ skoy,ស្កុយ,1
 skoy,ស្គុយ,1
 skuoy,ស្កួយ,1
 skuoy,ស្គួយ,1
-sl,ស្រលាញ់,1
+sl,ស្រលាញ់,95
 sl,ស្រឡាញ់,1
 sla,សាលា,1
 sla,ស្លា,1
@@ -23267,7 +23317,7 @@ soloph,សុលភ,1
 solovol,សល់វ៉ល់,1
 som,សម,1
 som,សម៉,1
-som,សុំ,1
+som,សុំ,90
 som,សូម,2
 som,សំ,1
 som,ស៊ុម,1
@@ -23556,10 +23606,11 @@ somtear,សម្ទារ,1
 somteay,សម្ទាយ,1
 somteh,សម្ទេះ,1
 somtik,សម្ទីក,1
+somtoh,សុំទោស,95
 somtok,សម្ទក់,1
 somtol,សម្ទល,1
 somtong,សម្ទង់,1
-somtos,សុំទោស,1
+somtos,សុំទោស,100
 somtot,សម្តត,1
 somtouk,សម្តោក,1
 somtrum,ស៊ុមទ្រុម,1
@@ -23567,6 +23618,7 @@ somtuh,សម្ទុះ,1
 somtuhkaaek,សម្ទុះក្អែក,1
 somtul,សម្តុល,1
 somtung,សម្ទូង,1
+somtus,សុំទោស,100
 somuchchai,សមុច្ច័យ,1
 somuchchhet,សមុច្ឆេទ,1
 somuchchol,សមុជ្ជល,1
@@ -24498,7 +24550,7 @@ srolai,ស្រឡៃ,1
 srolam,ស្រឡំ,1
 srolang,ស្រឡាង,1
 srolangkang,ស្រឡាំងកាំង,2
-srolanh,ស្រលាញ់,1
+srolanh,ស្រលាញ់,95
 srolanh,ស្រឡាញ់,1
 srolao,ស្រឡោ,1
 srolaoch,ស្រឡោច,1
@@ -24666,6 +24718,7 @@ srung,ស្រុង,1
 sruob,ស្រួប,1
 sruoch,ស្រួច,1
 sruochsral,ស្រួចស្រាល់,1
+sruol,ស្រួល,90
 sruolobuol,ស្រួលបួល,1
 sruot,ស្រួត,1
 sruoy,ស្រួយ,1
@@ -24793,7 +24846,10 @@ suoste,សួស្តិ៍,1
 suot,សួត,1
 suoy,សួយ,1
 sur,សួរ,2
+sursdei,សួស្តី,95
+sursdey,សួស្តី,95
 surt,សួត,1
+susdey,សួស្តី,95
 sut,សុទ្ធ,1
 sut,ស៊ុត,1
 sutsirng,សុទ្ធសឹង,1
@@ -25186,7 +25242,7 @@ tboungkhmuum,ត្បូងឃ្មុំ,1
 tdel,ដដែល,1
 tderm,ដណ្ដើម,1
 te,តែ,2
-te,ទេ,3
+te,ទេ,95
 tea,តែ,1
 tea,ទា,1
 tea,ទារ,1
@@ -25294,7 +25350,7 @@ tehksai,ទេហក្ស័យ,1
 tehtaoh,តេះតោះ,1
 teirvithei,តីរវិថី,1
 tek,តិច,1
-tek,ទឹក,1
+tek,ទឹក,100
 tekak,តិកៈ,1
 tekteam,ទាក់ទាម,1
 tekteanh,ទាក់ទាញ,1
@@ -25316,7 +25372,7 @@ tepda,ទេព្តា,1
 tepi,ទេពី,1
 teproksar,ទេព្រក្ស,1
 teproksor,ទេព្រក្ស,1
-ter,តើ,6
+ter,តើ,85
 ter,ទេរ,1
 ter,ធ្វើ,1
 terb,ទើប,1
@@ -25637,6 +25693,7 @@ thngar,ថ្ង,1
 thngas,ថ្ងាស,1
 thngaul,ធ្ងើល,1
 thngaung,ធ្ងើង,1
+thngay,ថ្ងៃ,95
 thngeang,ធ្ងាង,1
 thngeang,ធ្ងាំង,1
 thngechthngar,ថ្ងិចថ្ងរ,1
@@ -25685,7 +25742,7 @@ tholcholik,ថលជលិក,1
 tholmokk,ថលមគ្គ,1
 tholyean,ថលយាន,1
 tholyeatra,ថលយាត្រា,1
-thom,ធំ,2
+thom,ធំ,90
 thomcheat,ធម្មជាតិ,1
 thomda,ធម្មតា,1
 thommokathek,ធម្មកថិក,1
@@ -25812,7 +25869,7 @@ thveibaeu,ថ្វីបើ,1
 thveidai,ថ្វីដៃ,1
 thveikumnit,ថ្វីគំនិត,1
 thveimeat,ថ្វីមាត់,1
-thver,ធ្វើ,1
+thver,ធ្វើ,95
 thverkar,ធ្វើការ,1
 thverlaor,ធ្វើល្អ,1
 thverlerng,ធ្វើឡើង,1
@@ -25997,6 +26054,7 @@ tner,ដំណើរ,1
 tnerb,ទំនើប,1
 tng,ទំនង,1
 tngaok,ត្ងោក,1
+tngay,ថ្ងៃ,95
 tnong,ទំនង,1
 tnu,ធ្នូ,1
 toal,ទ័ល,1
@@ -26016,7 +26074,7 @@ tobokotha,តបកថា,1
 tobossei,តបស្សី,1
 tobothomr,តបធម៌,1
 tobotol,ទប់ទល់,1
-toch,តូច,2
+toch,តូច,90
 toch,ទច់,1
 tochcheari,តជ្ជារី,1
 tochobonhchokokommodthan,តចបញ្ចកកម្មដ្ឋាន,1
@@ -26389,7 +26447,7 @@ totuolyok,ទទួលយក,1
 totur,ទទូរ,1
 tou,ទោ,1
 toub,តូប,1
-touch,តូច,1
+touch,តូច,90
 touch,តួច,1
 touch,ទោច,1
 touchchett,តូចចិត្ត,1
@@ -26427,7 +26485,7 @@ tout,ទូត,1
 toutok,ទូទុក្ខ,1
 touyang,តួយ៉ាង,1
 touyrtntri,តូយ៌តន្ត្រី,1
-tov,ទៅ,2
+tov,ទៅ,95
 tov,ទៅ៏,1
 tova,តវ៉ា,1
 tovkan,ទៅកាន់,1
@@ -26864,7 +26922,7 @@ troum,ទ្រោម,2
 trout,ត្រួត,1
 trouvban,ត្រូវប៉ាន់,1
 trouvyor,ត្រូវឲ្យ,1
-trov,ត្រូវ,2
+trov,ត្រូវ,95
 troveaeng,ទ្រវែង,1
 troveah,ទ្រវះ,1
 troviech,ទ្រវៀច,1
@@ -26907,7 +26965,7 @@ trusdor,ទ្រុស្ដ,1
 trusdseil,ទ្រុស្ដសីល,1
 trut,ត្រួត,1
 truy,ទ្រុយ,1
-trv,ត្រូវ,1
+trv,ត្រូវ,95
 tser,សរសើរ,1
 tt,ទៀត,2
 ttul,ទទួល,1
@@ -26951,6 +27009,7 @@ tueueah,ទឺះ,1
 tueung,ទឺង,1
 tueuteae,ទឺទែ,1
 tuk,តុ,1
+tuk,ទឹក,95
 tuk,ទុក,1
 tuk,ទុក្ខ,1
 tuk,ទូក,1
@@ -27134,7 +27193,7 @@ tuumhou,ទុំហូ,1
 tuumtes,ទុំទេស,1
 tuymuy,ទុយមុយ,1
 tuyrs,ទុយ៌ស,1
-tv,ទៅ,2
+tv,ទៅ,90
 tva,ត្វា,1
 tvang,ត្វាង,1
 tve,ទ្វេ,1
@@ -27156,7 +27215,7 @@ tvepheak,ទ្វេភាគ,1
 tvepheaki,ទ្វេភាគី,1
 tvepheap,ទ្វេភាព,1
 tvepyeang,ទ្វេព្យាង្គ,1
-tver,ធ្វើ,3
+tver,ធ្វើ,100
 tvessachon,ទ្វេស្សជន,1
 tvessochon,ទ្វេស្សជន,1
 tveu,ធ្វើ,1
@@ -27495,7 +27554,8 @@ vauk,វើកៗ,1
 vaum,វើមៗ,1
 vaut,វើត,1
 ve,វ៉េ,1
-vea,វា,2
+vea,វា,100
+vea,វារ,100
 veab,វាប់,1
 veab,វ៉ាប់,1
 veabei,វាបី,1
@@ -28517,13 +28577,13 @@ yekayouk,យេកយោក,1
 yekoyouk,យេកយោក,1
 yektephong,យតិភង្គ,1
 yer,យ៉ើ,1
-yerng,យើង,2
+yerng,យើង,95
 yerr,យ៉ើរ,1
 yesu,យេស៊ូ,1
 yey,និយាយ,1
 yey,យៃ,1
 yey,យ៉ៃ,1
-yg,យើង,3
+yg,យើង,95
 yg,យ៉ាង,1
 yi,យី,1
 yiaaeu,យីអើ,1
@@ -28564,7 +28624,7 @@ yokroet,យក្រឹត,1
 yoksa,យក្សា,1
 yoksei,យក្សី,1
 yoksey,យក្សី,1
-yol,យល់,1
+yol,យល់,95
 yol,យោល,1
 yolosabnar,យល់សប្ន,1
 yolosabtar,យល់សប្ត,1

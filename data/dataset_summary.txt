@@ -3,33 +3,33 @@ Khmer Transliteration Dataset Summary
 
 Source file: data/all_words.csv
 
-Rows: 28,717
-Unique romanized inputs: 26,657
-Unique Khmer words: 18,091
-Total frequency count: 29,231
+Rows: 28,776
+Unique romanized inputs: 26,690
+Unique Khmer words: 18,098
+Total frequency count: 44,312
 Exact duplicate romanized+Khmer pairs: 0
 
 Data Quality Checks
 -------------------
 Empty romanized values: 0
 Empty Khmer values: 0
-Punctuation-only romanized values: 4
+Punctuation-only romanized values: 5
 Romanized values containing uppercase letters: 215
 
 Ambiguity Checks
 ----------------
-Romanized inputs with multiple Khmer candidates: 1,629
-Khmer words with multiple romanized spellings: 8,482
+Romanized inputs with multiple Khmer candidates: 1,645
+Khmer words with multiple romanized spellings: 8,496
 
 Top Frequency Rows
 ------------------
-ter -> តើ (frequency: 6)
-neng -> នឹង (frequency: 5)
-peak -> ពាក្យ (frequency: 5)
-ban -> បាន (frequency: 4)
-hmeun -> ហ្មឺន (frequency: 4)
-kat -> កាត់ (frequency: 4)
-neak -> នាក់ (frequency: 4)
-chong -> ចុង (frequency: 3)
-del -> ដែល (frequency: 3)
-doch -> ដូច (frequency: 3)
+ban -> បាន (frequency: 100)
+bat -> បាទ (frequency: 100)
+batt -> បាទ (frequency: 100)
+bay -> បាយ (frequency: 100)
+bong -> បង (frequency: 100)
+derng -> ដឹង (frequency: 100)
+dontrei -> ឥន្ត្រី (frequency: 100)
+dontrey -> ឥន្ត្រី (frequency: 100)
+ey -> អី (frequency: 100)
+haey -> ហើយ (frequency: 100)

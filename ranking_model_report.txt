@@ -1,0 +1,25 @@
+Ranking Model Report
+====================
+
+Training candidates: 73186
+Manual candidates: 1
+Positive candidates: 4823
+Negative candidates: 68363
+Accuracy: 0.9415
+ROC AUC: 0.9858
+
+Ranking metrics
+---------------
+Ranking groups: 951
+Top-1 accuracy: 0.9401
+Top-3 accuracy: 0.9790
+MRR: 0.9598
+
+              precision    recall  f1-score   support
+
+           0     0.9965    0.9407    0.9678     13673
+           1     0.5315    0.9534    0.6825       965
+
+    accuracy                         0.9415     14638
+   macro avg     0.7640    0.9470    0.8251     14638
+weighted avg     0.9659    0.9415    0.9490     14638
