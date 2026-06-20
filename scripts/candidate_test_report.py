@@ -1,13 +1,22 @@
-﻿from candidate_generator import (
+from pathlib import Path
+import sys
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from khmer_transliteration.candidate_generator import (
     tokenize_all,
     generate_candidates_from_tokens,
 )
-from candidate_generator import generate_ranked_candidates
-from normalizer import normalize_input
-from data.load_mapping_rules import load_mapping_rules, get_all_patterns
+from khmer_transliteration.candidate_generator import generate_ranked_candidates
+from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.mapping_rules import load_mapping_rules, get_all_patterns
 
 
-OUTPUT_FILE = "candidate_test_report.html"
+from khmer_transliteration.paths import CANDIDATE_TEST_REPORT_FILE
+
+OUTPUT_FILE = CANDIDATE_TEST_REPORT_FILE
 
 
 def main():

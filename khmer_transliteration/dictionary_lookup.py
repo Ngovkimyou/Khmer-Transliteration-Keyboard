@@ -1,8 +1,10 @@
 import csv
-from normalizer import normalize_input
+from khmer_transliteration.normalizer import normalize_input
 from rapidfuzz import process, fuzz
 
-DATASET_FILE = "data/all_words.csv"
+from khmer_transliteration.paths import ALL_WORDS_FILE
+
+DATASET_FILE = ALL_WORDS_FILE
 
 def load_dataset():
     rows = []

@@ -2,12 +2,14 @@ import argparse
 import csv
 import os
 
-from data.load_mapping_rules import load_mapping_rules
-from dictionary_lookup import load_dataset
-from suggestion_engine import get_suggestions
+from khmer_transliteration.mapping_rules import load_mapping_rules
+from khmer_transliteration.dictionary_lookup import load_dataset
+from khmer_transliteration.suggestion_engine import get_suggestions
 
 
-OUTPUT_FILE = "data/ranking_training_examples.csv"
+from khmer_transliteration.paths import RANKING_TRAINING_EXAMPLES_FILE
+
+OUTPUT_FILE = RANKING_TRAINING_EXAMPLES_FILE
 FIELDNAMES = [
     "input",
     "khmer",
@@ -35,6 +37,12 @@ def get_category(source):
 
     if source == "dictionary_completion":
         return "dictionary_completion"
+
+    if source == "dictionary_compound":
+        return "dictionary_compound"
+
+    if source == "dictionary_fuzzy":
+        return "fuzzy_dictionary"
 
     if source.startswith("direct_"):
         return "direct_token"
@@ -132,7 +140,7 @@ def append_examples(inputs, output_file=OUTPUT_FILE, limit=None, allow_vowels=Fa
                     "dataset_romanized": suggestion.get("dataset_romanized", ""),
                     "dataset_frequency": suggestion.get("dataset_frequency", ""),
                     "tokens": " ".join(suggestion.get("tokens", [])),
-                    "chunks": repr(suggestion.get("chunks", "")),
+                    "chunks": repr(suggestion.get("chunks", suggestion.get("compound_segments", ""))),
                     "note": "",
                 })
                 existing_keys.add(key)

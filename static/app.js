@@ -11,6 +11,96 @@ const collectStatus = document.querySelector("#collectStatus");
 
 let activeRequest = 0;
 
+const KHMER_DIGITS_BY_CODE = {
+    Digit0: "០",
+    Digit1: "១",
+    Digit2: "២",
+    Digit3: "៣",
+    Digit4: "៤",
+    Digit5: "៥",
+    Digit6: "៦",
+    Digit7: "៧",
+    Digit8: "៨",
+    Digit9: "៩",
+    Numpad0: "០",
+    Numpad1: "១",
+    Numpad2: "២",
+    Numpad3: "៣",
+    Numpad4: "៤",
+    Numpad5: "៥",
+    Numpad6: "៦",
+    Numpad7: "៧",
+    Numpad8: "៨",
+    Numpad9: "៩",
+};
+
+const KHMER_SHIFT_TOP_ROW_BY_CODE = {
+    Digit1: "!",
+    Digit2: "ៗ",
+    Digit3: "\"",
+    Digit4: "៛",
+    Digit5: "%",
+    Digit6: "៍",
+    Digit7: "័",
+    Digit8: "៏",
+    Digit9: "(",
+    Digit0: ")",
+    Minus: "=",
+    Equal: "៎",
+};
+
+const KHMER_DIRECT_KEYS_BY_CODE = {
+    Period: "។",
+    NumpadDecimal: "។",
+};
+
+function insertTextAtCursor(element, text) {
+    const start = element.selectionStart ?? element.value.length;
+    const end = element.selectionEnd ?? element.value.length;
+    element.value = `${element.value.slice(0, start)}${text}${element.value.slice(end)}`;
+    const nextPosition = start + text.length;
+    element.setSelectionRange(nextPosition, nextPosition);
+}
+
+function getKhmerKeyboardCharacter(event) {
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+        return null;
+    }
+
+    if (event.shiftKey && KHMER_SHIFT_TOP_ROW_BY_CODE[event.code]) {
+        return KHMER_SHIFT_TOP_ROW_BY_CODE[event.code];
+    }
+
+    if (!event.shiftKey && KHMER_DIGITS_BY_CODE[event.code]) {
+        return KHMER_DIGITS_BY_CODE[event.code];
+    }
+
+    if (!event.shiftKey && KHMER_DIRECT_KEYS_BY_CODE[event.code]) {
+        return KHMER_DIRECT_KEYS_BY_CODE[event.code];
+    }
+
+    return null;
+}
+
+function handleKhmerKeyboardInput(event) {
+    const khmerCharacter = getKhmerKeyboardCharacter(event);
+
+    if (!khmerCharacter) {
+        return;
+    }
+
+    event.preventDefault();
+
+    if (event.currentTarget === outputText) {
+        insertTextAtCursor(outputText, khmerCharacter);
+        return;
+    }
+
+    insertTextAtCursor(outputText, khmerCharacter);
+    input.value = "";
+    renderSuggestions({ normalized: "", suggestions: [] });
+}
+
 function sourceLabel(source) {
     if (source === "dictionary_exact") {
         return "exact";
@@ -18,6 +108,14 @@ function sourceLabel(source) {
 
     if (source === "dictionary_completion") {
         return "completion";
+    }
+
+    if (source === "dictionary_compound") {
+        return "compound";
+    }
+
+    if (source === "dictionary_fuzzy") {
+        return "fuzzy";
     }
 
     if (source.startsWith("rule_")) {
@@ -37,6 +135,14 @@ function sourceClass(source) {
     }
 
     if (source === "dictionary_completion") {
+        return "completion";
+    }
+
+    if (source === "dictionary_compound") {
+        return "completion";
+    }
+
+    if (source === "dictionary_fuzzy") {
         return "completion";
     }
 
@@ -145,6 +251,8 @@ async function fetchSuggestions() {
 }
 
 input.addEventListener("input", fetchSuggestions);
+input.addEventListener("keydown", handleKhmerKeyboardInput);
+outputText.addEventListener("keydown", handleKhmerKeyboardInput);
 
 clearButton.addEventListener("click", () => {
     input.value = "";

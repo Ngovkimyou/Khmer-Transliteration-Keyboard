@@ -1,10 +1,19 @@
-from data.load_mapping_rules import load_mapping_rules
-from dictionary_lookup import load_dataset
-from normalizer import normalize_input
-from suggestion_engine import get_suggestions, load_ranking_model
+from pathlib import Path
+import sys
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from khmer_transliteration.mapping_rules import load_mapping_rules
+from khmer_transliteration.dictionary_lookup import load_dataset
+from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.suggestion_engine import get_suggestions, load_ranking_model
 
 
-OUTPUT_FILE = "suggestion_test_report.html"
+from khmer_transliteration.paths import SUGGESTION_TEST_REPORT_FILE
+
+OUTPUT_FILE = SUGGESTION_TEST_REPORT_FILE
 
 
 def main():

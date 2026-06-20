@@ -1,12 +1,15 @@
-﻿from normalizer import normalize_input
-from data.load_mapping_rules import load_mapping_rules, get_all_patterns
+from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.mapping_rules import load_mapping_rules, get_all_patterns
 
 
 MAX_SEQUENCE_PARTITIONS = 120
 MAX_SEQUENCE_COMBINATIONS = 120
 VOWEL_CARRIER_AFTER_CLOSED_CHUNK_PENALTY = 0.10
 SEQUENCE_CVC_CHUNK_BONUS = 0.01
+STRUCTURAL_SEQUENCE_BONUS = 0.12
 COMPOUND_VOWEL_BONUS = 0.08
+BANTOC_SIGN = "់"
+BANTOC_FINAL_CONSONANTS = {"ក", "ង", "ច", "ញ", "ត", "ន", "ប", "ល", "ស"}
 COMPOUND_VOWEL_BONUS_TOKENS = {
     "am",
     "om",
@@ -27,14 +30,41 @@ SPLIT_KNOWN_TOKEN_PENALTY = 0.22
 VOWEL_CARRIER_SOURCES = {
     "rule_vowel_carrier",
     "rule_triisap_vowel_carrier",
+    "rule_independent_vowel",
 }
 CLOSED_SYLLABLE_SOURCES = {
     "rule_cvc",
+    "rule_cvc_bantoc",
+    "rule_independent_vowel_final",
     "rule_ccvc_subscript",
     "rule_cccvc_subscript",
     "rule_inherent_vowel",
     "rule_or_carrier_final",
 }
+STRUCTURAL_SEQUENCE_SOURCES = {
+    "rule_cv",
+    "rule_cvc",
+    "rule_cvc_bantoc",
+    "rule_independent_vowel_final",
+    "rule_cc_plain",
+    "rule_cc_subscript",
+    "rule_ccv_subscript",
+    "rule_ccvc_subscript",
+    "rule_cccv_subscript",
+    "rule_cccvc_subscript",
+    "rule_cccc_subscript",
+    "rule_inherent_vowel",
+}
+VOWEL_CARRIER_PREFIXES = ("អ", "អ៊")
+
+
+def is_vowel_carrier_like_chunk(candidate):
+    khmer = candidate.get("khmer", "")
+    return khmer.startswith(VOWEL_CARRIER_PREFIXES)
+
+
+def is_independent_vowel_chunk(candidate):
+    return candidate.get("source") == "rule_independent_vowel"
 
 # Build one tokenization by always taking the longest matching Roman pattern first.
 def tokenize_longest_first(text, patterns):
@@ -395,6 +425,50 @@ def generate_cvc_candidates(tokens, rules):
                     "source": "rule_cvc",
                     "tokens": tokens,
                     "rule_score": 0.75,
+                })
+
+    return candidates
+
+
+# Generate C + V + doubled final C as bantoc, such as leakk -> លាក់.
+def generate_cvc_bantoc_candidates(tokens, rules):
+    if len(tokens) != 4:
+        return []
+
+    first_token, vowel_token, final_token, repeated_final_token = tokens
+
+    if final_token != repeated_final_token:
+        return []
+
+    if not is_consonant_token(first_token, rules):
+        return []
+
+    if not is_vowel_token(vowel_token, rules):
+        return []
+
+    if not is_consonant_token(final_token, rules):
+        return []
+
+    candidates = []
+
+    for first_consonant in get_consonants_for_token(first_token, rules):
+        vowel_options = get_vowels_for_consonant(vowel_token, first_consonant, rules)
+
+        for vowel in vowel_options:
+            if vowel == "":
+                continue
+
+            final_consonants = get_final_consonants_for_token(final_token, rules, vowel)
+
+            for final_consonant in final_consonants:
+                if final_consonant not in BANTOC_FINAL_CONSONANTS:
+                    continue
+
+                candidates.append({
+                    "khmer": first_consonant + vowel + final_consonant + BANTOC_SIGN,
+                    "source": "rule_cvc_bantoc",
+                    "tokens": tokens,
+                    "rule_score": 0.78,
                 })
 
     return candidates
@@ -847,19 +921,67 @@ def generate_or_carrier_final_candidates(tokens, rules):
 
 
 # Generate standalone syllables that begin with អ/អ៊, such as ey -> អី.
-def generate_vowel_carrier_candidates(tokens, rules):
+def generate_independent_vowel_candidates(tokens, rules):
     if len(tokens) != 1:
         return []
 
     token = tokens[0]
     candidates = []
 
+    for khmer in rules.get("independent_vowels", {}).get(token, []):
+        candidates.append({
+            "khmer": khmer,
+            "source": "rule_independent_vowel",
+            "tokens": tokens,
+            "rule_score": 0.69,
+        })
+
+    return candidates
+
+
+# Generate independent vowel + final consonant, such as rirs -> ឬស.
+def generate_independent_vowel_final_candidates(tokens, rules):
+    if len(tokens) != 2:
+        return []
+
+    vowel_token, final_token = tokens
+
+    if vowel_token not in rules.get("independent_vowels", {}):
+        return []
+
+    if not is_consonant_token(final_token, rules):
+        return []
+
+    candidates = []
+
+    for independent_vowel in rules.get("independent_vowels", {}).get(vowel_token, []):
+        for final_consonant in get_final_consonants_for_token(final_token, rules):
+            candidates.append({
+                "khmer": independent_vowel + final_consonant,
+                "source": "rule_independent_vowel_final",
+                "tokens": tokens,
+                "rule_score": 0.76,
+            })
+
+    return candidates
+
+
+def generate_vowel_carrier_candidates(tokens, rules):
+    if len(tokens) != 1:
+        return []
+
+    token = tokens[0]
+    candidates = []
+    rule_scores = rules.get("rule_scores", {})
+    vowel_carrier_score = rule_scores.get("vowel_carrier", 0.68)
+    triisap_vowel_carrier_score = rule_scores.get("triisap_vowel_carrier", 0.66)
+
     for khmer in rules.get("vowel_carriers", {}).get(token, []):
         candidates.append({
             "khmer": khmer,
             "source": "rule_vowel_carrier",
             "tokens": tokens,
-            "rule_score": 0.68,
+            "rule_score": vowel_carrier_score,
         })
 
     for khmer in rules.get("triisap_vowel_carriers", {}).get(token, []):
@@ -867,7 +989,7 @@ def generate_vowel_carrier_candidates(tokens, rules):
             "khmer": khmer,
             "source": "rule_triisap_vowel_carrier",
             "tokens": tokens,
-            "rule_score": 0.66,
+            "rule_score": triisap_vowel_carrier_score,
         })
 
     return candidates
@@ -877,10 +999,13 @@ def generate_vowel_carrier_candidates(tokens, rules):
 def generate_single_chunk_candidates(tokens, rules):
     candidates = []
 
+    candidates.extend(generate_independent_vowel_candidates(tokens, rules))
+    candidates.extend(generate_independent_vowel_final_candidates(tokens, rules))
     candidates.extend(generate_vowel_carrier_candidates(tokens, rules))
     candidates.extend(generate_or_carrier_final_candidates(tokens, rules))
     candidates.extend(generate_cv_candidates(tokens, rules))
     candidates.extend(generate_cvc_candidates(tokens, rules))
+    candidates.extend(generate_cvc_bantoc_candidates(tokens, rules))
     candidates.extend(generate_cc_candidates(tokens, rules))
     candidates.extend(generate_ccv_candidates(tokens, rules))
     candidates.extend(generate_ccvc_candidates(tokens, rules))
@@ -942,8 +1067,20 @@ def combine_chunk_candidates(chunks, rules, original_tokens):
             score = max(score - (len(selected_candidates) - 1) * 0.03, 0)
             score = max(score - len(original_tokens) * 0.03, 0)
 
+            if all(
+                candidate["source"] in STRUCTURAL_SEQUENCE_SOURCES
+                for candidate in selected_candidates
+            ) and not any(
+                is_vowel_carrier_like_chunk(candidate)
+                for candidate in selected_candidates[1:]
+            ):
+                score += STRUCTURAL_SEQUENCE_BONUS
+
             for candidate in selected_candidates:
-                if candidate["source"] == "rule_cvc":
+                if (
+                    candidate["source"] == "rule_cvc"
+                    and not is_vowel_carrier_like_chunk(candidate)
+                ):
                     score += SEQUENCE_CVC_CHUNK_BONUS
 
             for previous_candidate, current_candidate in zip(
@@ -969,6 +1106,9 @@ def combine_chunk_candidates(chunks, rules, original_tokens):
             return
 
         for candidate in chunk_candidates[index]:
+            if index > 0 and is_independent_vowel_chunk(candidate):
+                continue
+
             selected_candidates.append(candidate)
             backtrack(index + 1, selected_candidates)
             selected_candidates.pop()

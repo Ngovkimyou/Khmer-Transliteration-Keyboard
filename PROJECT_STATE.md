@@ -9,25 +9,33 @@ Build a Romanized Khmer to Khmer script input/prediction system for a Machine Le
 Completed steps:
 1. Dataset prepared in `data/all_words.csv`.
 2. Custom informal words stored in `data/custom_words.csv`.
-3. Input normalization implemented in `normalizer.py`.
-4. Exact + fuzzy dictionary lookup implemented in `dictionary_lookup.py`.
+3. Input normalization implemented in `khmer_transliteration/normalizer.py`.
+4. Exact + fuzzy dictionary lookup implemented in `khmer_transliteration/dictionary_lookup.py`.
 5. Mapping rules stored in `data/mapping_rules.json`.
-6. Candidate generation started in `candidate_generator.py`.
-7. HTML candidate test report implemented in `candidate_test_report.py`.
-8. Suggestion engine implemented in `suggestion_engine.py`.
-9. HTML suggestion test report implemented in `suggestion_test_report.py`.
+6. Candidate generation started in `khmer_transliteration/candidate_generator.py`.
+7. HTML candidate test report implemented in `scripts/candidate_test_report.py`.
+8. Suggestion engine implemented in `khmer_transliteration/suggestion_engine.py`.
+9. HTML suggestion test report implemented in `scripts/suggestion_test_report.py`.
 
 Important files:
 - `data/all_words.csv`: final dataset used by lookup.
 - `data/custom_words.csv`: manually curated informal words.
 - `data/mapping_rules.json`: consonants, vowels, consonant classes, muusikatoan, triisap, etc.
-- `data/load_mapping_rules.py`: loads mapping rules and returns token patterns.
-- `normalizer.py`: normalizes Romanized input.
-- `dictionary_lookup.py`: exact/fuzzy lookup.
-- `candidate_generator.py`: Step 6 rule-based generation.
-- `candidate_test_report.py`: generates HTML visual test report.
-- `suggestion_engine.py`: merges dictionary and rule-based suggestions.
-- `suggestion_test_report.py`: generates HTML report for final merged suggestions.
+- `khmer_transliteration/mapping_rules.py`: loads mapping rules and returns token patterns.
+- `khmer_transliteration/normalizer.py`: normalizes Romanized input.
+- `khmer_transliteration/dictionary_lookup.py`: exact/fuzzy lookup.
+- `khmer_transliteration/candidate_generator.py`: Step 6 rule-based generation.
+- `scripts/candidate_test_report.py`: generates HTML visual test report.
+- `khmer_transliteration/suggestion_engine.py`: merges dictionary and rule-based suggestions.
+- `scripts/suggestion_test_report.py`: generates HTML report for final merged suggestions.
+
+
+Current folder structure after refactor:
+- `khmer_transliteration/`: importable application package.
+- `scripts/`: command-line scripts for reports, training, and data maintenance.
+- `reports/`: generated HTML/text report outputs.
+- `data/`: CSV data and JSON mapping rules only.
+- `app.py`: small compatibility wrapper so `python -m uvicorn app:app --host 127.0.0.1 --port 8000` still works.
 
 Current Step:
 Step 7B multi-syllable rule sequence generation is implemented.
@@ -53,26 +61,26 @@ Step 7 implemented:
   `ក`, `ខ`, `គ`, `ឃ`, `ច`, `ឆ`, `ជ`, `ឈ`, `ត`, `ថ`, `ទ`, `ធ`, `ប`, `ផ`, `ព`, `ភ`, `ម`, `ល`, `ស`.
 
 Step 8 implemented:
-- Ranking model training script in `train_ranking_model.py`.
-- Ranking features in `ranking_features.py`.
+- Ranking model training script in `scripts/train_ranking_model.py`.
+- Ranking features in `khmer_transliteration/ranking_features.py`.
 - Model artifact saved to `models/ranking_model.joblib`.
 - Training labels include full exact cases and prefix-completion cases.
 - Leaky source-priority/manual-score features are excluded from model features.
-- Manual ranking label queue can be generated with `collect_ranking_examples.py`.
+- Manual ranking label queue can be generated with `khmer_transliteration/collection.py` / `scripts/collect_ranking_examples.py`.
 - Manual labels are stored in `data/ranking_training_examples.csv`.
-- `train_ranking_model.py` uses manual rows only when `label` is `0` or `1`.
-- `suggestion_engine.py` also applies manual labels directly: `1` boosts and `0` demotes exact `(input, khmer)` candidates.
+- `scripts/train_ranking_model.py` uses manual rows only when `label` is `0` or `1`.
+- `khmer_transliteration/suggestion_engine.py` also applies manual labels directly: `1` boosts and `0` demotes exact `(input, khmer)` candidates.
 - Suggestions expose `rank_score` and `rank_reason` for UI/debugging.
 - Manual `score` is the rule/dictionary score; `ml_score` is model probability; `rank_score` is the combined debug ranking number.
 
 Step 9 implemented:
-- `suggestion_engine.py` loads `models/ranking_model.joblib` when available.
+- `khmer_transliteration/suggestion_engine.py` loads `models/ranking_model.joblib` when available.
 - Suggestions include `ml_score` from the trained model.
 - Sorting uses source priority first, then manual score, then ML score.
-- `suggestion_test_report.py` displays ML score when present.
+- `scripts/suggestion_test_report.py` displays ML score when present.
 
 Step 10 implemented:
-- Simple FastAPI UI in `app.py`.
+- Simple FastAPI UI in `app.py` wrapper / `khmer_transliteration/web.py`.
 - Frontend files in `static/index.html`, `static/styles.css`, and `static/app.js`.
 - Angkor Wat themed UI uses `assets/angkor-wat-temples.jpg`.
 - UI endpoint: `/api/suggest?q=...`.
@@ -95,11 +103,11 @@ Important Step 6 rules:
 - `vowels_by_consonant_class` should be checked before fallback `vowels`.
 
 Recent important changes:
-- `data/load_mapping_rules.py` includes `triisap_consonants`.
-- `candidate_generator.py` includes `generate_ranked_candidates()` for 6F.
-- `candidate_generator.py` includes `rule_sequence` candidates for Step 7B.
-- `candidate_generator.py` includes subscript cluster sources for Step 7C.
-- `suggestion_engine.py` combines exact lookup, left-to-right completion, and generated candidates.
+- `khmer_transliteration/mapping_rules.py` includes `triisap_consonants`.
+- `khmer_transliteration/candidate_generator.py` includes `generate_ranked_candidates()` for 6F.
+- `khmer_transliteration/candidate_generator.py` includes `rule_sequence` candidates for Step 7B.
+- `khmer_transliteration/candidate_generator.py` includes subscript cluster sources for Step 7C.
+- `khmer_transliteration/suggestion_engine.py` combines exact lookup, left-to-right completion, and generated candidates.
 - Suggestion priority is exact dictionary > dictionary completion > rule-generated.
 - Direct token suggestions have highest priority for consonants and independent vowels.
 - Dependent vowel signs can be requested with `allow_vowels=true` after a character is selected.
@@ -107,24 +115,24 @@ Recent important changes:
 - Rule-generated suggestions are displayed only when score >= 1.60.
 - Dictionary completion is left-to-right: dataset romanization must start with the typed input.
 - Dictionary completion is limited to at most 2 extra Roman characters beyond the typed input.
-- Fuzzy lookup remains available in `dictionary_lookup.py`, but it is not used by `suggestion_engine.py`.
+- Fuzzy lookup is available through `khmer_transliteration/dictionary_lookup.py` and guarded in `khmer_transliteration/suggestion_engine.py` for longer inputs.
 - Whitelisted compound vowel tokenizations, such as `am`, `om`, `um`, and `av`, receive a ranking bonus over split CVC forms.
 - Tokenizations that split known consonant tokens, such as `n+h` instead of `nh`, receive a ranking penalty.
-- `suggestion_test_report.py` generates `suggestion_test_report.html`.
-- `train_ranking_model.py` generates `ranking_model_report.txt`.
-- `app.py` serves the local keyboard UI.
-- `candidate_test_report.py` shows all tokenizations, including those with no candidates.
-- `candidate_test_report.py` shows ranked candidates before per-tokenization details.
-- `candidate_test_report.html` is generated by running:
-  `python candidate_test_report.py`
+- `scripts/suggestion_test_report.py` generates `reports/suggestion_test_report.html`.
+- `scripts/train_ranking_model.py` generates `reports/ranking_model_report.txt`.
+- `app.py` wrapper / `khmer_transliteration/web.py` serves the local keyboard UI.
+- `scripts/candidate_test_report.py` shows all tokenizations, including those with no candidates.
+- `scripts/candidate_test_report.py` shows ranked candidates before per-tokenization details.
+- `reports/candidate_test_report.html` is generated by running:
+  `python scripts/candidate_test_report.py`
 
 Testing:
 Run:
 ```powershell
-python candidate_test_report.py
+python scripts/candidate_test_report.py
 
 Then open:
-candidate_test_report.html
+reports/candidate_test_report.html
 Expected examples:
 vav should show ['v', 'av'] and ['v', 'a', 'v'].
 ['v', 'av'] should generate វ៉ៅ.

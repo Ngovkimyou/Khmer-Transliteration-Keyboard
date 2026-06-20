@@ -153,6 +153,11 @@
         "ous": ["អ៊ោះ"]
     },
 
+    "rule_scores": {
+        "vowel_carrier": 0.48,
+        "triisap_vowel_carrier": 0.46
+    },
+
     "vowels_by_consonant_class": {
         "a": {
             "first_series": ["ា"],
@@ -288,11 +293,11 @@
         },
         "es": {
             "first_series": ["េះ"],
-            "second_series": ["ះ", "េះ"]
+            "second_series": ["ះ"]
         },
         "is": {
             "first_series": [""],
-            "second_series": ["ិះ"]
+            "second_series": ["ិះ", "េះ"]
         },
         "ous": {
             "first_series": [""],

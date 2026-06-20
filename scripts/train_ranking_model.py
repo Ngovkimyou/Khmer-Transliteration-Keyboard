@@ -1,3 +1,10 @@
+from pathlib import Path
+import sys
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import json
 import os
 import csv
@@ -9,18 +16,25 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from data.load_mapping_rules import load_mapping_rules
-from dictionary_lookup import exact_lookup, load_dataset
-from normalizer import normalize_input
-from ranking_features import FEATURE_NAMES, extract_ranking_features
-from suggestion_engine import get_suggestions
+from khmer_transliteration.mapping_rules import load_mapping_rules
+from khmer_transliteration.dictionary_lookup import exact_lookup, load_dataset
+from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.paths import (
+    MODELS_DIR,
+    RANKING_MODEL_FILE,
+    RANKING_MODEL_METADATA_FILE,
+    RANKING_MODEL_REPORT_FILE,
+    RANKING_TRAINING_EXAMPLES_FILE,
+)
+from khmer_transliteration.ranking_features import FEATURE_NAMES, extract_ranking_features
+from khmer_transliteration.suggestion_engine import get_suggestions
 
 
-MODEL_DIR = "models"
-MODEL_FILE = os.path.join(MODEL_DIR, "ranking_model.joblib")
-METADATA_FILE = os.path.join(MODEL_DIR, "ranking_model_metadata.json")
-REPORT_FILE = "ranking_model_report.txt"
-MANUAL_EXAMPLES_FILE = "data/ranking_training_examples.csv"
+MODEL_DIR = MODELS_DIR
+MODEL_FILE = RANKING_MODEL_FILE
+METADATA_FILE = RANKING_MODEL_METADATA_FILE
+REPORT_FILE = RANKING_MODEL_REPORT_FILE
+MANUAL_EXAMPLES_FILE = RANKING_TRAINING_EXAMPLES_FILE
 
 
 # Use one row per unique Romanized/Khmer pair so repeated dataset rows do not dominate.
@@ -269,7 +283,7 @@ def main():
         "accuracy": accuracy,
         "roc_auc": roc_auc,
         **ranking_metrics,
-        "model_file": MODEL_FILE,
+        "model_file": str(MODEL_FILE),
     }
 
     with open(METADATA_FILE, "w", encoding="utf-8") as file:
