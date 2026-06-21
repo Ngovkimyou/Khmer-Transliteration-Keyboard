@@ -10,6 +10,7 @@ const modelStatus = document.querySelector("#modelStatus");
 const collectStatus = document.querySelector("#collectStatus");
 
 let activeRequest = 0;
+let lastSelectedKhmer = "";
 
 const KHMER_DIGITS_BY_CODE = {
     Digit0: "០",
@@ -114,6 +115,10 @@ function sourceLabel(source) {
         return "compound";
     }
 
+    if (source === "phrase_space") {
+        return "phrase";
+    }
+
     if (source === "dictionary_fuzzy") {
         return "fuzzy";
     }
@@ -139,6 +144,10 @@ function sourceClass(source) {
     }
 
     if (source === "dictionary_compound") {
+        return "completion";
+    }
+
+    if (source === "phrase_space") {
         return "completion";
     }
 
@@ -182,6 +191,12 @@ function renderSuggestions(data) {
         const manualScore = formatScore(suggestion.score);
         const rankScore = formatScore(suggestion.rank_score);
         const datasetScore = formatScore(suggestion.dataset_match_score);
+        const contextScore = formatScore(suggestion.previous_word_context_score);
+        const compoundPairScore = formatScore(suggestion.compound_pair_context_score);
+        const historyScore = formatScore(suggestion.user_history_score);
+        const fuzzyBoost = formatScore(suggestion.high_confidence_fuzzy_boost);
+        const compoundPenalty = formatScore(suggestion.compound_no_dataset_penalty);
+        const sourceWeight = formatScore(suggestion.source_rank_weight);
         const source = sourceLabel(suggestion.source);
         const sourceCss = sourceClass(suggestion.source);
 
@@ -192,20 +207,52 @@ function renderSuggestions(data) {
                 ${suggestion.manual_label !== undefined ? `<span class="pill">label ${suggestion.manual_label}</span>` : ""}
                 ${rankScore ? `<span class="pill">rank ${rankScore}</span>` : ""}
                 ${suggestion.rank_reason ? `<span class="pill">${suggestion.rank_reason}</span>` : ""}
+                ${sourceWeight ? `<span class="pill">source ${sourceWeight}</span>` : ""}
                 ${datasetScore ? `<span class="pill">dataset ${datasetScore}${suggestion.dataset_romanized ? ` ${suggestion.dataset_romanized}` : ""}</span>` : ""}
+                ${contextScore ? `<span class="pill">context ${contextScore}</span>` : ""}
+                ${compoundPairScore ? `<span class="pill">pair ${compoundPairScore}</span>` : ""}
+                ${historyScore ? `<span class="pill">history ${historyScore}</span>` : ""}
+                ${fuzzyBoost ? `<span class="pill">fuzzy boost ${fuzzyBoost}</span>` : ""}
+                ${compoundPenalty ? `<span class="pill">compound penalty ${compoundPenalty}</span>` : ""}
                 ${mlScore ? `<span class="pill">ML ${mlScore}</span>` : ""}
                 ${manualScore ? `<span class="pill">manual ${manualScore}</span>` : ""}
             </span>
         `;
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
+            const selectedInput = input.value.trim();
+            const previousKhmer = lastSelectedKhmer;
+
             outputText.value += suggestion.khmer;
+            lastSelectedKhmer = suggestion.khmer;
             input.value = "";
             renderSuggestions({ normalized: "", suggestions: [] });
             input.focus();
+
+            if (selectedInput) {
+                await recordSelection(selectedInput, suggestion.khmer, previousKhmer);
+            }
         });
 
         suggestionsEl.appendChild(button);
+    }
+}
+
+async function recordSelection(query, khmer, previousKhmer) {
+    try {
+        await fetch("/api/select", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                q: query,
+                khmer,
+                previous_khmer: previousKhmer,
+            }),
+        });
+    } catch (error) {
+        collectStatus.textContent = "Selection history could not be saved.";
     }
 }
 
@@ -223,7 +270,7 @@ async function fetchSuggestions() {
     try {
         const allowVowels = outputText.value.length > 0;
         const response = await fetch(
-            `/api/suggest?q=${encodeURIComponent(query)}&allow_vowels=${allowVowels}`
+            `/api/suggest?q=${encodeURIComponent(query)}&allow_vowels=${allowVowels}&previous_word=${encodeURIComponent(lastSelectedKhmer)}`
         );
 
         if (!response.ok) {

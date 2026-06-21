@@ -88,6 +88,16 @@ Step 10 implemented:
 - UI Confirm button sends the current input and generated candidates to the manual label CSV.
 - Run UI with `python -m uvicorn app:app --host 127.0.0.1 --port 8000`.
 
+
+Context and personalization implemented:
+- Previous-word context is auto-collected when the user clicks suggestions.
+- Pair counts are stored in `data/word_pair_frequency.csv`.
+- User selection history is auto-collected in `data/user_selection_history.csv`.
+- `khmer_transliteration/suggestion_engine.py` applies capped score boosts for both signals.
+- `khmer_transliteration/ranking_features.py` includes `previous_word_context_score` and `user_history_score` for ML retraining.
+- `scripts/train_ranking_model.py` adds training cases from both history CSVs.
+- The current old model may skip ML scores until retrained with the new feature list.
+
 Important Step 6 rules:
 - Initial consonants may use normal, muusikatoan, or triisap variants.
 - Final consonants use normal consonants only.

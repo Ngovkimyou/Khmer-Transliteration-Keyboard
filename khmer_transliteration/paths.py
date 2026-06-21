@@ -13,6 +13,8 @@ CUSTOM_WORDS_FILE = DATA_DIR / "custom_words.csv"
 DATASET_SUMMARY_FILE = DATA_DIR / "dataset_summary.txt"
 MAPPING_RULES_FILE = DATA_DIR / "mapping_rules.json"
 RANKING_TRAINING_EXAMPLES_FILE = DATA_DIR / "ranking_training_examples.csv"
+USER_SELECTION_HISTORY_FILE = DATA_DIR / "user_selection_history.csv"
+WORD_PAIR_FREQUENCY_FILE = DATA_DIR / "word_pair_frequency.csv"
 
 RANKING_MODEL_FILE = MODELS_DIR / "ranking_model.joblib"
 RANKING_MODEL_METADATA_FILE = MODELS_DIR / "ranking_model_metadata.json"

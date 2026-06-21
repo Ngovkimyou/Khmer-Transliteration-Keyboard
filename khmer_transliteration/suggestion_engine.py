@@ -1,5 +1,6 @@
 import os
 import csv
+from itertools import product
 
 import joblib
 from rapidfuzz import fuzz, process
@@ -7,7 +8,12 @@ from rapidfuzz import fuzz, process
 from khmer_transliteration.candidate_generator import generate_ranked_candidates
 from khmer_transliteration.mapping_rules import load_mapping_rules
 from khmer_transliteration.dictionary_lookup import exact_lookup, load_dataset
+from khmer_transliteration.history import (
+    load_selection_history,
+    load_word_pair_frequencies,
+)
 from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.normalizer import normalize_phrase_input
 from khmer_transliteration.paths import (
     RANKING_MODEL_FILE as RANKING_MODEL_FILE_PATH,
     RANKING_TRAINING_EXAMPLES_FILE,
@@ -28,11 +34,13 @@ FUZZY_PRIORITY = RULE_PRIORITY
 DEFAULT_SUGGESTION_LIMIT = 10
 MIN_RULE_DISPLAY_SCORE = 1.60
 MAX_COMPLETION_EXTRA_CHARS = 2
-COMPOUND_MIN_INPUT_LENGTH = 6
+COMPOUND_MIN_INPUT_LENGTH = 4
 COMPOUND_MIN_SEGMENT_LENGTH = 2
 COMPOUND_MAX_SEGMENTS = 3
 COMPOUND_MAX_OPTIONS_PER_SEGMENT = 4
 COMPOUND_MAX_SUGGESTIONS = 80
+PHRASE_OPTIONS_PER_WORD = 6
+PHRASE_MAX_SUGGESTIONS = 80
 COMPOUND_RULE_MIN_SCORE = 0.78
 COMPOUND_FUZZY_MIN_SEGMENT_LENGTH = 4
 COMPOUND_FUZZY_MIN_SCORE = 80
@@ -42,8 +50,24 @@ FUZZY_LIMIT = 20
 DATASET_KHMER_EXISTS_BOOST = 0.25
 DATASET_ROMANIZED_SIMILARITY_BOOST = 0.75
 DATASET_FREQUENCY_BOOST_FACTOR = 0.001
+HIGH_CONFIDENCE_FUZZY_THRESHOLD = 0.90
+HIGH_CONFIDENCE_FUZZY_BOOST = 1.35
+COMPOUND_NO_DATASET_PENALTY = 0.75
+USER_HISTORY_BOOST_FACTOR = 0.5
+USER_HISTORY_MAX_BOOST = 2.00
+PREVIOUS_WORD_BOOST_FACTOR = 0.5
+PREVIOUS_WORD_MAX_BOOST = 2.00
 RANKING_MODEL_FILE = str(RANKING_MODEL_FILE_PATH)
 MANUAL_RANKING_EXAMPLES_FILE = str(RANKING_TRAINING_EXAMPLES_FILE)
+SOURCE_RANK_WEIGHTS = {
+    "direct": 6.0,
+    "dictionary_exact": 5.0,
+    "dictionary_completion": 3.5,
+    "phrase_space": 3.0,
+    "dictionary_compound": 2.5,
+    "dictionary_fuzzy": 2.0,
+    "rule": 1.0,
+}
 
 
 # Convert one exact dictionary row into the shared suggestion format.
@@ -362,6 +386,96 @@ def compound_segment_lookup(normalized, dataset, rules):
     return suggestions[:COMPOUND_MAX_SUGGESTIONS]
 
 
+def phrase_space_lookup(
+    normalized_phrase,
+    dataset,
+    rules,
+    previous_word="",
+    pair_frequencies=None,
+    enable_fuzzy=True,
+    enable_compound=True,
+):
+    parts = normalized_phrase.split()
+
+    if len(parts) < 2:
+        return []
+
+    segment_options = []
+    current_previous_word = previous_word
+    pair_frequencies = pair_frequencies if pair_frequencies is not None else load_word_pair_frequencies()
+
+    for part in parts:
+        options = get_suggestions(
+            part,
+            dataset=dataset,
+            rules=rules,
+            previous_word=current_previous_word,
+            use_ml=False,
+            enable_fuzzy=enable_fuzzy,
+            enable_compound=enable_compound,
+            limit=PHRASE_OPTIONS_PER_WORD,
+            min_rule_score=None,
+        )
+
+        if not options:
+            return []
+
+        segment_options.append(options)
+        current_previous_word = ""
+
+    suggestions = []
+
+    for selected_options in product(*segment_options):
+        khmer = "".join(option["khmer"] for option in selected_options)
+        score = sum(option["score"] for option in selected_options) / len(selected_options)
+        frequency = sum(option.get("frequency", 0) for option in selected_options)
+        pair_score = 0
+
+        for previous_option, current_option in zip(selected_options, selected_options[1:]):
+            pair_count = pair_frequencies.get((
+                previous_option["khmer"],
+                current_option["khmer"],
+            ), 0)
+            pair_score += bounded_count_boost(
+                pair_count,
+                PREVIOUS_WORD_BOOST_FACTOR,
+                PREVIOUS_WORD_MAX_BOOST,
+            )
+
+        suggestions.append({
+            "khmer": khmer,
+            "romanized": normalized_phrase,
+            "source": "phrase_space",
+            "source_priority": COMPOUND_PRIORITY,
+            "frequency": frequency,
+            "score": 2.0 + score + pair_score,
+            "phrase_parts": [
+                {
+                    "romanized": part,
+                    "khmer": option["khmer"],
+                    "source": option["source"],
+                    "rank_score": option.get("rank_score", ""),
+                }
+                for part, option in zip(parts, selected_options)
+            ],
+            "previous_word_context_score": pair_score,
+            "phrase_pair_context_score": pair_score,
+        })
+
+        if len(suggestions) >= PHRASE_MAX_SUGGESTIONS:
+            break
+
+    suggestions.sort(
+        key=lambda suggestion: (
+            suggestion["score"],
+            suggestion.get("frequency", 0),
+        ),
+        reverse=True,
+    )
+
+    return suggestions[:PHRASE_MAX_SUGGESTIONS]
+
+
 # Keep the highest-scoring suggestion for each Khmer output.
 def dedupe_suggestions(suggestions):
     best_by_khmer = {}
@@ -441,6 +555,36 @@ def apply_dataset_match_scores(user_input, suggestions, dataset_index):
     return suggestions
 
 
+def apply_source_quality_adjustments(suggestions):
+    for suggestion in suggestions:
+        adjustment = 0
+
+        if (
+            suggestion["source"] == "dictionary_fuzzy"
+            and suggestion.get("fuzzy_score", 0) >= HIGH_CONFIDENCE_FUZZY_THRESHOLD
+            and suggestion.get("dataset_match_score", 0) > 0
+        ):
+            adjustment += HIGH_CONFIDENCE_FUZZY_BOOST
+            suggestion["high_confidence_fuzzy_boost"] = HIGH_CONFIDENCE_FUZZY_BOOST
+        else:
+            suggestion["high_confidence_fuzzy_boost"] = 0
+
+        if (
+            suggestion["source"] == "dictionary_compound"
+            and suggestion.get("dataset_match_score", 0) == 0
+            and suggestion.get("compound_pair_context_score", 0) == 0
+        ):
+            adjustment -= COMPOUND_NO_DATASET_PENALTY
+            suggestion["compound_no_dataset_penalty"] = COMPOUND_NO_DATASET_PENALTY
+        else:
+            suggestion["compound_no_dataset_penalty"] = 0
+
+        suggestion["source_quality_adjustment"] = round(adjustment, 4)
+        suggestion["score"] += adjustment
+
+    return suggestions
+
+
 # Load the trained ranking model when it exists.
 def load_ranking_model(model_file=RANKING_MODEL_FILE):
     if not os.path.exists(model_file):
@@ -458,7 +602,14 @@ def apply_ml_scores(user_input, suggestions, ranking_model):
         extract_ranking_features(user_input, suggestion)
         for suggestion in suggestions
     ]
-    probabilities = ranking_model.predict_proba(features)[:, 1]
+
+    try:
+        probabilities = ranking_model.predict_proba(features)[:, 1]
+    except ValueError:
+        for suggestion in suggestions:
+            suggestion["ml_score_status"] = "model feature mismatch; retrain needed"
+
+        return suggestions
 
     for suggestion, probability in zip(suggestions, probabilities):
         suggestion["ml_score"] = round(float(probability), 4)
@@ -504,25 +655,137 @@ def apply_manual_labels(user_input, suggestions, manual_labels=None):
     return suggestions
 
 
+def bounded_count_boost(count, factor, max_boost):
+    if count <= 0:
+        return 0
+
+    return min(count * factor, max_boost)
+
+
+# Boost candidates the user has selected before for the same Romanized input.
+def apply_user_history_scores(user_input, suggestions, selection_history=None):
+    selection_history = (
+        selection_history
+        if selection_history is not None
+        else load_selection_history()
+    )
+
+    for suggestion in suggestions:
+        count = selection_history.get((user_input, suggestion["khmer"]), 0)
+        boost = bounded_count_boost(
+            count,
+            USER_HISTORY_BOOST_FACTOR,
+            USER_HISTORY_MAX_BOOST,
+        )
+        suggestion["user_history_count"] = count
+        suggestion["user_history_score"] = round(boost, 4)
+        suggestion["score"] += boost
+
+    return suggestions
+
+
+# Boost candidates that commonly follow the previous selected Khmer word.
+def apply_previous_word_context_scores(previous_word, suggestions, pair_frequencies=None):
+    pair_frequencies = (
+        pair_frequencies
+        if pair_frequencies is not None
+        else load_word_pair_frequencies()
+    )
+
+    for suggestion in suggestions:
+        count = 0
+
+        if previous_word:
+            count = pair_frequencies.get((previous_word, suggestion["khmer"]), 0)
+
+        compound_pair_count = 0
+        compound_segments = suggestion.get("compound_segments", [])
+
+        for previous_segment, current_segment in zip(
+            compound_segments,
+            compound_segments[1:],
+        ):
+            compound_pair_count += pair_frequencies.get((
+                previous_segment["khmer"],
+                current_segment["khmer"],
+            ), 0)
+
+        boost = bounded_count_boost(
+            count,
+            PREVIOUS_WORD_BOOST_FACTOR,
+            PREVIOUS_WORD_MAX_BOOST,
+        )
+        compound_boost = bounded_count_boost(
+            compound_pair_count,
+            PREVIOUS_WORD_BOOST_FACTOR,
+            PREVIOUS_WORD_MAX_BOOST,
+        )
+        suggestion["previous_word"] = previous_word or ""
+        suggestion["previous_word_pair_count"] = count
+        suggestion["compound_pair_count"] = compound_pair_count
+        suggestion["compound_pair_context_score"] = round(compound_boost, 4)
+        suggestion["previous_word_context_score"] = round(boost, 4)
+        suggestion["score"] += boost + compound_boost
+
+    return suggestions
+
+
+def get_source_rank_weight(source):
+    if source == "dictionary_exact":
+        return SOURCE_RANK_WEIGHTS["dictionary_exact"]
+
+    if source == "dictionary_completion":
+        return SOURCE_RANK_WEIGHTS["dictionary_completion"]
+
+    if source == "phrase_space":
+        return SOURCE_RANK_WEIGHTS["phrase_space"]
+
+    if source == "dictionary_compound":
+        return SOURCE_RANK_WEIGHTS["dictionary_compound"]
+
+    if source == "dictionary_fuzzy":
+        return SOURCE_RANK_WEIGHTS["dictionary_fuzzy"]
+
+    if source.startswith("direct_"):
+        return SOURCE_RANK_WEIGHTS["direct"]
+
+    if source.startswith("rule_"):
+        return SOURCE_RANK_WEIGHTS["rule"]
+
+    return 0
+
+
 # Add human-readable ranking information for the UI/debug reports.
 def apply_rank_metadata(suggestions):
     for suggestion in suggestions:
+        source_weight = get_source_rank_weight(suggestion["source"])
         rank_score = (
-            suggestion["source_priority"] * 100
+            source_weight
             + suggestion.get("manual_label_score", 0) * 10
             + suggestion["score"]
-            + suggestion.get("ml_score", 0) * 0.01
+            + suggestion.get("ml_score", 0) * 0.25
         )
+        suggestion["source_rank_weight"] = source_weight
         suggestion["rank_score"] = round(rank_score, 4)
 
         if suggestion.get("manual_label") == 1:
             suggestion["rank_reason"] = "manual good label"
         elif suggestion.get("manual_label") == 0:
             suggestion["rank_reason"] = "manual bad label"
+        elif suggestion.get("previous_word_context_score", 0) > 0:
+            suggestion["rank_reason"] = "previous word context"
+        elif suggestion.get("compound_pair_context_score", 0) > 0:
+            suggestion["rank_reason"] = "compound pair context"
+        elif suggestion.get("user_history_score", 0) > 0:
+            suggestion["rank_reason"] = "user selection history"
+        elif suggestion.get("high_confidence_fuzzy_boost", 0) > 0:
+            suggestion["rank_reason"] = "high-confidence fuzzy"
         elif suggestion["source"] == "dictionary_exact":
             suggestion["rank_reason"] = "exact dictionary"
         elif suggestion["source"] == "dictionary_completion":
             suggestion["rank_reason"] = "left-to-right completion"
+        elif suggestion["source"] == "phrase_space":
+            suggestion["rank_reason"] = "space-separated phrase"
         elif suggestion["source"] == "dictionary_compound":
             suggestion["rank_reason"] = "compound segmentation"
         elif suggestion["source"] == "dictionary_fuzzy":
@@ -542,23 +805,70 @@ def get_suggestions(
     rules=None,
     ranking_model=None,
     manual_labels=None,
+    selection_history=None,
+    pair_frequencies=None,
+    previous_word="",
     use_ml=True,
+    enable_compound=True,
+    enable_fuzzy=True,
     allow_vowels=False,
     limit=DEFAULT_SUGGESTION_LIMIT,
     min_rule_score=MIN_RULE_DISPLAY_SCORE,
 ):
-    normalized = normalize_input(user_input)
+    normalized_phrase = normalize_phrase_input(user_input)
+    normalized = normalized_phrase if " " in normalized_phrase else normalize_input(user_input)
     dataset = dataset or load_dataset()
     rules = rules or load_mapping_rules()
     ranking_model = ranking_model or (load_ranking_model() if use_ml else None)
     dataset_index = build_dataset_index(dataset)
     suggestions = []
 
+    if " " in normalized:
+        suggestions = phrase_space_lookup(
+            normalized,
+            dataset,
+            rules,
+            previous_word=previous_word,
+            pair_frequencies=pair_frequencies,
+            enable_fuzzy=enable_fuzzy,
+            enable_compound=enable_compound,
+        )
+        suggestions = dedupe_suggestions(suggestions)
+        suggestions = apply_dataset_match_scores(normalized, suggestions, dataset_index)
+        suggestions = apply_manual_labels(normalized, suggestions, manual_labels)
+        suggestions = apply_user_history_scores(normalized, suggestions, selection_history)
+        suggestions = apply_previous_word_context_scores(
+            previous_word,
+            suggestions,
+            pair_frequencies,
+        )
+        suggestions = apply_source_quality_adjustments(suggestions)
+        suggestions = apply_ml_scores(normalized, suggestions, ranking_model)
+        suggestions = apply_rank_metadata(suggestions)
+        suggestions.sort(
+            key=lambda suggestion: (
+                suggestion["rank_score"],
+                suggestion.get("manual_label_score", 0),
+                suggestion.get("source_rank_weight", 0),
+                suggestion.get("frequency", 0),
+            ),
+            reverse=True,
+        )
+
+        if limit is None or limit <= 0:
+            return suggestions
+
+        return suggestions[:limit]
+
     exact_matches = exact_lookup(normalized, dataset)
     direct_matches = direct_token_lookup(normalized, rules, allow_vowels=allow_vowels)
     completion_matches = completion_lookup(normalized, dataset)
-    compound_matches = compound_segment_lookup(normalized, dataset, rules)
-    fuzzy_matches = fuzzy_dictionary_lookup(normalized, dataset)
+    compound_matches = (
+        compound_segment_lookup(normalized, dataset, rules)
+        if enable_compound
+        else []
+    )
+    fuzzy_matches = fuzzy_dictionary_lookup(normalized, dataset) if enable_fuzzy else []
     rule_limit = max(limit or 0, 300) if limit is not None else 300
     rule_candidates = generate_ranked_candidates(normalized, rules, limit=rule_limit)
 
@@ -586,14 +896,20 @@ def get_suggestions(
     suggestions = dedupe_suggestions(suggestions)
     suggestions = apply_dataset_match_scores(normalized, suggestions, dataset_index)
     suggestions = apply_manual_labels(normalized, suggestions, manual_labels)
+    suggestions = apply_user_history_scores(normalized, suggestions, selection_history)
+    suggestions = apply_previous_word_context_scores(
+        previous_word,
+        suggestions,
+        pair_frequencies,
+    )
+    suggestions = apply_source_quality_adjustments(suggestions)
     suggestions = apply_ml_scores(normalized, suggestions, ranking_model)
     suggestions = apply_rank_metadata(suggestions)
     suggestions.sort(
         key=lambda suggestion: (
-            suggestion["source_priority"],
+            suggestion["rank_score"],
             suggestion.get("manual_label_score", 0),
-            suggestion["score"],
-            suggestion.get("ml_score", -1),
+            suggestion.get("source_rank_weight", 0),
             suggestion.get("frequency", 0),
         ),
         reverse=True,

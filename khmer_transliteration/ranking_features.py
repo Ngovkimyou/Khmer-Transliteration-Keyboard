@@ -7,6 +7,8 @@ FEATURE_NAMES = [
     "length_difference",
     "token_count",
     "chunk_count",
+    "previous_word_context_score",
+    "user_history_score",
 ]
 
 
@@ -24,4 +26,6 @@ def extract_ranking_features(user_input, suggestion):
         abs(len(romanized) - len(user_input)),
         len(tokens),
         len(chunks),
+        suggestion.get("previous_word_context_score", 0),
+        suggestion.get("user_history_score", 0),
     ]

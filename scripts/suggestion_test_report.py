@@ -114,6 +114,7 @@ def main():
     <div class="meta">
         source: {suggestion["source"]},
         priority: {suggestion["source_priority"]},
+        source weight: {suggestion.get("source_rank_weight", "")},
         manual score: {round(suggestion["score"], 4)},
         rank score: {suggestion.get("rank_score", "")},
         rank reason: {suggestion.get("rank_reason", "")}
@@ -129,6 +130,25 @@ def main():
         dataset score: {suggestion["dataset_match_score"]},
         dataset similarity: {suggestion.get("dataset_similarity", "")},
         dataset romanized: {suggestion.get("dataset_romanized", "")}
+"""
+
+                if suggestion.get("previous_word_context_score"):
+                    html += f""",
+        previous word: {suggestion.get("previous_word", "")},
+        context score: {suggestion["previous_word_context_score"]},
+        pair count: {suggestion.get("previous_word_pair_count", "")}
+"""
+
+                if suggestion.get("compound_pair_context_score"):
+                    html += f""",
+        compound pair score: {suggestion["compound_pair_context_score"]},
+        compound pair count: {suggestion.get("compound_pair_count", "")}
+"""
+
+                if suggestion.get("user_history_score"):
+                    html += f""",
+        history score: {suggestion["user_history_score"]},
+        history count: {suggestion.get("user_history_count", "")}
 """
 
                 if "ml_score" in suggestion:

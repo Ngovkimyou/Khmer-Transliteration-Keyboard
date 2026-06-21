@@ -1,11 +1,13 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 from khmer_transliteration.collection import append_examples
+from khmer_transliteration.history import record_selection
 from khmer_transliteration.mapping_rules import load_mapping_rules
 from khmer_transliteration.dictionary_lookup import load_dataset
-from khmer_transliteration.normalizer import normalize_input
+from khmer_transliteration.normalizer import normalize_input, normalize_phrase_input
 from khmer_transliteration.paths import ASSETS_DIR, STATIC_DIR
 from khmer_transliteration.suggestion_engine import get_suggestions, load_ranking_model
 
@@ -20,6 +22,12 @@ app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
 
 
+class SelectionEvent(BaseModel):
+    q: str = ""
+    khmer: str = ""
+    previous_khmer: str = ""
+
+
 @app.get("/")
 def index():
     return FileResponse(STATIC_DIR / "index.html")
@@ -30,8 +38,9 @@ def suggest(
     q: str = Query(default="", max_length=80),
     limit: int = Query(default=0, ge=0, le=500),
     allow_vowels: bool = Query(default=False),
+    previous_word: str = Query(default="", max_length=80),
 ):
-    normalized = normalize_input(q)
+    normalized = normalize_phrase_input(q)
 
     if not normalized:
         return {
@@ -41,11 +50,12 @@ def suggest(
         }
 
     suggestions = get_suggestions(
-        normalized,
+        q,
         dataset=dataset,
         rules=rules,
         ranking_model=ranking_model,
         allow_vowels=allow_vowels,
+        previous_word=previous_word,
         limit=limit or None,
         min_rule_score=None,
     )
@@ -54,6 +64,35 @@ def suggest(
         "query": q,
         "normalized": normalized,
         "suggestions": suggestions,
+    }
+
+
+@app.post("/api/select")
+def select(event: SelectionEvent):
+    normalized = normalize_input(event.q)
+
+    if not normalized or not event.khmer:
+        return {
+            "query": event.q,
+            "normalized": normalized,
+            "khmer": event.khmer,
+            "recorded": False,
+            "message": "No selection to record.",
+        }
+
+    counts = record_selection(
+        normalized,
+        event.khmer,
+        previous_khmer=event.previous_khmer,
+    )
+
+    return {
+        "query": event.q,
+        "normalized": normalized,
+        "khmer": event.khmer,
+        "previous_khmer": event.previous_khmer,
+        "recorded": True,
+        **counts,
     }
 
 

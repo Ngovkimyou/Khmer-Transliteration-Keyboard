@@ -1,0 +1,7 @@
+{
+  "api_base_url": "http://127.0.0.1:8000",
+  "hotkey": "<ctrl>+<alt>+k",
+  "reset_context_hotkey": "<ctrl>+<alt>+r",
+  "max_suggestions": 10,
+  "window_min_width": 560
+}
