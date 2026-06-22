@@ -8,6 +8,113 @@ The current Windows IME uses a local named-pipe engine instead of a web port.
 The pipe engine keeps the Python rules/dictionary/model loaded in memory and
 records local user selections for personalization.
 
+## Fresh Clone Setup
+
+After cloning the repo in VS Code, do these steps first.
+
+### 1. Install Requirements
+
+- Windows 10/11
+- Python 3.10+
+- Git
+- For the real Windows IME prototype only: Visual Studio C++ Build Tools with
+  the Windows SDK
+
+### 2. Create Python Environment
+
+From the repo root:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+If PowerShell blocks activation, run this once in the same terminal:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+```
+
+### 3. Verify The Python Engine
+
+Run a quick report/test command:
+
+```powershell
+python scripts/suggestion_test_report.py
+```
+
+Or start the browser UI:
+
+```powershell
+python -m uvicorn app:app --host 127.0.0.1 --port 8000
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000
+```
+
+### 4. Test The Local IME Pipe Engine
+
+The Windows IME no longer needs port `8000`; it talks to a local named pipe.
+
+```cmd
+windows_ime\engine\start_pipe_engine.cmd
+```
+
+In another terminal:
+
+```powershell
+python windows_ime/engine/test_pipe_client.py som
+```
+
+### 5. Optional: Build/Register The Windows IME
+
+Only do this if you want the actual Windows keyboard integration.
+
+Open an x64 Developer Command Prompt/PowerShell, then:
+
+```cmd
+cd /d C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype
+build
+reregister
+check
+```
+
+If your clone is in a different folder, use that folder path instead of
+`C:\Projects\Khmer-Transliteration-Keyboard`.
+
+### 6. Optional: Start Pipe Engine At Login
+
+This makes the local engine run silently after Windows login:
+
+```cmd
+windows_ime\engine\install_login_startup.cmd
+```
+
+To remove it:
+
+```cmd
+windows_ime\engine\uninstall_login_startup.cmd
+```
+
+### Common Fresh-Clone Problems
+
+- `pip` points to an old moved `.venv`: delete `.venv`, recreate it, then run
+  `python -m pip install -r requirements.txt`.
+- `cl` shows x86 instead of x64: open the x64 Developer shell before building
+  the IME.
+- IME does not appear in Windows language options: run `reregister`, then
+  sign out/in or restart Explorer.
+- Suggestions work in browser UI but not IME: make sure
+  `windows_ime\engine\start_pipe_engine.cmd` is running, or install login
+  startup.
+- Port `8000` conflict: only the browser UI uses port `8000`; the Windows IME
+  uses `\\.\pipe\KhmerRomanizedIme`.
+
 ## Project Structure
 
 - `khmer_transliteration/` - core Python package
