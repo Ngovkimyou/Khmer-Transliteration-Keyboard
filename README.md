@@ -84,7 +84,7 @@ reregister
 check
 ```
 
-If your clone is in a different folder, use that folder path instead of
+⚠️ If your clone is in a different folder, use that folder path instead of
 `C:\Projects\Khmer-Transliteration-Keyboard`.
 
 ### 6. Optional: Start Pipe Engine At Login
