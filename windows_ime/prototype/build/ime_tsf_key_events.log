@@ -1,0 +1,927 @@
+﻿Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe WaitNamedPipeW: 0x80070002
+Pipe engine launch requested: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW after launch: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe WaitNamedPipeW: 0x80070002
+Pipe engine launch requested: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW after launch: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe WaitNamedPipeW: 0x80070002
+Pipe engine launch requested: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW after launch: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe WaitNamedPipeW: 0x80070002
+Pipe engine launch requested: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW after launch: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe WaitNamedPipeW: 0x80070002
+Pipe engine launch requested: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe WaitNamedPipeW after launch: 0x80070002
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnCompositionTerminated: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no

@@ -9,6 +9,7 @@ from khmer_transliteration.paths import (
 
 SELECTION_FIELDNAMES = ["input", "khmer", "count", "last_selected"]
 PAIR_FIELDNAMES = ["previous_khmer", "current_khmer", "count", "last_selected"]
+MAX_COUNTER_ROWS = 10000
 
 
 def utc_timestamp():
@@ -34,11 +35,26 @@ def read_counter_rows(path, fieldnames):
 
 def write_counter_rows(path, fieldnames, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
+    rows = cap_counter_rows(rows)
 
     with open(path, "w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def cap_counter_rows(rows, max_rows=MAX_COUNTER_ROWS):
+    if len(rows) <= max_rows:
+        return rows
+
+    return sorted(
+        rows,
+        key=lambda row: (
+            row.get("last_selected", ""),
+            int(row.get("count") or 0),
+        ),
+        reverse=True,
+    )[:max_rows]
 
 
 def increment_row(rows, key_fields, key_values):

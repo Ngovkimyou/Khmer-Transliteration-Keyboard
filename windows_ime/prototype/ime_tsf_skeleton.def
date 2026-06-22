@@ -1,0 +1,7 @@
+LIBRARY "ime_tsf_skeleton"
+
+EXPORTS
+    DllCanUnloadNow PRIVATE
+    DllGetClassObject PRIVATE
+    DllRegisterServer PRIVATE
+    DllUnregisterServer PRIVATE
