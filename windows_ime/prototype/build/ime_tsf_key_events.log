@@ -925,3 +925,22 @@ Pipe suggestions empty: wParam=0x0000 lParam=0x00000000 foreground=no
 Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
 OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
 Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no
+Loaded module: C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype\build\ime_tsf_skeleton_20260622_132450.dll
+Activate: wParam=0x0000 lParam=0x00000000 foreground=yes
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=yes
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+Pipe suggestions found: wParam=0x0000 lParam=0x00000000 foreground=no
+OnSetFocus: wParam=0x0000 lParam=0x00000000 foreground=no
+Deactivate: wParam=0x0000 lParam=0x00000000 foreground=no

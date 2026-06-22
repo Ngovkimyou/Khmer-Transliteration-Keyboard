@@ -1,8 +1,12 @@
 # Khmer Transliteration Keyboard
 
 Romanized Khmer to Khmer script suggestion system with dictionary lookup,
-rule-based generation, fuzzy lookup, manual ranking labels, and a simple
-FastAPI UI.
+rule-based generation, fuzzy lookup, ML-assisted ranking, a FastAPI test UI,
+and a Windows TSF IME prototype.
+
+The current Windows IME uses a local named-pipe engine instead of a web port.
+The pipe engine keeps the Python rules/dictionary/model loaded in memory and
+records local user selections for personalization.
 
 ## Project Structure
 
@@ -21,6 +25,7 @@ FastAPI UI.
 - `scripts/` - command-line reports, training, and data utilities
 - `reports/` - generated HTML/text reports
 - `static/` and `assets/` - UI files and images
+- `windows_ime/` - Windows TSF IME prototype and local pipe engine
 - `app.py` - compatibility wrapper for `uvicorn app:app`
 - `docs/scoring_logic_snapshot.md` - current scoring/ranking reference
 
@@ -35,6 +40,46 @@ python scripts/auto_label_training_examples.py --dry-run
 python scripts/auto_label_training_examples.py --overwrite-auto
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
+
+The FastAPI server is still useful for the browser UI and reports. The Windows
+IME prototype uses the named pipe at `\\.\pipe\KhmerRomanizedIme` instead of
+port `8000`.
+
+## Windows IME Prototype
+
+Start the local pipe engine manually:
+
+```cmd
+windows_ime\engine\start_pipe_engine.cmd
+```
+
+Install the pipe engine at Windows login:
+
+```cmd
+windows_ime\engine\install_login_startup.cmd
+```
+
+Remove login startup:
+
+```cmd
+windows_ime\engine\uninstall_login_startup.cmd
+```
+
+Rebuild/register the TSF IME from an x64 Developer shell:
+
+```cmd
+cd /d C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype
+reregister
+```
+
+The TSF IME records selected candidates locally in:
+
+```text
+data/user_selection_history.csv
+data/word_pair_frequency.csv
+```
+
+Both history files are capped at 10,000 rows when written.
 
 Retrain the ranking model after collecting selection history or word-pair data
 so ML can learn the new context/history features.

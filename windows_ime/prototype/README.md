@@ -1,179 +1,142 @@
-# Prototype Build
+# TSF Prototype Build
 
-This folder starts with a tiny C++ smoke test before TSF code.
+This folder contains the C++ Windows TSF text-service prototype.
 
-Open **x64 Native Tools Command Prompt/PowerShell for VS 2022**, then run:
+Use an **x64 Developer Command Prompt/PowerShell**. The project includes short
+helper commands for the common build/register loop.
 
-```powershell
-cd C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype
-build
-.\build\ime_smoke_test.exe
-```
+## Build
 
-Expected output:
-
-```text
-Khmer IME C++ smoke test
-k -> ក
-```
-
-If this works, the C++ compiler and Unicode output path are ready for the next
-TSF prototype step.
-
-## API Smoke Test
-
-Start the Python engine in another terminal:
-
-```powershell
-cd C:\Projects\Khmer-Transliteration-Keyboard
-python -m uvicorn app:app --host 127.0.0.1 --port 8000
-```
-
-Then run:
-
-```powershell
-cd C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype
-.\build\ime_api_smoke_test.exe somtos
-```
-
-Expected result: the C++ program prints the JSON returned from
-`/api/suggest`. This proves the future Windows IME shell can talk to the Python
-engine before TSF registration starts.
-
-## COM DLL Skeleton
-
-Build the placeholder COM DLL:
-
-```powershell
+```cmd
+cd /d C:\Projects\Khmer-Transliteration-Keyboard\windows_ime\prototype
 build
 ```
-
-Use the x64 Developer shell. A 32-bit TSF DLL can build, but it is not the
-right first target for the Windows input switcher on modern 64-bit Windows.
 
 This creates:
 
 ```text
+build\ime_smoke_test.exe
+build\ime_api_smoke_test.exe
 build\ime_tsf_skeleton_YYYYMMDD_HHMMSS.dll
+build\ime_tsf_profile_check.exe
+build\ime_register_tool.exe
 ```
 
-The build writes the latest DLL path to `build\current_skeleton_dll.txt`.
-This avoids Windows DLL locking while TSF has an older prototype loaded.
+The versioned DLL name avoids Windows DLL locking while TSF has an older build
+loaded. The latest DLL path is written to:
 
-Register it for the current user:
+```text
+build\current_skeleton_dll.txt
+```
 
-```powershell
+## Register
+
+Register the current TSF DLL:
+
+```cmd
 register
 ```
 
-Unregister it:
+Unregister:
 
-```powershell
+```cmd
 unregister
 ```
 
-The short `register` and `unregister` commands use `ime_register_tool.exe` so
-the exact `DllRegisterServer` / `DllUnregisterServer` HRESULT is visible.
+Fast development loop:
 
-If registration fails, print the step-by-step DLL registration log:
-
-```powershell
-log
-```
-
-## Key Event Sink Test
-
-The skeleton now implements `ITfKeyEventSink` and logs key events without
-intercepting them.
-
-After registering:
-
-```powershell
-build
-register
-```
-
-During rapid development, use:
-
-```powershell
+```cmd
 reregister
 ```
 
-This runs `build`, `register`, `clearlogs`, and prints the DLL path that should
-be loaded next.
+This runs build, register, clearlogs, and current.
 
-Switch to `Khmer Romanized IME`, type a few keys in Notepad, then run:
-
-```powershell
-keylog
-```
-
-To clear old log noise before a test:
-
-```powershell
-clearlogs
-```
-
-Expected: entries such as `Activate`, `OnSetFocus`, `OnTestKeyDown`,
-`OnKeyDown`, `OnTestKeyUp`, and `OnKeyUp`.
-
-The current typing behavior uses the Python API:
-
-```text
-type romanized letters -> buffer
-typed romanized text appears in the active input field
-visible romanized text is maintained as a TSF composition range
-Space -> add a space to the romanized buffer
-after each edit -> call http://127.0.0.1:8000/api/suggest?limit=20
-show a candidate popup near the caret
-Enter -> commit the first candidate
-1-9 -> commit that candidate
-0 -> commit candidate row 10
-```
-
-Backspace edits the romanized buffer. Esc clears it.
-When a candidate is committed, the visible romanized text is replaced by Khmer.
-
-Example:
-
-```text
-type somtos then Enter -> សុំទោស
-type chnang touch then Enter -> phrase suggestion from the Python engine
-```
-
-The candidate popup appears below the caret by default and flips above when
-there is not enough screen space below.
-
-The local Python server must be running for API-backed commits:
-
-```powershell
-python -m uvicorn app:app --host 127.0.0.1 --port 8000
-```
-
-This skeleton registers:
-
-- a placeholder COM class under `HKCU\Software\Classes\CLSID`
-- a TSF text service profile for Khmer/Cambodia
-- the TSF keyboard category
-
-It may appear in Windows language/input settings after registration. It still
-does not process keystrokes or commit text yet.
+## Check And Logs
 
 Check whether TSF sees the profile:
 
-```powershell
+```cmd
 check
 ```
 
-If `IsEnabledLanguageProfile` returns `S_OK` and `enabled: yes`, TSF registered
-the profile even if Windows Settings does not show it yet.
+Show registration log:
 
-The COM object now implements a stub `ITfTextInputProcessor`:
-
-```text
-Activate(...)
-Deactivate()
+```cmd
+log
 ```
 
-The methods only store/release the TSF thread manager for now. The next step is
-keystroke handling through TSF sinks.
+Show key-event log:
+
+```cmd
+keylog
+```
+
+Clear logs:
+
+```cmd
+clearlogs
+```
+
+## Current IME Behavior
+
+The prototype is registered as `Khmer Romanized IME`.
+
+```text
+type romanized letters -> visible composition in the active app
+Space -> add a space to the romanized buffer
+Backspace -> delete one romanized character
+Esc -> clear composition
+candidate popup -> shown near caret, flips above/below based on screen space
+Enter -> commit selected candidate
+1-9 -> commit that row
+0 -> commit row 10
+Up/Down -> move selection
+mouse click -> commit hovered row
+```
+
+Suggestions are fetched asynchronously through the local named pipe:
+
+```text
+\\.\pipe\KhmerRomanizedIme
+```
+
+The IME attempts to auto-start the pipe engine if it is missing. The pipe engine
+can also be started manually:
+
+```cmd
+cd /d C:\Projects\Khmer-Transliteration-Keyboard
+windows_ime\engine\start_pipe_engine.cmd
+```
+
+The prototype no longer depends on port `8000` for normal IME suggestions.
+
+## Personalization
+
+When a candidate is committed, the IME records the selected candidate through
+the pipe engine. This updates:
+
+```text
+data/user_selection_history.csv
+data/word_pair_frequency.csv
+```
+
+The IME tracks the previous committed Khmer candidate and sends it as context
+for the next suggestion request, allowing word-pair ranking to improve over
+time.
+
+## Smoke Tests
+
+C++ Unicode smoke test:
+
+```cmd
+build\ime_smoke_test.exe
+```
+
+Legacy HTTP API smoke test:
+
+```cmd
+build\ime_api_smoke_test.exe somtos
+```
+
+The API smoke test is kept for debugging the old HTTP path, but the active TSF
+IME uses the named pipe.

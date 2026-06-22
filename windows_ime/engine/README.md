@@ -1,9 +1,11 @@
 # Khmer IME Pipe Engine
 
-This folder contains the local Windows named-pipe engine used by the TSF IME prototype.
+This folder contains the local Windows named-pipe engine used by the TSF IME
+prototype.
 
 The TSF IME uses this pipe for suggestions and selection-history recording.
-The TSF prototype can also launch `start_pipe_engine.cmd` automatically when the pipe is missing.
+The TSF prototype can also launch `start_pipe_engine.cmd` automatically when
+the pipe is missing.
 
 ## Pipe
 
@@ -11,13 +13,13 @@ The TSF prototype can also launch `start_pipe_engine.cmd` automatically when the
 \\.\pipe\KhmerRomanizedIme
 ```
 
-Request format:
+Suggestion request:
 
 ```json
-{"q":"som","limit":20}
+{"q":"som","limit":20,"previous_word":""}
 ```
 
-Response format:
+Suggestion response:
 
 ```json
 {"ok":true,"query":"som","normalized":"som","suggestions":[]}
@@ -26,22 +28,24 @@ Response format:
 Selection-record request:
 
 ```json
-{"action":"select","q":"som","khmer":"សុំ","previous_word":""}
+{"action":"select","q":"som","khmer":"<selected-khmer>","previous_word":"<previous-khmer>"}
 ```
 
-This updates:
+Selection recording updates:
 
 ```text
 data/user_selection_history.csv
 data/word_pair_frequency.csv
 ```
 
-## Run The Server
+Both files are capped at 10,000 rows by `khmer_transliteration.history`.
+
+## Run The Engine
 
 Preferred launcher:
 
-```powershell
-windows_ime/engine/start_pipe_engine.cmd
+```cmd
+windows_ime\engine\start_pipe_engine.cmd
 ```
 
 This starts the engine hidden and writes logs to:
@@ -57,9 +61,11 @@ Manual foreground run from the project root:
 python windows_ime/engine/khmer_engine_pipe.py
 ```
 
-The server loads the same rule, dictionary, ranking model, history, and pair-frequency data as the FastAPI app, then waits for named-pipe requests.
+The server loads the same rule, dictionary, ranking model, history, and
+pair-frequency data as the FastAPI app, then waits for named-pipe requests.
 
-First startup can take several seconds because the engine warms the dictionary/model once.
+First startup can take several seconds because the engine warms the
+dictionary/model once.
 
 ## Test From Another Terminal
 
@@ -67,7 +73,8 @@ First startup can take several seconds because the engine warms the dictionary/m
 python windows_ime/engine/test_pipe_client.py som --limit 10
 ```
 
-The test client waits up to 30 seconds for the pipe, so it is okay if you run it while the engine is still starting.
+The test client waits up to 30 seconds for the pipe, so it is okay if you run
+it while the engine is still starting.
 
 Try:
 
@@ -101,11 +108,9 @@ python windows_ime/engine/khmer_engine_pipe.py --once
 
 Then run the client in a second terminal before the server exits.
 
-## Next Step
+## IME Test Flow
 
-The C++ TSF prototype now uses this named pipe instead of port `8000`.
-
-Manual IME test flow:
+The C++ TSF prototype uses this named pipe instead of port `8000`.
 
 1. Optional: start the pipe engine yourself:
 
@@ -113,7 +118,8 @@ Manual IME test flow:
    windows_ime\engine\start_pipe_engine.cmd
    ```
 
-   The TSF prototype should auto-start it if you skip this, but manual start is useful for debugging.
+   The TSF prototype should auto-start it if you skip this, but manual start is
+   useful for debugging.
 
 2. In your x64 admin prototype shell, rebuild/register the IME:
 

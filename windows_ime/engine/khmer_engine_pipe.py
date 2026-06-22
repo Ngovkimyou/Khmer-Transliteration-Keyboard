@@ -35,6 +35,8 @@ from khmer_transliteration.suggestion_engine import get_suggestions, load_rankin
 PIPE_NAME = r"\\.\pipe\KhmerRomanizedIme"
 BUFFER_SIZE = 64 * 1024
 
+# Minimal Win32 named-pipe bindings. Keeping this in-process avoids an HTTP
+# server/port and keeps IME requests local to the machine.
 GENERIC_READ = 0x80000000
 GENERIC_WRITE = 0x40000000
 OPEN_EXISTING = 3
@@ -100,6 +102,7 @@ class EngineState:
         self.ranking_model = load_ranking_model()
 
     def handle_request(self, request: dict) -> dict:
+        """Route one client request by action name."""
         action = str(request.get("action", "suggest"))
 
         if action == "select":
@@ -108,6 +111,7 @@ class EngineState:
         return self.suggest(request)
 
     def record_selection(self, request: dict) -> dict:
+        """Persist a clicked/committed candidate for personalization."""
         query = str(request.get("q", ""))
         khmer = str(request.get("khmer", ""))
         previous_word = str(request.get("previous_word", ""))
@@ -123,6 +127,7 @@ class EngineState:
         }
 
     def suggest(self, request: dict) -> dict:
+        """Generate ranked Khmer suggestions using the already-loaded engine."""
         query = str(request.get("q", ""))
         limit = int(request.get("limit", 20) or 20)
         allow_vowels = bool(request.get("allow_vowels", False))
@@ -165,6 +170,7 @@ def raise_windows_error(action: str) -> None:
 
 
 def create_pipe() -> wintypes.HANDLE:
+    """Create one server-side pipe instance for a single request/response."""
     pipe = kernel32.CreateNamedPipeW(
         PIPE_NAME,
         PIPE_ACCESS_DUPLEX,
@@ -183,6 +189,7 @@ def create_pipe() -> wintypes.HANDLE:
 
 
 def read_request(pipe: wintypes.HANDLE) -> dict:
+    """Read one newline-terminated UTF-8 JSON request from the pipe."""
     chunks: list[bytes] = []
 
     while True:
@@ -213,6 +220,7 @@ def read_request(pipe: wintypes.HANDLE) -> dict:
 
 
 def write_response(pipe: wintypes.HANDLE, response: dict) -> None:
+    """Write one compact UTF-8 JSON response and flush it to the client."""
     payload = (
         json.dumps(response, ensure_ascii=False, separators=(",", ":")) + "\n"
     ).encode("utf-8")
@@ -232,6 +240,7 @@ def write_response(pipe: wintypes.HANDLE, response: dict) -> None:
 
 
 def handle_client(pipe: wintypes.HANDLE, engine: EngineState) -> None:
+    """Handle one connected IME client without letting bad input stop the server."""
     try:
         request = read_request(pipe)
         response = engine.handle_request(request)
@@ -247,6 +256,7 @@ def handle_client(pipe: wintypes.HANDLE, engine: EngineState) -> None:
 
 
 def serve(once: bool = False) -> None:
+    """Run the pipe loop. The engine object is reused so data stays warm."""
     engine = EngineState()
     print(f"Khmer pipe engine ready: {PIPE_NAME}", flush=True)
 
@@ -268,6 +278,7 @@ def serve(once: bool = False) -> None:
 
 
 def main() -> int:
+    """CLI entry point used by start_pipe_engine.cmd and smoke tests."""
     parser = argparse.ArgumentParser(description="Run Khmer IME named-pipe engine.")
     parser.add_argument("--once", action="store_true", help="Handle one request, then exit.")
     args = parser.parse_args()

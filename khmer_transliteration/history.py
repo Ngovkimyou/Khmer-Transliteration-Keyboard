@@ -9,14 +9,19 @@ from khmer_transliteration.paths import (
 
 SELECTION_FIELDNAMES = ["input", "khmer", "count", "last_selected"]
 PAIR_FIELDNAMES = ["previous_khmer", "current_khmer", "count", "last_selected"]
+
+# Keep local personalization bounded. The newest/most-used rows survive when
+# history grows beyond this limit.
 MAX_COUNTER_ROWS = 10000
 
 
 def utc_timestamp():
+    """Return a stable timestamp for CSV history rows."""
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def read_counter_rows(path, fieldnames):
+    """Read a counter CSV while tolerating missing columns from older files."""
     if not path.exists():
         return []
 
@@ -34,6 +39,7 @@ def read_counter_rows(path, fieldnames):
 
 
 def write_counter_rows(path, fieldnames, rows):
+    """Write counter rows back to disk after trimming old entries."""
     path.parent.mkdir(parents=True, exist_ok=True)
     rows = cap_counter_rows(rows)
 
@@ -44,6 +50,7 @@ def write_counter_rows(path, fieldnames, rows):
 
 
 def cap_counter_rows(rows, max_rows=MAX_COUNTER_ROWS):
+    """Keep the most recently selected, then most frequent, rows."""
     if len(rows) <= max_rows:
         return rows
 
@@ -58,6 +65,7 @@ def cap_counter_rows(rows, max_rows=MAX_COUNTER_ROWS):
 
 
 def increment_row(rows, key_fields, key_values):
+    """Increment an existing keyed row or append it with count=1."""
     now = utc_timestamp()
 
     for row in rows:
@@ -77,6 +85,7 @@ def increment_row(rows, key_fields, key_values):
 
 
 def record_selection(user_input, khmer, previous_khmer=""):
+    """Record a candidate selection and, when available, its previous-word pair."""
     normalized = normalize_input(user_input)
 
     if not normalized or not khmer:
@@ -126,6 +135,7 @@ def record_selection(user_input, khmer, previous_khmer=""):
 
 
 def load_selection_history(path=USER_SELECTION_HISTORY_FILE):
+    """Load per-input candidate counts for ranking boosts."""
     history = {}
 
     for row in read_counter_rows(path, SELECTION_FIELDNAMES):
@@ -136,6 +146,7 @@ def load_selection_history(path=USER_SELECTION_HISTORY_FILE):
 
 
 def load_word_pair_frequencies(path=WORD_PAIR_FREQUENCY_FILE):
+    """Load previous-word -> current-word counts for context ranking."""
     pairs = {}
 
     for row in read_counter_rows(path, PAIR_FIELDNAMES):

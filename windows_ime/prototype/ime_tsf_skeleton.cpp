@@ -47,6 +47,8 @@ HINSTANCE g_module = nullptr;
 std::atomic<long> g_object_count = 0;
 std::atomic<long> g_lock_count = 0;
 
+// Lightweight file logs are useful while debugging TSF registration/loading.
+// Hot-path key/edit logs are gated above because disk writes make typing lag.
 void get_log_path(const wchar_t* file_name, wchar_t* log_path, DWORD log_path_count)
 {
     wchar_t module_path[MAX_PATH] = {};
@@ -204,6 +206,8 @@ bool is_buffer_control_key(WPARAM wparam)
     return wparam == VK_BACK || wparam == VK_ESCAPE || wparam == VK_SPACE;
 }
 
+// The TSF hot path only accepts roman letters plus a few control keys.
+// More punctuation/number behavior can be added here without touching TSF sinks.
 wchar_t key_to_buffer_char(WPARAM wparam)
 {
     if (wparam >= L'A' && wparam <= L'Z') {
@@ -253,6 +257,8 @@ std::string wide_to_utf8(const std::wstring& text)
     return result;
 }
 
+// Convert roman input to the query format used by the legacy HTTP smoke test.
+// The active IME uses named pipes, but this helper is still used by test code.
 std::wstring url_encode_ascii(const std::wstring& text)
 {
     std::wstringstream encoded;
@@ -379,6 +385,8 @@ std::vector<std::wstring> extract_khmer_suggestions_from_response(const std::str
     return suggestions;
 }
 
+// Resolve a path relative to the versioned TSF DLL. This lets a registered DLL
+// find windows_ime\engine\start_pipe_engine.cmd even when loaded by another app.
 std::wstring parent_directory(const std::wstring& path)
 {
     size_t slash = path.find_last_of(L"\\/");
@@ -395,6 +403,8 @@ std::wstring suggestion_cache_key(const std::wstring& buffer, const std::wstring
     return previous_word + L"\x1F" + buffer;
 }
 
+// Start the Python pipe engine on demand. A short cooldown prevents every
+// keystroke from spawning another process while the engine is warming up.
 std::wstring find_pipe_engine_launcher()
 {
     wchar_t module_path[MAX_PATH] = {};
@@ -533,6 +543,9 @@ std::string build_pipe_selection_request(
     return request;
 }
 
+// Send one newline-delimited JSON request to the local named-pipe engine and
+// return the raw JSON response. This is used for both suggestions and selection
+// recording so the IME no longer needs a web port.
 std::string send_pipe_request(const std::string& request_body)
 {
     if (!WaitNamedPipeW(KHMER_ENGINE_PIPE_NAME, 40)) {
@@ -634,6 +647,8 @@ void record_khmer_selection(
     send_pipe_request(build_pipe_selection_request(romanized_buffer, khmer, previous_word));
 }
 
+// Selection recording is sent off-thread so committing a candidate does not
+// pause the active application while CSV history is updated.
 struct SelectionRecordRequest
 {
     std::wstring buffer;
@@ -793,6 +808,8 @@ std::vector<std::wstring> fetch_khmer_suggestions(
     return fetch_khmer_suggestions_from_pipe(romanized_buffer, limit, previous_word);
 }
 
+// Suggestion fetching can involve pipe startup/model warmup, so it always runs
+// on a worker thread and posts back to the candidate popup window.
 struct CandidateFetchRequest
 {
     HWND window;
@@ -996,6 +1013,8 @@ void position_candidate_window(HWND window, int width, int height)
     }
 }
 
+// Edit sessions are the small TSF transactions that insert, replace, or delete
+// text in the target app's active input field.
 class InsertTextEditSession : public ITfEditSession
 {
 public:
@@ -1176,6 +1195,8 @@ private:
     bool end_composition_;
 };
 
+// Main TSF text service. It owns the romanized composition buffer, candidate
+// popup, suggestion cache, previous-word context, and key-event sink behavior.
 class SkeletonTextService : public ITfTextInputProcessor, public ITfKeyEventSink, public ITfCompositionSink
 {
 public:
@@ -1447,6 +1468,8 @@ public:
 
     void ensure_candidate_window()
     {
+        // Create the no-activate popup once per text-service instance.
+        // It is owned by the IME DLL and floats above the active app.
         if (candidate_window_) {
             return;
         }
@@ -1505,6 +1528,7 @@ public:
 
     void hide_candidate_window()
     {
+        // Hide also cancels delayed fetch timers so stale buffers do not reopen it.
         if (candidate_window_) {
             KillTimer(candidate_window_, CANDIDATE_FETCH_TIMER_ID);
             ShowWindow(candidate_window_, SW_HIDE);
@@ -1513,6 +1537,7 @@ public:
 
     void schedule_candidate_fetch(UINT delay_ms)
     {
+        // Debounce typing by letting the popup window deliver a timer message later.
         ensure_candidate_window();
 
         if (candidate_window_) {
@@ -1527,6 +1552,8 @@ public:
 
     void show_candidate_window_from_current_candidates()
     {
+        // Resize the popup around the current page. First page stays compact;
+        // deeper navigation expands to show ten visible rows.
         if (candidates_.empty()) {
             selected_candidate_index_ = 0;
             hide_candidate_window();
@@ -1554,6 +1581,8 @@ public:
 
     void fetch_candidates_now()
     {
+        // Use cache immediately when possible; otherwise start one worker thread.
+        // If another fetch is active, keep only the newest buffer as pending.
         if (candidate_window_) {
             KillTimer(candidate_window_, CANDIDATE_FETCH_TIMER_ID);
         }
@@ -1630,6 +1659,8 @@ public:
 
     void handle_candidate_fetch_complete(CandidateFetchResult* result)
     {
+        // Worker results arrive through the popup message loop. Drop stale results
+        // if the user has already typed more characters or context changed.
         candidate_fetch_in_progress_ = false;
 
         if (!result) {
@@ -1681,6 +1712,8 @@ public:
 
     void update_candidate_window()
     {
+        // Called after each composition-buffer edit. It either paints cached
+        // suggestions or schedules a debounced fetch through the pipe engine.
         if (romanized_buffer_.empty()) {
             candidates_.clear();
             pending_fetch_buffer_.clear();
@@ -1711,6 +1744,8 @@ public:
 
     bool commit_candidate_by_index(ITfContext* context, size_t index)
     {
+        // Replace the visible romanized composition with the chosen Khmer text,
+        // then record both personal selection and previous-word pair history.
         if (index >= candidates_.size()) {
             return false;
         }
@@ -1740,6 +1775,8 @@ public:
 
     void invalidate_candidate_row(size_t candidate_index, size_t page_start)
     {
+        // Row-level invalidation keeps Up/Down navigation smooth by repainting
+        // only the old and new highlights when the visible page is unchanged.
         if (!candidate_window_ || candidate_index < page_start) {
             return;
         }
@@ -1765,6 +1802,8 @@ public:
 
     void move_candidate_selection(int direction)
     {
+        // Navigate across the full candidate list while displaying one page
+        // at a time, similar to Chinese/Japanese IME candidate windows.
         if (candidates_.empty()) {
             return;
         }
@@ -1797,6 +1836,7 @@ public:
 
     bool candidate_index_from_y(int y, size_t* candidate_index)
     {
+        // Convert mouse Y position into the candidate index for hover/click.
         if (!candidate_index || candidates_.empty()) {
             return false;
         }
@@ -1824,6 +1864,8 @@ public:
 
     void paint_candidate_window(HWND window)
     {
+        // Draw into an off-screen bitmap first, then blit once. This avoids
+        // white flashes during typing, repeat-key navigation, and hover changes.
         PAINTSTRUCT paint = {};
         HDC paint_dc = BeginPaint(window, &paint);
 
@@ -1947,6 +1989,7 @@ public:
 
     void handle_candidate_mouse_move(HWND window, LPARAM lparam)
     {
+        // Track hover locally; selection is still controlled by keyboard or click.
         size_t hovered = static_cast<size_t>(-1);
         int y = static_cast<short>(HIWORD(lparam));
 
@@ -1968,6 +2011,7 @@ public:
 
     void handle_candidate_mouse_leave(HWND window)
     {
+        // Clear hover state when the pointer exits the popup.
         if (hover_candidate_index_ != static_cast<size_t>(-1)) {
             hover_candidate_index_ = static_cast<size_t>(-1);
             InvalidateRect(window, nullptr, FALSE);
@@ -1976,6 +2020,7 @@ public:
 
     void handle_candidate_click(LPARAM lparam)
     {
+        // Mouse selection commits through the remembered context from the app.
         size_t clicked_index = 0;
         int y = static_cast<short>(HIWORD(lparam));
 
@@ -1987,6 +2032,8 @@ public:
 
     LRESULT handle_candidate_window_message(HWND window, UINT message, WPARAM wparam, LPARAM lparam)
     {
+        // Popup-local message router: painting, debounce timer, worker results,
+        // and mouse interaction all stay outside the TSF key handler.
         switch (message) {
         case WM_PAINT:
             paint_candidate_window(window);
@@ -2018,6 +2065,8 @@ public:
 
     STDMETHODIMP OnTestKeyDown(ITfContext* context, WPARAM wparam, LPARAM lparam, BOOL* eaten) override
     {
+        // TSF asks first whether the IME wants a key. We eat roman letters,
+        // composition controls, candidate navigation, and numbered selection.
         bool has_buffer = !romanized_buffer_.empty();
         bool should_eat =
             is_alpha_key(wparam) ||
@@ -2038,6 +2087,8 @@ public:
 
     STDMETHODIMP OnKeyDown(ITfContext* context, WPARAM wparam, LPARAM lparam, BOOL* eaten) override
     {
+        // Main input flow: mirror roman letters into the app, update candidates,
+        // and replace the buffer only when the user commits a candidate.
         remember_context(context);
 
         bool has_buffer = !romanized_buffer_.empty();
@@ -2133,6 +2184,8 @@ public:
 
     STDMETHODIMP OnTestKeyUp(ITfContext*, WPARAM wparam, LPARAM lparam, BOOL* eaten) override
     {
+        // Key-up mirrors the eaten decision so apps do not receive half of an
+        // IME-handled key sequence.
         if (eaten) {
             *eaten = is_alpha_key(wparam) || is_commit_key(wparam) || is_buffer_control_key(wparam) || ((wparam == VK_UP || wparam == VK_DOWN) && !candidates_.empty()) || (((wparam >= L'1' && wparam <= L'9') || wparam == L'0') && !candidates_.empty());
         }
@@ -2143,6 +2196,7 @@ public:
 
     STDMETHODIMP OnKeyUp(ITfContext*, WPARAM wparam, LPARAM lparam, BOOL* eaten) override
     {
+        // No state change is needed on key-up; TSF still expects the eaten flag.
         if (eaten) {
             *eaten = is_alpha_key(wparam) || is_commit_key(wparam) || is_buffer_control_key(wparam) || ((wparam == VK_UP || wparam == VK_DOWN) && !candidates_.empty()) || (((wparam >= L'1' && wparam <= L'9') || wparam == L'0') && !candidates_.empty());
         }
@@ -2183,6 +2237,7 @@ private:
 
 LRESULT CALLBACK CandidateWindowProc(HWND window, UINT message, WPARAM wparam, LPARAM lparam)
 {
+    // Static window procedure that forwards messages back to the owning service.
     SkeletonTextService* service = reinterpret_cast<SkeletonTextService*>(
         GetWindowLongPtrW(window, GWLP_USERDATA)
     );
@@ -2249,6 +2304,7 @@ public:
 
     STDMETHODIMP CreateInstance(IUnknown* outer, REFIID riid, void** object) override
     {
+        // Windows/TSF asks the class factory to create the text-service object.
         if (!object) {
             return E_POINTER;
         }
@@ -2287,6 +2343,8 @@ private:
 
 BOOL APIENTRY DllMain(HINSTANCE instance, DWORD reason, LPVOID)
 {
+    // Cache the module handle so registration, logs, and engine lookup can use
+    // paths relative to the currently loaded DLL.
     if (reason == DLL_PROCESS_ATTACH) {
         g_module = instance;
         DisableThreadLibraryCalls(instance);
@@ -2297,11 +2355,13 @@ BOOL APIENTRY DllMain(HINSTANCE instance, DWORD reason, LPVOID)
 
 STDAPI DllCanUnloadNow()
 {
+    // COM can unload the DLL only when no objects or explicit locks remain.
     return (g_object_count == 0 && g_lock_count == 0) ? S_OK : S_FALSE;
 }
 
 STDAPI DllGetClassObject(REFCLSID clsid, REFIID riid, void** object)
 {
+    // Entry point used by COM to obtain our class factory.
     if (clsid != CLSID_KhmerImeSkeleton) {
         return CLASS_E_CLASSNOTAVAILABLE;
     }
@@ -2319,6 +2379,7 @@ STDAPI DllGetClassObject(REFCLSID clsid, REFIID riid, void** object)
 
 HRESULT set_registry_string(HKEY root, const wchar_t* path, const wchar_t* name, const wchar_t* value)
 {
+    // Small helper for HKCU COM registration values.
     HKEY key = nullptr;
     LONG result = RegCreateKeyExW(
         root,
@@ -2356,6 +2417,7 @@ bool should_uninitialize_com(HRESULT result)
 
 HRESULT register_tsf_profile(const wchar_t* module_path)
 {
+    // Register the COM class as a Khmer keyboard text service and enable it.
     HRESULT com_result = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     bool uninitialize_com = should_uninitialize_com(com_result);
     write_registration_log(L"CoInitializeEx(register_tsf_profile)", com_result);
@@ -2442,6 +2504,8 @@ HRESULT register_tsf_profile(const wchar_t* module_path)
 
 HRESULT unregister_tsf_profile()
 {
+    // Remove the TSF profile/category registration while leaving normal Windows
+    // keyboard settings alone.
     HRESULT com_result = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
     bool uninitialize_com = should_uninitialize_com(com_result);
     write_registration_log(L"CoInitializeEx(unregister_tsf_profile)", com_result);
@@ -2516,6 +2580,7 @@ HRESULT unregister_tsf_profile()
 
 STDAPI DllRegisterServer()
 {
+    // regsvr32 entry point: write HKCU COM keys, then register the TSF profile.
     clear_registration_log();
 
     wchar_t module_path[MAX_PATH] = {};
@@ -2570,6 +2635,7 @@ STDAPI DllRegisterServer()
 
 STDAPI DllUnregisterServer()
 {
+    // regsvr32 /u entry point: disable TSF profile and remove the HKCU COM key.
     unregister_tsf_profile();
 
     LONG result = RegDeleteTreeW(
