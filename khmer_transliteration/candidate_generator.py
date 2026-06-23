@@ -19,7 +19,15 @@ SEQUENCE_CVC_CHUNK_BONUS = 0.01
 STRUCTURAL_SEQUENCE_BONUS = 0.12
 COMPOUND_VOWEL_BONUS = 0.08
 BANTOC_SIGN = "់"
+BANTOC_AA_VOWEL = "ា"
 BANTOC_FINAL_CONSONANTS = {"ក", "ង", "ច", "ញ", "ត", "ន", "ប", "ល", "ស"}
+BANTOC_SECOND_SERIES_EA_FINALS = {"ក"}
+BANTOC_SECOND_SERIES_OR_FINALS = {"ត", "ន", "ប", "ល", "ស"}
+BANTOC_SECOND_SERIES_AA_FINALS = (
+    BANTOC_SECOND_SERIES_EA_FINALS | BANTOC_SECOND_SERIES_OR_FINALS
+)
+CC_BANTOC_FIRST_SERIES_VOWELS = {"o", "or"}
+CC_BANTOC_SECOND_SERIES_VOWELS = {"u", "ou"}
 COMPOUND_VOWEL_BONUS_TOKENS = {
     "am",
     "om",
@@ -440,20 +448,36 @@ def generate_cvc_candidates(tokens, rules):
     return candidates
 
 
+# Second-series C + aa + bantoc changes romanization by final consonant.
+# Final ក keeps "ea" (jeak -> ជាក់), while ត/ន/ប/ល/ស use "or".
+def is_second_series_bantoc_short_pattern(first_consonant, vowel_token, final_consonant, rules):
+    if get_consonant_class(first_consonant, rules) != "second_series":
+        return False
+
+    if final_consonant in BANTOC_SECOND_SERIES_EA_FINALS:
+        return vowel_token == "ea"
+
+    return (
+        vowel_token == "or"
+        and final_consonant in BANTOC_SECOND_SERIES_OR_FINALS
+    )
+
+
 # Generate C + V + doubled final C as bantoc, such as leakk -> លាក់.
+# Also support second-series short forms, such as jorb -> ជាប់.
 def generate_cvc_bantoc_candidates(tokens, rules):
-    if len(tokens) != 4:
+    if len(tokens) not in {3, 4}:
         return []
 
-    first_token, vowel_token, final_token, repeated_final_token = tokens
+    first_token, vowel_token, final_token = tokens[:3]
 
-    if final_token != repeated_final_token:
+    if len(tokens) == 4 and final_token != tokens[3]:
         return []
 
     if not is_consonant_token(first_token, rules):
         return []
 
-    if not is_vowel_token(vowel_token, rules):
+    if not is_vowel_token(vowel_token, rules) and vowel_token != "or":
         return []
 
     if not is_consonant_token(final_token, rules):
@@ -462,7 +486,12 @@ def generate_cvc_bantoc_candidates(tokens, rules):
     candidates = []
 
     for first_consonant in get_consonants_for_token(first_token, rules):
-        vowel_options = get_vowels_for_consonant(vowel_token, first_consonant, rules)
+        if len(tokens) == 3:
+            if get_consonant_class(first_consonant, rules) != "second_series":
+                continue
+            vowel_options = [BANTOC_AA_VOWEL]
+        else:
+            vowel_options = get_vowels_for_consonant(vowel_token, first_consonant, rules)
 
         for vowel in vowel_options:
             if vowel == "":
@@ -472,6 +501,21 @@ def generate_cvc_bantoc_candidates(tokens, rules):
 
             for final_consonant in final_consonants:
                 if final_consonant not in BANTOC_FINAL_CONSONANTS:
+                    continue
+
+                if (
+                    get_consonant_class(first_consonant, rules) == "second_series"
+                    and vowel == BANTOC_AA_VOWEL
+                    and final_consonant not in BANTOC_SECOND_SERIES_AA_FINALS
+                ):
+                    continue
+
+                if len(tokens) == 3 and not is_second_series_bantoc_short_pattern(
+                    first_consonant,
+                    vowel_token,
+                    final_consonant,
+                    rules,
+                ):
                     continue
 
                 candidates.append({
@@ -603,6 +647,65 @@ def generate_cc_candidates(tokens, rules):
             })
 
     return candidates
+
+
+def is_cc_bantoc_vowel_for_class(vowel_token, first_consonant, final_consonant, rules):
+    consonant_class = get_consonant_class(first_consonant, rules)
+
+    if consonant_class == "first_series":
+        return vowel_token in CC_BANTOC_FIRST_SERIES_VOWELS
+
+    if consonant_class != "second_series":
+        return False
+
+    if vowel_token in CC_BANTOC_SECOND_SERIES_VOWELS:
+        return True
+
+    return vowel_token == "ur" and final_consonant == "ស"
+
+
+# Generate inherent-vowel CC plus bantoc, such as kok -> កក់ and vuk -> វក់.
+def generate_cc_bantoc_candidates(tokens, rules):
+    if len(tokens) not in {3, 4}:
+        return []
+
+    first_token, vowel_token, final_token = tokens[:3]
+
+    if len(tokens) == 4 and final_token != tokens[3]:
+        return []
+
+    if not is_consonant_token(first_token, rules):
+        return []
+
+    if not is_consonant_token(final_token, rules):
+        return []
+
+    candidates = []
+    first_consonants = get_consonants_for_token(first_token, rules)
+    final_consonants = get_final_consonants_for_token(final_token, rules)
+
+    for first_consonant in first_consonants:
+        for final_consonant in final_consonants:
+            if final_consonant not in BANTOC_FINAL_CONSONANTS:
+                continue
+
+            if not is_cc_bantoc_vowel_for_class(
+                vowel_token,
+                first_consonant,
+                final_consonant,
+                rules,
+            ):
+                continue
+
+            candidates.append({
+                "khmer": first_consonant + final_consonant + BANTOC_SIGN,
+                "source": "rule_cc_bantoc",
+                "tokens": tokens,
+                "rule_score": 0.76,
+            })
+
+    return candidates
+
 
 # Return normal consonants that can start a subscript cluster.
 def get_cluster_base_consonants_for_token(token, rules):
@@ -870,6 +973,29 @@ def generate_cccc_candidates(tokens, rules):
 
 # Roman tokens treated as typed inherent vowels between two consonants.
 INHERENT_VOWEL_TOKENS = {"o", "or"}
+DOMRURT_RULES = {
+    "ng": {
+        "ង": {"ក", "ខ", "វ", "ស", "ហ", "អ", "គ", "ឃ", "រ"},
+    },
+    "nh": {
+        "ញ": {"ច", "ឆ", "ញ", "ជ", "ឈ"},
+    },
+    "n": {
+        "ណ": {"ដ", "ណ", "ឋ"},
+        "ន": {"យ", "ល", "ស", "ធ"},
+    },
+    "m": {
+        "ម": {"ប", "រ", "ល", "ព", "ភ"},
+    },
+}
+DOUBLE_DOMRURT_RULES = {
+    "ng": {
+        "ង": {"ក", "គ"},
+    },
+    "nh": {
+        "ញ": {"ច", "ជ"},
+    },
+}
 
 # Generate C + inherent vowel + C candidates by omitting the explicit vowel sign.
 def generate_inherent_vowel_candidates(tokens, rules):
@@ -905,6 +1031,257 @@ def generate_inherent_vowel_candidates(tokens, rules):
 
 
 # Generate special អ inherent candidates where romanized input starts with or + C.
+def get_domrurt_ng_prefix_options(tokens, rules):
+    """Return possible prefix text before the compressed subscript."""
+    if len(tokens) >= 3 and tokens[1] in INHERENT_VOWEL_TOKENS:
+        base_token = tokens[2]
+        base_options = DOMRURT_RULES.get(base_token, {})
+
+        if base_options:
+            return [
+                (first_consonant + base_consonant, 3, base_token, base_consonant)
+                for first_consonant in get_consonants_for_token(tokens[0], rules)
+                for base_consonant in base_options
+            ]
+
+    if len(tokens) >= 2 and tokens[0] in INHERENT_VOWEL_TOKENS:
+        base_token = tokens[1]
+        base_options = DOMRURT_RULES.get(base_token, {})
+
+        if base_options:
+            return [
+                ("អ" + base_consonant, 2, base_token, base_consonant)
+                for base_consonant in base_options
+            ]
+
+    return []
+
+
+def domrurt_source(base_token, shortcut=False):
+    if base_token == "ng":
+        return "rule_domrurt_ng_shortcut" if shortcut else "rule_domrurt_ng"
+
+    return "rule_domrurt_shortcut" if shortcut else "rule_domrurt"
+
+
+def get_domrurt_ng_subscripts(token, rules, base_token="ng", base_consonant="ង"):
+    """Return only subscript consonants allowed for this domrurt base."""
+    allowed_subscripts = DOMRURT_RULES.get(base_token, {}).get(base_consonant, set())
+
+    return [
+        consonant
+        for consonant in get_cluster_subscript_consonants_for_token(token, rules)
+        if consonant in allowed_subscripts
+    ]
+
+
+def get_domrurt_vowels(vowel_token, subscript_consonant, rules):
+    """Return vowel signs for the compressed second syllable."""
+    vowels = get_vowels_for_consonant(vowel_token, subscript_consonant, rules)
+
+    if not any(vowel != "" for vowel in vowels):
+        vowels = rules.get("vowels", {}).get(vowel_token, [])
+
+    if vowel_token == "i":
+        vowels = ["ឹ", *vowels]
+
+    return merge_unique_values(vowels)
+
+
+def get_domrurt_tail_options(tail_tokens, subscript_consonant, rules):
+    """Build the part after ng + coeng + subscript for CC/CV/VC/CVC tails."""
+    if not tail_tokens:
+        return [""]
+
+    if len(tail_tokens) == 1:
+        token = tail_tokens[0]
+
+        if is_vowel_token(token, rules):
+            return [
+                vowel
+                for vowel in get_domrurt_vowels(token, subscript_consonant, rules)
+                if vowel != ""
+            ]
+
+        if is_consonant_token(token, rules):
+            return get_final_consonants_for_token(token, rules)
+
+        return []
+
+    if len(tail_tokens) == 2:
+        vowel_token, final_token = tail_tokens
+
+        if not is_consonant_token(final_token, rules):
+            return []
+
+        final_consonants = get_final_consonants_for_token(final_token, rules)
+
+        if vowel_token in INHERENT_VOWEL_TOKENS:
+            return final_consonants
+
+        if not is_vowel_token(vowel_token, rules):
+            return []
+
+        options = []
+
+        for vowel in get_domrurt_vowels(vowel_token, subscript_consonant, rules):
+            if vowel == "":
+                continue
+
+            for final_consonant in final_consonants:
+                options.append(vowel + final_consonant)
+
+        return options
+
+    if len(tail_tokens) == 3 and tail_tokens[0] == "u" and tail_tokens[1] == "o":
+        final_token = tail_tokens[2]
+
+        if not is_consonant_token(final_token, rules):
+            return []
+
+        return [
+            "ួ" + final_consonant
+            for final_consonant in get_final_consonants_for_token(final_token, rules)
+        ]
+
+    return []
+
+
+def generate_domrurt_ng_candidates(tokens, rules):
+    """Generate pyeang-domrurt-like ng-subscript clusters from typed ...ong."""
+    candidates = []
+    coeng = get_coeng(rules)
+
+    for prefix, next_index, base_token, base_consonant in get_domrurt_ng_prefix_options(tokens, rules):
+        rest_tokens = tokens[next_index:]
+
+        if len(rest_tokens) < 1:
+            continue
+
+        subscript_token = rest_tokens[0]
+        tail_tokens = rest_tokens[1:]
+
+        for subscript_consonant in get_domrurt_ng_subscripts(
+            subscript_token,
+            rules,
+            base_token=base_token,
+            base_consonant=base_consonant,
+        ):
+            for tail in get_domrurt_tail_options(tail_tokens, subscript_consonant, rules):
+                candidates.append({
+                    "khmer": prefix + coeng + subscript_consonant + tail,
+                    "source": domrurt_source(base_token),
+                    "tokens": tokens,
+                    "rule_score": 0.78,
+                })
+
+    return candidates
+
+
+def get_double_domrurt_subscripts(base_token, base_consonant, subscript_token, rules):
+    """Return the first compressed subscript for double-domrurt clusters."""
+    allowed_subscripts = DOUBLE_DOMRURT_RULES.get(base_token, {}).get(base_consonant, set())
+
+    return [
+        consonant
+        for consonant in get_cluster_subscript_consonants_for_token(subscript_token, rules)
+        if consonant in allowed_subscripts
+    ]
+
+
+def get_double_domrurt_tail_options(tail_tokens, series_consonant, rules):
+    """Build the vowel/final part after the implicit second r subscript."""
+    if not tail_tokens:
+        return [""]
+
+    return get_domrurt_tail_options(tail_tokens, series_consonant, rules)
+
+
+def generate_double_domrurt_candidates(tokens, rules):
+    """Generate clusters such as ng+k+r and nh+j+r from one typed r."""
+    candidates = []
+    coeng = get_coeng(rules)
+
+    for prefix, next_index, base_token, base_consonant in get_domrurt_ng_prefix_options(tokens, rules):
+        if base_token not in DOUBLE_DOMRURT_RULES:
+            continue
+
+        rest_tokens = tokens[next_index:]
+
+        if len(rest_tokens) < 2 or rest_tokens[1] != "r":
+            continue
+
+        subscript_token = rest_tokens[0]
+        tail_tokens = rest_tokens[2:]
+
+        for subscript_consonant in get_double_domrurt_subscripts(
+            base_token,
+            base_consonant,
+            subscript_token,
+            rules,
+        ):
+            cluster = prefix + coeng + subscript_consonant + coeng + "រ"
+
+            for tail in get_double_domrurt_tail_options(tail_tokens, subscript_consonant, rules):
+                candidates.append({
+                    "khmer": cluster + tail,
+                    "source": "rule_double_domrurt",
+                    "tokens": tokens,
+                    "rule_score": 0.82,
+                })
+
+    return candidates
+
+
+def generate_domrurt_ng_shortcut_candidates(tokens, rules):
+    """Generate ng-domrurt candidates when users omit the typed o/ng shortcut."""
+    if len(tokens) < 2:
+        return []
+
+    if len(tokens) >= 3 and tokens[1] in INHERENT_VOWEL_TOKENS and tokens[2] in DOMRURT_RULES:
+        return []
+
+    first_token = tokens[0]
+    subscript_token = tokens[1]
+
+    if first_token == "p":
+        prefix_options = ["ប"]
+    elif is_cluster_base_token(first_token, rules):
+        prefix_options = get_consonants_for_token(first_token, rules)
+    else:
+        return []
+
+    candidates = []
+    tail_tokens = tokens[2:]
+
+    for base_token, base_options in DOMRURT_RULES.items():
+        expanded_tokens = [first_token, "o", base_token, *tokens[1:]]
+
+        for base_consonant in base_options:
+            base_prefix_options = [
+                prefix + base_consonant
+                for prefix in prefix_options
+            ]
+
+            for subscript_consonant in get_domrurt_ng_subscripts(
+                subscript_token,
+                rules,
+                base_token=base_token,
+                base_consonant=base_consonant,
+            ):
+                for prefix in base_prefix_options:
+                    for tail in get_domrurt_tail_options(tail_tokens, subscript_consonant, rules):
+                        candidates.append({
+                            "khmer": prefix + get_coeng(rules) + subscript_consonant + tail,
+                            "source": domrurt_source(base_token, shortcut=True),
+                            "tokens": tokens,
+                            "shortcut_expanded_tokens": expanded_tokens,
+                            "rule_score": 0.72,
+                        })
+
+    return candidates
+
+
 def generate_or_carrier_final_candidates(tokens, rules):
     if len(tokens) != 2:
         return []
@@ -1017,12 +1394,16 @@ def generate_single_chunk_candidates(tokens, rules):
     candidates.extend(generate_cvc_candidates(tokens, rules))
     candidates.extend(generate_cvc_bantoc_candidates(tokens, rules))
     candidates.extend(generate_cc_candidates(tokens, rules))
+    candidates.extend(generate_cc_bantoc_candidates(tokens, rules))
     candidates.extend(generate_ccv_candidates(tokens, rules))
     candidates.extend(generate_ccvc_candidates(tokens, rules))
     candidates.extend(generate_cccv_candidates(tokens, rules))
     candidates.extend(generate_cccvc_candidates(tokens, rules))
     candidates.extend(generate_cccc_candidates(tokens, rules))
     candidates.extend(generate_inherent_vowel_candidates(tokens, rules))
+    candidates.extend(generate_double_domrurt_candidates(tokens, rules))
+    candidates.extend(generate_domrurt_ng_candidates(tokens, rules))
+    candidates.extend(generate_domrurt_ng_shortcut_candidates(tokens, rules))
 
     return candidates
 
@@ -1138,12 +1519,50 @@ def generate_sequence_candidates(tokens, rules):
 
     return candidates
 
+
+# Some users omit the written "r" in first-position subscript-r words, e.g.
+# kper for krper. Try C + implicit r + rest, then keep natural sequence outputs.
+def generate_omitted_r_sequence_candidates(tokens, rules):
+    if len(tokens) < 2:
+        return []
+
+    first_token = tokens[0]
+
+    if tokens[1] == "r":
+        return []
+
+    if not is_cluster_base_token(first_token, rules):
+        return []
+
+    if not is_consonant_token("r", rules):
+        return []
+
+    inserted_tokens = [first_token, "r"] + tokens[1:]
+    candidates = []
+
+    for candidate in generate_sequence_candidates(inserted_tokens, rules):
+        chunks = candidate.get("chunks", [])
+
+        if not chunks or chunks[0] != [first_token, "r"]:
+            continue
+
+        adjusted = candidate.copy()
+        adjusted["source"] = "rule_omitted_r_sequence"
+        adjusted["tokens"] = tokens
+        adjusted["omitted_r_tokens"] = inserted_tokens
+        adjusted["rule_score"] = round(candidate["rule_score"] - 0.04, 4)
+        candidates.append(adjusted)
+
+    return candidates
+
+
 # Run every pattern generator for one tokenization and combine their candidates.
 def generate_candidates_from_tokens(tokens, rules):
     candidates = []
 
     candidates.extend(generate_single_chunk_candidates(tokens, rules))
     candidates.extend(generate_sequence_candidates(tokens, rules))
+    candidates.extend(generate_omitted_r_sequence_candidates(tokens, rules))
 
     return candidates
 

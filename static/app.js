@@ -344,7 +344,7 @@ collectButton.addEventListener("click", async () => {
         }
 
         const data = await response.json();
-        collectStatus.textContent = `${data.message} Open data/ranking_training_examples.csv to label them.`;
+        collectStatus.textContent = `${data.message} Open data/label_data.csv to label them.`;
     } catch (error) {
         collectStatus.textContent = "Could not save candidates. Check the server console.";
     }

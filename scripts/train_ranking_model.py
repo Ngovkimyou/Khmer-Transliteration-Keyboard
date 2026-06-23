@@ -165,6 +165,7 @@ def build_training_data(
             enable_fuzzy=enable_fuzzy,
             enable_compound=enable_compound,
             limit=candidates_per_input,
+            hide_manual_bad=False,
         )
 
         for suggestion in suggestions:
@@ -275,6 +276,7 @@ def add_selection_history_training_data(
             enable_compound=enable_compound,
             limit=HISTORY_TRAINING_CANDIDATES_PER_INPUT,
             min_rule_score=None,
+            hide_manual_bad=False,
         )
 
         for suggestion in suggestions:

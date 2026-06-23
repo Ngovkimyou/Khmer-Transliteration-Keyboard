@@ -431,6 +431,7 @@ def auto_label_training_examples(
             enable_compound=enable_compound,
             limit=suggestion_limit,
             min_rule_score=None,
+            hide_manual_bad=False,
         )
         new_rows, stats = make_auto_labeled_rows(
             input_text,

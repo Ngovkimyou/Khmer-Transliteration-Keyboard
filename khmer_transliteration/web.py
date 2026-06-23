@@ -105,7 +105,7 @@ def select(event: SelectionEvent):
 
 @app.post("/api/collect")
 def collect(q: str = Query(default="", max_length=80), limit: int = Query(default=0, ge=0, le=500)):
-    """Append generated suggestions to data/ranking_training_examples.csv."""
+    """Append generated suggestions to data/label_data.csv for review."""
     normalized = normalize_input(q)
 
     if not normalized:

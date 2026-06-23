@@ -143,6 +143,7 @@ python scripts/candidate_test_report.py
 python scripts/suggestion_test_report.py
 python scripts/train_ranking_model.py --max-inputs 500 --candidates-per-input 10
 python scripts/collect_ranking_examples.py somtos leakk
+python scripts/promote_label_data.py
 python scripts/auto_label_training_examples.py --dry-run
 python scripts/auto_label_training_examples.py --overwrite-auto
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
@@ -194,10 +195,41 @@ so ML can learn the new context/history features.
 By default, training skips fuzzy and compound generation for speed. Add
 `--include-fuzzy` or `--include-compound` when you want slower, broader training.
 
-## Auto-label UI-collected Ranking Rows
+## Manual Label Review Flow
 
-`data/ranking_training_examples.csv` is for candidates collected from the UI.
-Use the auto-label tool to compare those existing rows against `data/all_words.csv`.
+The browser UI Confirm button writes generated candidates to `data/label_data.csv`.
+Review that file manually:
+
+- `label = 1` means good; it will rank high.
+- `label = 0` means bad; it will be hidden from UI suggestions.
+- blank means not reviewed yet; during promotion it is ignored.
+
+When review is done, promote the inbox into the training/label file:
+
+```powershell
+python scripts/promote_label_data.py
+```
+
+That command copies only explicit `1` and `0` rows into
+`data/ranking_training_examples.csv`. Blank rows are skipped, then
+`data/label_data.csv` is cleared so the next UI collection starts fresh.
+
+To preview without clearing the inbox:
+
+```powershell
+python scripts/promote_label_data.py --keep-review
+```
+
+Retrain after promotion when you want ML to learn the new labels:
+
+```powershell
+python scripts/train_ranking_model.py
+```
+
+## Auto-label Training Rows
+
+`data/ranking_training_examples.csv` is the promoted training/label file.
+Use the auto-label tool to compare those rows against `data/all_words.csv`.
 
 Preview labels without writing:
 

@@ -9,9 +9,9 @@ from khmer_transliteration.dictionary_lookup import load_dataset
 from khmer_transliteration.suggestion_engine import get_suggestions
 
 
-from khmer_transliteration.paths import RANKING_TRAINING_EXAMPLES_FILE
+from khmer_transliteration.paths import LABEL_DATA_FILE
 
-OUTPUT_FILE = RANKING_TRAINING_EXAMPLES_FILE
+OUTPUT_FILE = LABEL_DATA_FILE
 
 # This schema is shared by collection, auto-labeling, and training scripts.
 FIELDNAMES = [

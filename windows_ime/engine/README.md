@@ -67,6 +67,19 @@ pair-frequency data as the FastAPI app, then waits for named-pipe requests.
 First startup can take several seconds because the engine warms the
 dictionary/model once.
 
+Stop the background engine:
+
+```cmd
+windows_ime\engine\stop_pipe_engine.cmd
+```
+
+Restart after Python rule/data/model changes:
+
+```cmd
+windows_ime\engine\stop_pipe_engine.cmd
+windows_ime\engine\start_pipe_engine.cmd
+```
+
 ## Test From Another Terminal
 
 ```powershell

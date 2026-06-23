@@ -71,6 +71,14 @@ SOURCE_RANK_WEIGHTS = {
     "dictionary_exact": 5.0,
     "dictionary_completion": 3.5,
     "phrase_space": 3.0,
+    "rule_omitted_r_sequence": 4.0,
+    "rule_cvc_bantoc": 4.2,
+    "rule_cc_bantoc": 4.25,
+    "rule_domrurt_ng": 4.0,
+    "rule_domrurt_ng_shortcut": 4.2,
+    "rule_domrurt": 4.0,
+    "rule_domrurt_shortcut": 4.2,
+    "rule_double_domrurt": 4.3,
     "dictionary_compound": 2.5,
     "dictionary_fuzzy": 2.0,
     "rule": 1.0,
@@ -656,21 +664,27 @@ def load_manual_label_map(manual_file=MANUAL_RANKING_EXAMPLES_FILE):
     return labels
 
 
-# Attach manual labels from the review CSV; label 1 boosts, label 0 demotes.
-def apply_manual_labels(user_input, suggestions, manual_labels=None):
+# Attach manual labels from the training CSV. In UI mode, label 0 is hidden.
+def apply_manual_labels(user_input, suggestions, manual_labels=None, hide_bad_labels=True):
     manual_labels = manual_labels if manual_labels is not None else load_manual_label_map()
+    kept_suggestions = []
 
     for suggestion in suggestions:
         label = manual_labels.get((user_input, suggestion["khmer"]))
 
         if label is None:
             suggestion["manual_label_score"] = 0
+            kept_suggestions.append(suggestion)
+            continue
+
+        if label == 0 and hide_bad_labels:
             continue
 
         suggestion["manual_label"] = label
         suggestion["manual_label_score"] = 1 if label == 1 else -1
+        kept_suggestions.append(suggestion)
 
-    return suggestions
+    return kept_suggestions
 
 
 def bounded_count_boost(count, factor, max_boost):
@@ -751,6 +765,30 @@ def apply_previous_word_context_scores(previous_word, suggestions, pair_frequenc
 
 def get_source_rank_weight(source):
     """Give stable baseline priority by candidate source type."""
+    if source == "rule_omitted_r_sequence":
+        return SOURCE_RANK_WEIGHTS["rule_omitted_r_sequence"]
+
+    if source == "rule_cvc_bantoc":
+        return SOURCE_RANK_WEIGHTS["rule_cvc_bantoc"]
+
+    if source == "rule_cc_bantoc":
+        return SOURCE_RANK_WEIGHTS["rule_cc_bantoc"]
+
+    if source == "rule_domrurt_ng":
+        return SOURCE_RANK_WEIGHTS["rule_domrurt_ng"]
+
+    if source == "rule_domrurt_ng_shortcut":
+        return SOURCE_RANK_WEIGHTS["rule_domrurt_ng_shortcut"]
+
+    if source == "rule_domrurt":
+        return SOURCE_RANK_WEIGHTS["rule_domrurt"]
+
+    if source == "rule_domrurt_shortcut":
+        return SOURCE_RANK_WEIGHTS["rule_domrurt_shortcut"]
+
+    if source == "rule_double_domrurt":
+        return SOURCE_RANK_WEIGHTS["rule_double_domrurt"]
+
     if source == "dictionary_exact":
         return SOURCE_RANK_WEIGHTS["dictionary_exact"]
 
@@ -800,6 +838,22 @@ def apply_rank_metadata(suggestions):
             suggestion["rank_reason"] = "user selection history"
         elif suggestion.get("high_confidence_fuzzy_boost", 0) > 0:
             suggestion["rank_reason"] = "high-confidence fuzzy"
+        elif suggestion["source"] == "rule_omitted_r_sequence":
+            suggestion["rank_reason"] = "omitted r correction"
+        elif suggestion["source"] == "rule_cvc_bantoc":
+            suggestion["rank_reason"] = "bantoc grammar"
+        elif suggestion["source"] == "rule_cc_bantoc":
+            suggestion["rank_reason"] = "cc bantoc grammar"
+        elif suggestion["source"] == "rule_domrurt_ng":
+            suggestion["rank_reason"] = "ng domrurt grammar"
+        elif suggestion["source"] == "rule_domrurt_ng_shortcut":
+            suggestion["rank_reason"] = "ng domrurt shortcut"
+        elif suggestion["source"] == "rule_domrurt":
+            suggestion["rank_reason"] = "domrurt grammar"
+        elif suggestion["source"] == "rule_domrurt_shortcut":
+            suggestion["rank_reason"] = "domrurt shortcut"
+        elif suggestion["source"] == "rule_double_domrurt":
+            suggestion["rank_reason"] = "double domrurt grammar"
         elif suggestion["source"] == "dictionary_exact":
             suggestion["rank_reason"] = "exact dictionary"
         elif suggestion["source"] == "dictionary_completion":
@@ -834,6 +888,7 @@ def get_suggestions(
     allow_vowels=False,
     limit=DEFAULT_SUGGESTION_LIMIT,
     min_rule_score=MIN_RULE_DISPLAY_SCORE,
+    hide_manual_bad=True,
 ):
     """Return final ranked suggestions for one word or space-separated phrase."""
     normalized_phrase = normalize_phrase_input(user_input)
@@ -856,7 +911,12 @@ def get_suggestions(
         )
         suggestions = dedupe_suggestions(suggestions)
         suggestions = apply_dataset_match_scores(normalized, suggestions, dataset_index)
-        suggestions = apply_manual_labels(normalized, suggestions, manual_labels)
+        suggestions = apply_manual_labels(
+            normalized,
+            suggestions,
+            manual_labels,
+            hide_bad_labels=hide_manual_bad,
+        )
         suggestions = apply_user_history_scores(normalized, suggestions, selection_history)
         suggestions = apply_previous_word_context_scores(
             previous_word,
@@ -916,7 +976,12 @@ def get_suggestions(
 
     suggestions = dedupe_suggestions(suggestions)
     suggestions = apply_dataset_match_scores(normalized, suggestions, dataset_index)
-    suggestions = apply_manual_labels(normalized, suggestions, manual_labels)
+    suggestions = apply_manual_labels(
+        normalized,
+        suggestions,
+        manual_labels,
+        hide_bad_labels=hide_manual_bad,
+    )
     suggestions = apply_user_history_scores(normalized, suggestions, selection_history)
     suggestions = apply_previous_word_context_scores(
         previous_word,
