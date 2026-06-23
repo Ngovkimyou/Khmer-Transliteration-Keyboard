@@ -1,3 +1,5 @@
+"""Generate an HTML report for the full suggestion/ranking pipeline."""
+
 from pathlib import Path
 import sys
 
@@ -17,6 +19,7 @@ OUTPUT_FILE = SUGGESTION_TEST_REPORT_FILE
 
 
 def main():
+    """Render final suggestions plus ranking metadata for test inputs."""
     dataset = load_dataset()
     rules = load_mapping_rules()
     ranking_model = load_ranking_model()

@@ -1,3 +1,5 @@
+"""CLI wrapper for collecting ranking examples into the review CSV."""
+
 from pathlib import Path
 import sys
 
@@ -10,4 +12,5 @@ from khmer_transliteration.collection import main
 
 
 if __name__ == "__main__":
+    # Keep this thin so collection can also be called from the web API.
     main()

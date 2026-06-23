@@ -1,3 +1,5 @@
+"""CLI wrapper for khmer_transliteration.auto_label_training."""
+
 from pathlib import Path
 import sys
 
@@ -10,4 +12,5 @@ from khmer_transliteration.auto_label_training import main
 
 
 if __name__ == "__main__":
+    # Keep this thin so the reusable logic stays importable from the package.
     main()

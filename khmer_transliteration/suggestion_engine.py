@@ -1,3 +1,10 @@
+"""High-level suggestion ranking pipeline.
+
+The engine merges dictionary exact matches, completions, fuzzy matches,
+compound/phrase segmentation, direct token mappings, rule-generated candidates,
+manual labels, personal history, previous-word context, and optional ML scores.
+"""
+
 import os
 import csv
 from itertools import product
@@ -70,6 +77,8 @@ SOURCE_RANK_WEIGHTS = {
 }
 
 
+# Suggestion dictionaries use the same shape so later scoring steps can treat
+# dictionary, direct-token, and rule-generated candidates uniformly.
 # Convert one exact dictionary row into the shared suggestion format.
 def make_exact_suggestion(row):
     return {
@@ -98,6 +107,7 @@ def make_completion_suggestion(row, normalized):
 
 
 def make_fuzzy_suggestion(row, normalized):
+    """Convert a near-match dictionary row into the shared suggestion format."""
     fuzzy_similarity = fuzz.ratio(normalized, row["romanized"]) / 100
 
     return {
@@ -205,6 +215,7 @@ def completion_lookup(normalized, dataset):
 
 
 def fuzzy_dictionary_lookup(normalized, dataset):
+    """Run fuzzy lookup only for longer inputs to avoid noisy short matches."""
     if len(normalized) < FUZZY_MIN_INPUT_LENGTH:
         return []
 
@@ -241,6 +252,7 @@ def fuzzy_dictionary_lookup(normalized, dataset):
 
 
 def build_romanized_index(dataset):
+    """Index dataset rows by romanized text for compound segmentation."""
     index = {}
 
     for row in dataset:
@@ -253,6 +265,7 @@ def build_romanized_index(dataset):
 
 
 def get_compound_segment_options(segment, romanized_index, romanized_words, rules):
+    """Return exact, rule, or fuzzy options for one compound segment."""
     options = []
     exact_rows = romanized_index.get(segment, [])
 
@@ -314,6 +327,7 @@ def get_compound_segment_options(segment, romanized_index, romanized_words, rule
 
 
 def compound_segment_lookup(normalized, dataset, rules):
+    """Split a no-space input into multiple word-like segments."""
     if len(normalized) < COMPOUND_MIN_INPUT_LENGTH:
         return []
 
@@ -395,6 +409,7 @@ def phrase_space_lookup(
     enable_fuzzy=True,
     enable_compound=True,
 ):
+    """Handle user-entered spaces by ranking each word then combining results."""
     parts = normalized_phrase.split()
 
     if len(parts) < 2:
@@ -506,6 +521,7 @@ def dedupe_suggestions(suggestions):
 
 
 def build_dataset_index(dataset):
+    """Index Khmer outputs so generated candidates can be matched to dataset rows."""
     index = {}
 
     for row in dataset:
@@ -515,6 +531,7 @@ def build_dataset_index(dataset):
 
 
 def apply_dataset_match_scores(user_input, suggestions, dataset_index):
+    """Boost candidates that exist in the dataset and romanize similarly."""
     for suggestion in suggestions:
         rows = dataset_index.get(suggestion["khmer"], [])
 
@@ -556,6 +573,7 @@ def apply_dataset_match_scores(user_input, suggestions, dataset_index):
 
 
 def apply_source_quality_adjustments(suggestions):
+    """Apply final rule-of-thumb boosts/penalties after dataset matching."""
     for suggestion in suggestions:
         adjustment = 0
 
@@ -656,6 +674,7 @@ def apply_manual_labels(user_input, suggestions, manual_labels=None):
 
 
 def bounded_count_boost(count, factor, max_boost):
+    """Turn count-based history into a capped ranking boost."""
     if count <= 0:
         return 0
 
@@ -731,6 +750,7 @@ def apply_previous_word_context_scores(previous_word, suggestions, pair_frequenc
 
 
 def get_source_rank_weight(source):
+    """Give stable baseline priority by candidate source type."""
     if source == "dictionary_exact":
         return SOURCE_RANK_WEIGHTS["dictionary_exact"]
 
@@ -815,6 +835,7 @@ def get_suggestions(
     limit=DEFAULT_SUGGESTION_LIMIT,
     min_rule_score=MIN_RULE_DISPLAY_SCORE,
 ):
+    """Return final ranked suggestions for one word or space-separated phrase."""
     normalized_phrase = normalize_phrase_input(user_input)
     normalized = normalized_phrase if " " in normalized_phrase else normalize_input(user_input)
     dataset = dataset or load_dataset()

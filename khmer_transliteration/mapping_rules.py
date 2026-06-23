@@ -1,14 +1,18 @@
+"""Load transliteration mapping rules and expose token patterns for parsing."""
+
 import json
 
 from khmer_transliteration.paths import MAPPING_RULES_FILE
 
 
 def load_mapping_rules():
+    """Read data/mapping_rules.json once for generator/suggestion callers."""
     with open(MAPPING_RULES_FILE, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
 def get_all_patterns(rules):
+    """Collect every romanized token and sort longest-first for tokenization."""
     patterns = []
 
     for group in [

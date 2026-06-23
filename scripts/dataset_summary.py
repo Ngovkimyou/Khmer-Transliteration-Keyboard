@@ -1,3 +1,5 @@
+"""Create a text summary of dataset size, ambiguity, and quality checks."""
+
 from pathlib import Path
 import sys
 
@@ -16,6 +18,7 @@ OUTPUT_FILE = DATASET_SUMMARY_FILE
 
 
 def to_int(value):
+    """Safely parse frequency values from CSV rows."""
     try:
         return int(value)
     except (TypeError, ValueError):
@@ -23,10 +26,12 @@ def to_int(value):
 
 
 def is_punctuation_only(value):
+    """Detect romanized values that contain no letters or digits."""
     return bool(value) and not re.search(r"[A-Za-z0-9]", value)
 
 
 def build_summary(rows):
+    """Build all report lines from already-loaded CSV rows."""
     romanized_values = [row["romanized"].strip() for row in rows]
     khmer_values = [row["khmer"].strip() for row in rows]
     frequencies = [to_int(row.get("frequency")) for row in rows]
@@ -109,6 +114,7 @@ def build_summary(rows):
 
 
 def main():
+    """Read all_words.csv and write data/dataset_summary.txt."""
     with open(INPUT_FILE, "r", encoding="utf-8-sig", newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         rows = list(reader)

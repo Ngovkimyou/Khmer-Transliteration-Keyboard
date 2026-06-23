@@ -1,3 +1,5 @@
+"""Feature extraction for the scikit-learn candidate ranking model."""
+
 FEATURE_NAMES = [
     "rule_score",
     "remaining_length",
@@ -14,6 +16,7 @@ FEATURE_NAMES = [
 
 # Convert one suggestion into numeric features for the ML ranking model.
 def extract_ranking_features(user_input, suggestion):
+    """Keep feature order matched with FEATURE_NAMES and saved model metadata."""
     romanized = suggestion.get("romanized", "")
     tokens = suggestion.get("tokens", [])
     chunks = suggestion.get("chunks", [])

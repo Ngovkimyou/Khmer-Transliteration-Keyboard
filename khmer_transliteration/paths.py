@@ -1,6 +1,9 @@
+"""Central project paths used by scripts, web routes, and the IME engine."""
+
 from pathlib import Path
 
 
+# Resolve from this package so commands can run from any working directory.
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
 MODELS_DIR = ROOT_DIR / "models"

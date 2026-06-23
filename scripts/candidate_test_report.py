@@ -1,3 +1,5 @@
+"""Generate an HTML report for rule-based candidate generation examples."""
+
 from pathlib import Path
 import sys
 
@@ -20,6 +22,7 @@ OUTPUT_FILE = CANDIDATE_TEST_REPORT_FILE
 
 
 def main():
+    """Render tokenizations, raw candidates, and ranked rule candidates to HTML."""
     rules = load_mapping_rules()
     patterns = get_all_patterns(rules)
 

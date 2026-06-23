@@ -1,3 +1,5 @@
+"""Collect generated suggestions into CSV rows for manual ranking labels."""
+
 import argparse
 import csv
 import os
@@ -10,6 +12,8 @@ from khmer_transliteration.suggestion_engine import get_suggestions
 from khmer_transliteration.paths import RANKING_TRAINING_EXAMPLES_FILE
 
 OUTPUT_FILE = RANKING_TRAINING_EXAMPLES_FILE
+
+# This schema is shared by collection, auto-labeling, and training scripts.
 FIELDNAMES = [
     "input",
     "khmer",
@@ -70,6 +74,7 @@ def load_existing_keys(output_file):
 
 
 def ensure_output_schema(output_file):
+    """Upgrade older review CSV files to the current FIELDNAMES schema."""
     if not os.path.exists(output_file):
         return
 
@@ -94,6 +99,7 @@ def ensure_output_schema(output_file):
 
 
 def append_examples(inputs, output_file=OUTPUT_FILE, limit=None, allow_vowels=False):
+    """Generate suggestions for each input and append unseen pairs to review CSV."""
     dataset = load_dataset()
     rules = load_mapping_rules()
     ensure_output_schema(output_file)
@@ -109,6 +115,8 @@ def append_examples(inputs, output_file=OUTPUT_FILE, limit=None, allow_vowels=Fa
             writer.writeheader()
 
         for user_input in inputs:
+            # Collection intentionally disables ML so labels review the raw
+            # candidate pool instead of the current trained model's ordering.
             suggestions = get_suggestions(
                 user_input,
                 dataset=dataset,
@@ -150,6 +158,7 @@ def append_examples(inputs, output_file=OUTPUT_FILE, limit=None, allow_vowels=Fa
 
 
 def main():
+    """CLI wrapper used by scripts/collect_ranking_examples.py."""
     parser = argparse.ArgumentParser(
         description="Collect generated suggestions into a manual ranking-label CSV.",
     )

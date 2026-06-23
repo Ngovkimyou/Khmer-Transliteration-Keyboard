@@ -1,3 +1,9 @@
+"""Auto-label ranking-training rows by comparing suggestions to the dataset.
+
+Default mode works on rows already collected from the UI. Dataset-wide row
+generation is available, but must be requested by the wrapper script.
+"""
+
 import argparse
 import csv
 import os
@@ -24,6 +30,7 @@ def log_progress(message):
 
 
 def group_valid_outputs(dataset):
+    """Map each normalized romanized input to all Khmer outputs in the dataset."""
     valid_outputs = defaultdict(set)
 
     for row in dataset:
@@ -38,6 +45,7 @@ def group_valid_outputs(dataset):
 
 
 def load_existing_rows(output_file):
+    """Load review rows keyed by (input, khmer) for merge/update operations."""
     rows_by_key = {}
 
     if not os.path.exists(output_file):
@@ -58,6 +66,7 @@ def load_existing_rows(output_file):
 
 
 def normalize_review_input(input_text):
+    """Use phrase normalization only when a review input contains spaces."""
     if " " in input_text.strip():
         return normalize_phrase_input(input_text)
 
@@ -65,6 +74,7 @@ def normalize_review_input(input_text):
 
 
 def load_ordered_existing_rows(output_file):
+    """Read review rows in file order so auto-labeling can preserve UI ranking."""
     if not os.path.exists(output_file):
         return []
 
@@ -82,6 +92,7 @@ def load_ordered_existing_rows(output_file):
 
 
 def write_ordered_rows(output_file, rows):
+    """Write rows back in their current order after updating labels."""
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     with open(output_file, "w", encoding="utf-8-sig", newline="") as file:
@@ -97,6 +108,7 @@ def write_ordered_rows(output_file, rows):
 
 
 def can_replace_label(row, overwrite_auto=False):
+    """Protect human labels unless the caller explicitly overwrites auto labels."""
     existing_label = row.get("label", "").strip()
     existing_note = row.get("note", "")
 
@@ -107,6 +119,7 @@ def can_replace_label(row, overwrite_auto=False):
 
 
 def collect_existing_inputs(rows, selected_inputs=None):
+    """Return unique UI-collected inputs, optionally filtered by user request."""
     selected = None
 
     if selected_inputs:
@@ -143,6 +156,7 @@ def auto_label_existing_training_examples(
     overwrite_auto=False,
     dry_run=False,
 ):
+    """Label existing UI-collected rows without generating new candidates."""
     dataset = load_dataset()
     valid_outputs = group_valid_outputs(dataset)
     rows = load_ordered_existing_rows(output_file)
@@ -235,6 +249,7 @@ def auto_label_existing_training_examples(
 
 
 def serialize_suggestion(input_text, suggestion, label, note):
+    """Convert one suggestion into the shared ranking-training CSV schema."""
     return {
         "input": input_text,
         "khmer": suggestion["khmer"],
@@ -260,6 +275,7 @@ def make_auto_labeled_rows(
     valid_khmers,
     suggestions,
 ):
+    """Label generated suggestions up to the lowest correct dataset match."""
     valid_indexes = [
         index
         for index, suggestion in enumerate(suggestions)
@@ -298,6 +314,7 @@ def make_auto_labeled_rows(
 
 
 def merge_rows(existing_rows, new_rows, overwrite_auto=False):
+    """Merge generated auto-label rows while protecting human labels."""
     added_count = 0
     updated_count = 0
     skipped_count = 0
@@ -331,6 +348,7 @@ def merge_rows(existing_rows, new_rows, overwrite_auto=False):
 
 
 def write_rows(output_file, rows_by_key):
+    """Write generated auto-label rows sorted by input/label/Khmer."""
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     rows = sorted(
@@ -358,6 +376,7 @@ def auto_label_training_examples(
     overwrite_auto=False,
     dry_run=False,
 ):
+    """Generate suggestions from dataset inputs, then auto-label correct matches."""
     dataset = load_dataset()
     rules = load_mapping_rules()
     valid_outputs = group_valid_outputs(dataset)
@@ -454,6 +473,7 @@ def auto_label_training_examples(
 
 
 def main():
+    """CLI entry point used by scripts/auto_label_training_examples.py."""
     parser = argparse.ArgumentParser(
         description="Auto-label ranking examples using dataset matches as the answer key.",
     )

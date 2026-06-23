@@ -1,9 +1,19 @@
+"""Rule-based romanized Khmer candidate generation.
+
+This module turns normalized roman input into Khmer script candidates using
+mapping_rules.json. It handles tokenization, syllable patterns, subscript
+clusters, independent/vowel-carrier forms, sequence composition, and scoring.
+"""
+
 from khmer_transliteration.normalizer import normalize_input
 from khmer_transliteration.mapping_rules import load_mapping_rules, get_all_patterns
 
 
+# Safety caps keep ambiguous inputs from exploding into too many combinations.
 MAX_SEQUENCE_PARTITIONS = 120
 MAX_SEQUENCE_COMBINATIONS = 120
+
+# Small scoring constants used to prefer natural Khmer-looking structures.
 VOWEL_CARRIER_AFTER_CLOSED_CHUNK_PENALTY = 0.10
 SEQUENCE_CVC_CHUNK_BONUS = 0.01
 STRUCTURAL_SEQUENCE_BONUS = 0.12

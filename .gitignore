@@ -1,0 +1,12 @@
+# Python cache/build artifacts
+__pycache__/
+*.py[cod]
+
+# Local logs and temporary runtime files
+tmp/
+*.log
+
+# Personal/local keyboard learning data. Keep the .example.csv templates tracked.
+data/user_selection_history.csv
+data/word_pair_frequency.csv
+

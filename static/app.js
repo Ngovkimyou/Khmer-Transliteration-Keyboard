@@ -1,3 +1,5 @@
+// Browser UI controller for the web demo. It talks to the FastAPI routes in
+// khmer_transliteration/web.py and does not affect the Windows TSF IME.
 const input = document.querySelector("#romanInput");
 const clearButton = document.querySelector("#clearButton");
 const collectButton = document.querySelector("#collectButton");
@@ -12,6 +14,7 @@ const collectStatus = document.querySelector("#collectStatus");
 let activeRequest = 0;
 let lastSelectedKhmer = "";
 
+// Direct keyboard conversions for non-romanized keys in the browser UI.
 const KHMER_DIGITS_BY_CODE = {
     Digit0: "០",
     Digit1: "១",
@@ -56,6 +59,7 @@ const KHMER_DIRECT_KEYS_BY_CODE = {
 };
 
 function insertTextAtCursor(element, text) {
+    // Preserve cursor position when inserting Khmer punctuation/digits.
     const start = element.selectionStart ?? element.value.length;
     const end = element.selectionEnd ?? element.value.length;
     element.value = `${element.value.slice(0, start)}${text}${element.value.slice(end)}`;
@@ -64,6 +68,7 @@ function insertTextAtCursor(element, text) {
 }
 
 function getKhmerKeyboardCharacter(event) {
+    // Let browser/system shortcuts pass through untouched.
     if (event.ctrlKey || event.metaKey || event.altKey) {
         return null;
     }
@@ -84,6 +89,7 @@ function getKhmerKeyboardCharacter(event) {
 }
 
 function handleKhmerKeyboardInput(event) {
+    // Route Khmer number/punctuation keys into the selected text output.
     const khmerCharacter = getKhmerKeyboardCharacter(event);
 
     if (!khmerCharacter) {
@@ -103,6 +109,7 @@ function handleKhmerKeyboardInput(event) {
 }
 
 function sourceLabel(source) {
+    // Short label displayed on each suggestion card.
     if (source === "dictionary_exact") {
         return "exact";
     }
@@ -135,6 +142,7 @@ function sourceLabel(source) {
 }
 
 function sourceClass(source) {
+    // CSS class controls the pill color for each suggestion source.
     if (source === "dictionary_exact") {
         return "exact";
     }
@@ -175,6 +183,7 @@ function formatScore(value) {
 }
 
 function renderSuggestions(data) {
+    // Rebuild suggestion cards from the latest API response.
     const suggestions = data.suggestions || [];
     normalizedText.textContent = data.normalized || "empty";
     countText.textContent = `${suggestions.length} result${suggestions.length === 1 ? "" : "s"}`;
@@ -220,6 +229,8 @@ function renderSuggestions(data) {
         `;
 
         button.addEventListener("click", async () => {
+            // Click commits the candidate, clears the romanized input, and
+            // records history so future ranking can personalize results.
             const selectedInput = input.value.trim();
             const previousKhmer = lastSelectedKhmer;
 
@@ -239,6 +250,7 @@ function renderSuggestions(data) {
 }
 
 async function recordSelection(query, khmer, previousKhmer) {
+    // Save personal selection and previous-word context through /api/select.
     try {
         await fetch("/api/select", {
             method: "POST",
@@ -257,6 +269,8 @@ async function recordSelection(query, khmer, previousKhmer) {
 }
 
 async function fetchSuggestions() {
+    // Send the current romanized input to /api/suggest. activeRequest prevents
+    // stale responses from overwriting newer typing results.
     const query = input.value.trim();
     const requestId = ++activeRequest;
 
@@ -309,6 +323,7 @@ clearButton.addEventListener("click", () => {
 });
 
 collectButton.addEventListener("click", async () => {
+    // Confirm sends all generated candidates for this input to the review CSV.
     const query = input.value.trim();
 
     if (!query) {

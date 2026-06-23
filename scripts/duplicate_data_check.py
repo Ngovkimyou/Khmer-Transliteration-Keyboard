@@ -1,3 +1,5 @@
+"""Sync custom words into the dataset and collapse duplicate pairs."""
+
 from pathlib import Path
 import sys
 
@@ -18,6 +20,7 @@ CUSTOM_WORDS_FILE = CUSTOM_WORDS_PATH
 
 
 def normalize_row(row):
+    """Trim CSV values and convert frequency to int."""
     return {
         "romanized": row["romanized"].strip(),
         "khmer": row["khmer"].strip(),
@@ -26,12 +29,14 @@ def normalize_row(row):
 
 
 def read_rows(path):
+    """Read romanized/Khmer/frequency rows from a CSV file."""
     with open(path, "r", encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
         return [normalize_row(row) for row in reader]
 
 
 def sync_custom_words(rows):
+    """Let data/custom_words.csv override matching base dataset pairs."""
     if not CUSTOM_WORDS_FILE.exists():
         return rows
 
@@ -50,6 +55,7 @@ def sync_custom_words(rows):
 
 
 def remove_duplicate_pairs(rows):
+    """Merge duplicate romanized+Khmer pairs by summing frequency."""
     frequencies = defaultdict(int)
 
     for row in rows:
@@ -67,6 +73,7 @@ def remove_duplicate_pairs(rows):
 
 
 def write_rows(path, rows):
+    """Write cleaned dataset rows back to CSV."""
     with open(path, "w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=["romanized", "khmer", "frequency"])
         writer.writeheader()
@@ -74,6 +81,7 @@ def write_rows(path, rows):
 
 
 def main():
+    """Run custom-word sync and duplicate cleanup on data/all_words.csv."""
     rows = read_rows(DATASET_FILE)
     before_custom_sync = len(rows)
     rows = sync_custom_words(rows)

@@ -1,3 +1,5 @@
+"""FastAPI browser UI for suggestions, collection, and selection history."""
+
 from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -14,6 +16,7 @@ from khmer_transliteration.suggestion_engine import get_suggestions, load_rankin
 
 app = FastAPI(title="Khmer Transliteration Keyboard")
 
+# Load shared resources once at app startup so each request stays fast.
 dataset = load_dataset()
 rules = load_mapping_rules()
 ranking_model = load_ranking_model()
@@ -23,6 +26,7 @@ app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
 
 
 class SelectionEvent(BaseModel):
+    """Payload sent when a user clicks a suggestion in the web UI."""
     q: str = ""
     khmer: str = ""
     previous_khmer: str = ""
@@ -30,6 +34,7 @@ class SelectionEvent(BaseModel):
 
 @app.get("/")
 def index():
+    """Serve the single-page browser UI."""
     return FileResponse(STATIC_DIR / "index.html")
 
 
@@ -40,6 +45,7 @@ def suggest(
     allow_vowels: bool = Query(default=False),
     previous_word: str = Query(default="", max_length=80),
 ):
+    """Return ranked suggestions for the current romanized input."""
     normalized = normalize_phrase_input(q)
 
     if not normalized:
@@ -69,6 +75,7 @@ def suggest(
 
 @app.post("/api/select")
 def select(event: SelectionEvent):
+    """Record user selection history and previous-word pair counts."""
     normalized = normalize_input(event.q)
 
     if not normalized or not event.khmer:
@@ -98,6 +105,7 @@ def select(event: SelectionEvent):
 
 @app.post("/api/collect")
 def collect(q: str = Query(default="", max_length=80), limit: int = Query(default=0, ge=0, le=500)):
+    """Append generated suggestions to data/ranking_training_examples.csv."""
     normalized = normalize_input(q)
 
     if not normalized:

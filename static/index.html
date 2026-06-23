@@ -8,6 +8,7 @@
 </head>
 <body>
     <main class="shell">
+        <!-- Header/status area for the browser demo. -->
         <section class="hero">
             <div>
                 <p class="eyebrow">ML-ranked Khmer input</p>
@@ -16,6 +17,7 @@
             <div class="status" id="modelStatus">Model ready</div>
         </section>
 
+        <!-- Romanized input plus collection button for manual training labels. -->
         <section class="composer">
             <label for="romanInput">Romanized input</label>
             <div class="inputRow">
@@ -34,6 +36,7 @@
             <div class="collectStatus" id="collectStatus"></div>
         </section>
 
+        <!-- Ranked candidate cards are rendered here by static/app.js. -->
         <section class="suggestionPanel">
             <div class="panelHeader">
                 <h2>Suggestions</h2>
@@ -45,6 +48,7 @@
             </div>
         </section>
 
+        <!-- Clicked suggestions are appended here to simulate composed text. -->
         <section class="outputPanel">
             <label for="outputText">Selected text</label>
             <textarea id="outputText" rows="4" placeholder="Click a suggestion to insert it here."></textarea>

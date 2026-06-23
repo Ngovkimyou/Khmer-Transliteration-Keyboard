@@ -1,3 +1,5 @@
+"""Dictionary loading, exact lookup, and fuzzy lookup helpers."""
+
 import csv
 from khmer_transliteration.normalizer import normalize_input
 from rapidfuzz import process, fuzz
@@ -6,7 +8,9 @@ from khmer_transliteration.paths import ALL_WORDS_FILE
 
 DATASET_FILE = ALL_WORDS_FILE
 
+
 def load_dataset():
+    """Read data/all_words.csv into normalized dictionaries used by the engine."""
     rows = []
 
     with open(DATASET_FILE, "r", encoding="utf-8-sig", newline="") as file:
@@ -21,7 +25,9 @@ def load_dataset():
 
     return rows
 
+
 def exact_lookup(user_input, dataset):
+    """Return dataset rows whose romanized form exactly matches the input."""
     normalized = normalize_input(user_input)
 
     matches = []
@@ -34,28 +40,16 @@ def exact_lookup(user_input, dataset):
 
     return matches
 
-# Example usage:
-# if __name__ == "__main__":
-#     dataset = load_dataset()
 
-#     while True:
-#         user_input = input("Type romanized Khmer: ")
-
-#         if user_input == "exit":
-#             break
-
-#         matches = exact_lookup(user_input, dataset)
-
-#         if not matches:
-#             print("No exact match found")
-#         else:
-#             for match in matches[:10]:
-#                 print(match["khmer"], match["frequency"])
-
+# For quick manual debugging, load_dataset() + exact_lookup("som", dataset)
+# shows the dictionary rows before rule generation or ranking is involved.
 def get_romanized_words(dataset):
+    """Return unique romanized entries for RapidFuzz candidate search."""
     return list(set(row["romanized"] for row in dataset))
 
+
 def fuzzy_lookup(user_input, dataset, limit=5, min_score=80):
+    """Find near-matching romanized dictionary rows for typo-tolerant lookup."""
     normalized = normalize_input(user_input)
     romanized_words = get_romanized_words(dataset)
 

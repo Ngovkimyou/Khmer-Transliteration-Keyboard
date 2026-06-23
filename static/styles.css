@@ -1,3 +1,4 @@
+/* Angkor-themed browser UI for the FastAPI demo. */
 :root {
     color-scheme: dark;
     --bg: #120d09;
@@ -17,6 +18,7 @@
 }
 
 body {
+    /* Background image lives in /assets and is layered with warm overlays. */
     min-height: 100vh;
     margin: 0;
     color: var(--text);
@@ -54,6 +56,7 @@ textarea {
 .composer,
 .suggestionPanel,
 .outputPanel {
+    /* Shared glass panel treatment used across the page sections. */
     border: 1px solid var(--line);
     background: var(--panel);
     box-shadow: var(--shadow);
@@ -121,6 +124,7 @@ label {
 }
 
 .inputRow {
+    /* Input takes remaining space; buttons stay natural width on desktop. */
     display: grid;
     grid-template-columns: 1fr auto auto;
     gap: 12px;
@@ -201,6 +205,7 @@ button:hover {
 }
 
 .suggestions {
+    /* Candidate cards auto-wrap for desktop and collapse on mobile. */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
@@ -239,6 +244,7 @@ button:hover {
 }
 
 .pill {
+    /* Small debug/ranking metadata badges inside suggestion cards. */
     border-radius: 999px;
     padding: 4px 8px;
     color: #d7deeb;
@@ -280,6 +286,7 @@ button:hover {
 }
 
 @media (max-width: 680px) {
+    /* Stack controls on smaller screens so buttons do not squeeze the input. */
     .hero,
     .inputRow,
     .panelHeader {

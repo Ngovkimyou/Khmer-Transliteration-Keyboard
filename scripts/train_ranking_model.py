@@ -1,3 +1,5 @@
+"""Train the optional ML ranking model from dictionary, manual, and history data."""
+
 from pathlib import Path
 import sys
 
@@ -40,6 +42,8 @@ HISTORY_TRAINING_CANDIDATES_PER_INPUT = 50
 PROGRESS_EVERY = 250
 
 
+# Output locations are centralized here so the training artifact set stays
+# together: model joblib, metadata JSON, and a human-readable text report.
 MODEL_DIR = MODELS_DIR
 MODEL_FILE = RANKING_MODEL_FILE
 METADATA_FILE = RANKING_MODEL_METADATA_FILE
@@ -52,10 +56,12 @@ def log_progress(message):
 
 
 def copy_suggestions(suggestions):
+    """Return fresh suggestion dicts so cached values are not mutated downstream."""
     return [suggestion.copy() for suggestion in suggestions]
 
 
 def get_cached_suggestions(cache, key, **kwargs):
+    """Reuse expensive suggestion calls when training many context examples."""
     if key not in cache:
         cache[key] = get_suggestions(**kwargs)
 
@@ -237,6 +243,7 @@ def add_selection_history_training_data(
     enable_fuzzy=False,
     enable_compound=False,
 ):
+    """Turn user selection history into supervised ranking examples."""
     selection_history = load_selection_history()
     added_count = 0
     total_items = len(selection_history)
@@ -295,6 +302,7 @@ def add_selection_history_training_data(
 
 
 def build_khmer_to_romanized_index(dataset):
+    """Map Khmer outputs back to romanized inputs for word-pair training."""
     index = {}
 
     for row in dataset:
@@ -328,6 +336,7 @@ def add_word_pair_training_data(
     enable_fuzzy=False,
     enable_compound=False,
 ):
+    """Create examples where the previous Khmer word should boost the next word."""
     pair_frequencies = load_word_pair_frequencies()
     khmer_to_romanized = build_khmer_to_romanized_index(dataset)
     added_count = 0
@@ -459,6 +468,7 @@ def evaluate_ranking(model, features, labels, rows):
 
 
 def parse_args():
+    """Parse training-size and candidate-source options."""
     parser = argparse.ArgumentParser(description="Train the suggestion ranking model.")
     parser.add_argument(
         "--max-inputs",
@@ -486,6 +496,7 @@ def parse_args():
 
 
 def main():
+    """Build training rows, train LogisticRegression, and save reports."""
     args = parse_args()
     log_progress("Loading dataset and mapping rules...")
     dataset = load_dataset()
