@@ -202,7 +202,6 @@ button:hover {
     color: var(--muted);
     font-size: 13px;
 }
-
 .suggestions {
     /* Candidate cards auto-wrap for desktop and collapse on mobile. */
     display: grid;
