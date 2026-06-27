@@ -127,7 +127,6 @@ body::after {
   margin: 0 auto;
   padding: 32px 24px 80px;
 }
-
 /* =====================
    HERO — editorial masthead
    ===================== */
@@ -314,7 +313,6 @@ body::after {
   outline: none;
   transition: var(--t-fast);
 }
-
 .inputRow input::placeholder {
   color: var(--ink-300);
   font-family: var(--font-display);
@@ -505,7 +503,6 @@ body::after {
 
 .suggestions > div:hover .khmer,
 .suggestion-card:hover .khmer { color: var(--teal-700); }
-
 .suggestions > div .score,
 .suggestion-card .score {
   font-family: var(--font-mono);
@@ -656,7 +653,6 @@ body::after {
   .inputRow button { flex: 1; padding: 13px 16px; }
   .panelHeader h2 { font-size: 22px; }
 }
-
 @media (max-width: 520px) {
   :root { --overlay: rgba(244, 239, 230, 0.92); }
   .shell { padding: 14px 14px 44px; }
@@ -725,4 +721,51 @@ textarea:focus:not(:focus-visible) { outline: none; }
     box-shadow: none;
     border: 1px solid #ddd;
   }
+}
+/* =====================
+   SUGGESTION CARD — show only the Khmer letter
+   ===================== */
+
+/* Hide every direct child of a suggestion card by default */
+.suggestions > div > *,
+.suggestion-card > * {
+  display: none !important;
+}
+
+/* Re-show only the Khmer glyph and the rank badge */
+.suggestions > div > .khmer,
+.suggestion-card > .khmer {
+  display: block !important;
+  margin-bottom: 0;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.suggestions > div > .rank-badge,
+.suggestion-card > .rank-badge {
+  display: flex !important;
+}
+
+/* Strip any raw text nodes (rule rank / source / dataset / score lines)
+   that sit directly in the card without a wrapper element */
+.suggestions > div,
+.suggestion-card {
+  font-size: 0;            /* collapses bare text nodes */
+  padding: 26px 12px;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestions > div > .khmer,
+.suggestion-card > .khmer {
+  font-size: 38px;         /* restore the Khmer letter size */
+}
+
+/* Smaller screens */
+@media (max-width: 520px) {
+  .suggestions > div > .khmer,
+  .suggestion-card > .khmer { font-size: 30px; }
+  .suggestions > div, .suggestion-card { padding: 20px 8px; min-height: 72px; }
 }
