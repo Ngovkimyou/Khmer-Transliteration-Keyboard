@@ -722,50 +722,19 @@ textarea:focus:not(:focus-visible) { outline: none; }
     border: 1px solid #ddd;
   }
 }
-/* =====================
-   SUGGESTION CARD — show only the Khmer letter
-   ===================== */
-
-/* Hide every direct child of a suggestion card by default */
-.suggestions > div > *,
-.suggestion-card > * {
+.suggestions > div .score,
+.suggestion-card .score,
+.suggestions > div .rank-badge,
+.suggestion-card .rank-badge {
   display: none !important;
 }
 
-/* Re-show only the Khmer glyph and the rank badge */
-.suggestions > div > .khmer,
-.suggestion-card > .khmer {
-  display: block !important;
+.suggestions > div .khmer,
+.suggestion-card .khmer {
   margin-bottom: 0;
-  font-size: 38px;
-  line-height: 1.2;
 }
 
-.suggestions > div > .rank-badge,
-.suggestion-card > .rank-badge {
-  display: flex !important;
-}
-
-/* Strip any raw text nodes (rule rank / source / dataset / score lines)
-   that sit directly in the card without a wrapper element */
 .suggestions > div,
 .suggestion-card {
-  font-size: 0;            /* collapses bare text nodes */
-  padding: 26px 12px;
-  min-height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.suggestions > div > .khmer,
-.suggestion-card > .khmer {
-  font-size: 38px;         /* restore the Khmer letter size */
-}
-
-/* Smaller screens */
-@media (max-width: 520px) {
-  .suggestions > div > .khmer,
-  .suggestion-card > .khmer { font-size: 30px; }
-  .suggestions > div, .suggestion-card { padding: 20px 8px; min-height: 72px; }
+  padding: 20px 16px;
 }
