@@ -208,7 +208,7 @@ function renderSuggestions(data) {
         const sourceWeight = formatScore(suggestion.source_rank_weight);
         const source = sourceLabel(suggestion.source);
         const sourceCss = sourceClass(suggestion.source);
-        
+
         button.innerHTML = `
             <span class="khmer">${suggestion.khmer}</span>
             <span class="meta">
@@ -221,7 +221,7 @@ function renderSuggestions(data) {
                 ${contextScore ? `<span class="pill">context ${contextScore}</span>` : ""}
                 ${compoundPairScore ? `<span class="pill">pair ${compoundPairScore}</span>` : ""}
                 ${historyScore ? `<span class="pill">history ${historyScore}</span>` : ""}
-                 ${fuzzyBoost ? `<span class="pill">fuzzy boost ${fuzzyBoost}</span>` : ""}
+                ${fuzzyBoost ? `<span class="pill">fuzzy boost ${fuzzyBoost}</span>` : ""}
                 ${compoundPenalty ? `<span class="pill">compound penalty ${compoundPenalty}</span>` : ""}
                 ${mlScore ? `<span class="pill">ML ${mlScore}</span>` : ""}
                 ${manualScore ? `<span class="pill">manual ${manualScore}</span>` : ""}
