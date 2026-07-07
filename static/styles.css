@@ -158,44 +158,120 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible), input:focus:not(:
 @media print { body { background: #fff !important; color: #111; } body::before, body::after, .shell::before { display: none !important; } .hero { background: var(--teal-900) !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; } .composer, .suggestionPanel, .outputPanel { background: #fff !important; box-shadow: none; border: 1px solid #ddd; } } 
 
 
-.suggestions > div > *,
-.suggestion-card > * {
-  display: none !important;
+/* ============ Suggestion cards — match reference photo ============ */
+.suggestions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
 }
 
-
-.suggestions > div > .khmer,
-.suggestion-card > .khmer {
-  display: block !important;
-  margin-bottom: 0;
-  font-size: 38px;
-  line-height: 1.2;
-}
-
-.suggestions > div > .rank-badge,
-.suggestion-card > .rank-badge {
-  display: flex !important;
-}
-
-
-.suggestions > div,
-.suggestion-card {
-  font-size: 0;            
-  padding: 26px 12px;
-  min-height: 92px;
+/* The card itself (button.suggestion) */
+.suggestions .suggestion {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  padding: 22px 18px 20px;
+  background: linear-gradient(180deg, #3a2a1c 0%, #241811 100%);
+  border: 1px solid rgba(227, 185, 97, 0.18);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 20px -10px rgba(0, 0, 0, 0.5);
+  transition: transform var(--t-mid) var(--ease-out),
+              border-color var(--t-mid),
+              box-shadow var(--t-mid);
 }
 
-.suggestions > div > .khmer,
-.suggestion-card > .khmer {
-  font-size: 38px;        
+.suggestions .suggestion:hover,
+.suggestions .suggestion:focus-visible {
+  border-color: var(--gold-300);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 14px 28px -12px rgba(0, 0, 0, 0.55);
 }
 
+/* Khmer headline */
+.suggestions .suggestion .khmer {
+  font-family: var(--font-khmer);
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #f7f0dd;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* Stack the metric pills vertically, full width */
+.suggestions .suggestion .meta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+}
+
+/* Every pill = rounded bar with subtle border on dark card */
+.suggestions .suggestion .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(227, 185, 97, 0.14);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #e8ddc4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: none;
+}
+
+/* Source pill (exact / completion / fuzzy / rule / direct) sits inline
+   top-left, colored, like the gold "exact" pill in the reference photo */
+.suggestions .suggestion .pill.exact,
+.suggestions .suggestion .pill.completion,
+.suggestions .suggestion .pill.rule,
+.suggestions .suggestion .pill.direct {
+  align-self: flex-start;
+  padding: 6px 16px;
+  font-weight: 700;
+  color: #fff;
+  border-color: transparent;
+}
+
+.suggestions .suggestion .pill.exact {
+  background: linear-gradient(180deg, var(--gold-500), var(--gold-700));
+  border-color: var(--gold-300);
+}
+
+.suggestions .suggestion .pill.completion {
+  background: linear-gradient(180deg, var(--teal-500), var(--teal-900));
+  border-color: var(--teal-500);
+}
+
+.suggestions .suggestion .pill.rule {
+  background: linear-gradient(180deg, #7a5aa0, #4b357d);
+  border-color: #9b7ac2;
+}
+
+.suggestions .suggestion .pill.direct {
+  background: linear-gradient(180deg, #4a6b8a, #253a52);
+  border-color: #6d8fb0;
+}
+
+.emptyState.visible { display: block; }
+.suggestions:not(:empty) ~ .emptyState { display: none; }
 
 @media (max-width: 520px) {
-  .suggestions > div > .khmer,
-  .suggestion-card > .khmer { font-size: 30px; }
-  .suggestions > div, .suggestion-card { padding: 20px 8px; min-height: 72px; }
+  .suggestions { grid-template-columns: 1fr; }
+  .suggestions .suggestion .khmer { font-size: 38px; }
 }
