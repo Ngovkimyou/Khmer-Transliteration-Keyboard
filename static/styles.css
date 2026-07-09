@@ -47,7 +47,16 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -2; background: r
 
 .eyebrow::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 24px; height: 1px; background: var(--gold-300); }
 
-.hero h1 { font-family: var(--font-display); font-size: clamp(32px, 5.5vw, 52px); font-weight: 500; font-style: italic; color: #f7f0dd; line-height: 1.05; letter-spacing: -0.015em; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.6vw, 38px);
+  font-weight: 500;
+  font-style: italic;
+  color: #f7f0dd;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
 
 .status { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px 9px 16px; background: rgba(247, 240, 221, 0.08); border: 1px solid rgba(227, 185, 97, 0.22); border-radius: 100px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #f7f0dd; white-space: nowrap; backdrop-filter: blur(8px); }
 
@@ -131,21 +140,52 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -2; background: r
 
 .suggestions:not(:empty) ~ .emptyState { display: none; }
 
-.outputPanel textarea { width: 100%; padding: 22px 24px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--bg-paper-2); color: var(--ink-900); font-family: var(--font-khmer); font-size: 20px; line-height: 2; resize: vertical; outline: none; transition: var(--t-fast); min-height: 140px; }
+.outputPanel textarea {
+    width: 100%;
+    height: 56px;              /* Same height as search input */
+    min-height: 56px;
+    max-height: 56px;
 
-.outputPanel textarea::placeholder { color: var(--ink-300); font-family: var(--font-display); font-style: italic; font-size: 17px; }
+    padding: 16px 20px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-paper-2);
 
-.outputPanel textarea:focus { border-color: var(--teal-500); background: #fff; box-shadow: 0 0 0 4px rgba(45, 138, 147, 0.12); }
+    color: var(--ink-900);
+    font-family: var(--font-khmer);
+    font-size: 18px;
+    line-height: 1.4;
 
+    outline: none;
+    resize: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    transition: var(--t-fast);
+}
+
+.outputPanel textarea:focus {
+    border-color: var(--teal-500);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(45, 138, 147, 0.12);
+}
+
+.outputPanel textarea::placeholder {
+    color: var(--ink-300);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+}
  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); padding: 14px 26px; background: var(--ink-900); color: #f7f0dd; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); z-index: 999; opacity: 0; transition: var(--t-mid); pointer-events: none; white-space: nowrap; border: 1px solid rgba(227, 185, 97, 0.2); }
 
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-@media (max-width: 768px) { :root { --overlay: rgba(244, 239, 230, 0.86); } .shell { padding: 20px 18px 56px; } .hero { padding: 48px 32px; border-radius: var(--radius-md); } .hero h1 { font-size: 32px; } .composer, .suggestionPanel, .outputPanel { padding: 24px; } .inputRow { flex-wrap: wrap; } .inputRow input { width: 100%; } .inputRow button { flex: 1; padding: 13px 16px; } .panelHeader h2 { font-size: 22px; } }
+@media (max-width: 768px) { :root { --overlay: rgba(244, 239, 230, 0.86); } .shell { padding: 20px 18px 56px; } .hero { padding: 48px 32px; border-radius: var(--radius-md); } .hero h1 { font-size: 23px; white-space: nowrap; } .composer, .suggestionPanel, .outputPanel { padding: 24px; } .inputRow { flex-wrap: wrap; } .inputRow input { width: 100%; } .inputRow button { flex: 1; padding: 13px 16px; } .panelHeader h2 { font-size: 22px; } }
 
-@media (max-width: 520px) { :root { --overlay: rgba(244, 239, 230, 0.92); } .shell { padding: 14px 14px 44px; } .hero { padding: 36px 22px 40px; flex-direction: column; align-items: flex-start; gap: 18px; } .hero::after { inset: 8px; } .hero h1 { font-size: 26px; } .composer, .suggestionPanel, .outputPanel { padding: 20px 18px; } .suggestions { grid-template-columns: repeat(3, 1fr); gap: 8px; } .suggestions > div, .suggestion-card { padding: 22px 8px 14px; } .suggestions > div .khmer, .suggestion-card .khmer { font-size: 24px; margin-bottom: 8px; } .outputPanel textarea { padding: 16px 18px; font-size: 17px; line-height: 1.85; } .panelHeader h2 { font-size: 20px; } }
+@media (max-width: 520px) { :root { --overlay: rgba(244, 239, 230, 0.92); } .shell { padding: 14px 14px 44px; } .hero { padding: 36px 22px 40px; flex-direction: column; align-items: flex-start; gap: 18px; } .hero::after { inset: 8px; } .hero h1 { font-size: 20px; white-space: normal; } .composer, .suggestionPanel, .outputPanel { padding: 20px 18px; } .suggestions { grid-template-columns: repeat(3, 1fr); gap: 8px; } .suggestions > div, .suggestion-card { padding: 22px 8px 14px; } .suggestions > div .khmer, .suggestion-card .khmer { font-size: 24px; margin-bottom: 8px; } .outputPanel textarea { padding: 16px 18px; font-size: 17px; line-height: 1.85; } .panelHeader h2 { font-size: 20px; } }
 
-@media (max-width: 360px) { .suggestions { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 22px; } }
+@media (max-width: 360px) { .suggestions { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 18px; } }
 
 @media (min-width: 1024px) { :root { --overlay: rgba(244, 239, 230, 0.72); } .shell { padding: 40px 24px 96px; } .hero { padding: 80px 64px 64px; } }
 
@@ -275,3 +315,4 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible), input:focus:not(:
   .suggestions { grid-template-columns: 1fr; }
   .suggestions .suggestion .khmer { font-size: 38px; }
 }
+
