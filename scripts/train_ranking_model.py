@@ -48,6 +48,8 @@ MODEL_DIR = MODELS_DIR
 MODEL_FILE = RANKING_MODEL_FILE
 METADATA_FILE = RANKING_MODEL_METADATA_FILE
 REPORT_FILE = RANKING_MODEL_REPORT_FILE
+MARKDOWN_REPORT_FILE = REPORT_FILE.with_suffix(".md")
+METRICS_CHART_FILE = REPORT_FILE.with_name("ranking_model_metrics.svg")
 MANUAL_EXAMPLES_FILE = RANKING_TRAINING_EXAMPLES_FILE
 
 
@@ -469,6 +471,119 @@ def evaluate_ranking(model, features, labels, rows):
     }
 
 
+def format_metric(value):
+    """Format report numbers for readable result tables."""
+    if isinstance(value, int):
+        return f"{value:,}"
+
+    return f"{value:.4f}"
+
+
+def write_metrics_chart(chart_file, metrics):
+    """Create a small SVG bar chart for report figures."""
+    width = 760
+    height = 320
+    margin_left = 80
+    margin_bottom = 70
+    chart_height = 200
+    bar_width = 70
+    gap = 35
+    max_value = 1.0
+
+    bars = []
+    labels = []
+
+    for index, (label, value) in enumerate(metrics):
+        x = margin_left + index * (bar_width + gap)
+        bar_height = int((value / max_value) * chart_height)
+        y = height - margin_bottom - bar_height
+        bars.append(
+            f'<rect x="{x}" y="{y}" width="{bar_width}" height="{bar_height}" '
+            f'rx="6" fill="#8b5cf6" />'
+        )
+        bars.append(
+            f'<text x="{x + bar_width / 2}" y="{y - 8}" text-anchor="middle" '
+            f'font-size="14" fill="#111827">{value:.4f}</text>'
+        )
+        labels.append(
+            f'<text x="{x + bar_width / 2}" y="{height - 35}" text-anchor="middle" '
+            f'font-size="13" fill="#111827">{label}</text>'
+        )
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="{width / 2}" y="30" text-anchor="middle" font-size="20" font-family="Arial" font-weight="700" fill="#111827">Ranking Model Metrics</text>
+  <line x1="{margin_left - 20}" y1="{height - margin_bottom}" x2="{width - 50}" y2="{height - margin_bottom}" stroke="#d1d5db"/>
+  <line x1="{margin_left - 20}" y1="{height - margin_bottom - chart_height}" x2="{margin_left - 20}" y2="{height - margin_bottom}" stroke="#d1d5db"/>
+  <text x="{margin_left - 28}" y="{height - margin_bottom + 5}" text-anchor="end" font-size="12" fill="#6b7280">0.0</text>
+  <text x="{margin_left - 28}" y="{height - margin_bottom - chart_height + 5}" text-anchor="end" font-size="12" fill="#6b7280">1.0</text>
+  {''.join(bars)}
+  {''.join(labels)}
+</svg>
+'''
+
+    with open(chart_file, "w", encoding="utf-8") as file:
+        file.write(svg)
+
+
+def write_markdown_report(
+    markdown_file,
+    metadata,
+    classification,
+    chart_file,
+):
+    """Write a report-ready Markdown file with tables and a chart reference."""
+    table_rows = [
+        ("Training candidates", metadata["training_candidates"]),
+        ("Manual candidates", metadata["manual_candidates"]),
+        ("Selection history candidates", metadata["selection_history_candidates"]),
+        ("Word-pair context candidates", metadata["word_pair_candidates"]),
+        ("Positive candidates", metadata["positive_candidates"]),
+        ("Negative candidates", metadata["negative_candidates"]),
+        ("Train candidates", metadata["train_candidates"]),
+        ("Test candidates", metadata["test_candidates"]),
+    ]
+    metric_rows = [
+        ("Accuracy", metadata["accuracy"]),
+        ("ROC AUC", metadata["roc_auc"]),
+        ("Top-1 Accuracy", metadata["top_1_accuracy"]),
+        ("Top-3 Accuracy", metadata["top_3_accuracy"]),
+        ("Mean Reciprocal Rank", metadata["mrr"]),
+    ]
+    class_rows = [
+        ("Incorrect candidate (0)", classification["0"]),
+        ("Correct candidate (1)", classification["1"]),
+        ("Weighted average", classification["weighted avg"]),
+    ]
+    chart_name = Path(chart_file).name
+
+    with open(markdown_file, "w", encoding="utf-8") as file:
+        file.write("# Ranking Model Results\n\n")
+        file.write("This report summarizes the Logistic Regression candidate-ranking model.\n\n")
+
+        file.write("## Training Data Summary\n\n")
+        file.write("| Item | Value |\n|---|---:|\n")
+        for label, value in table_rows:
+            file.write(f"| {label} | {format_metric(value)} |\n")
+
+        file.write("\n## Performance Metrics\n\n")
+        file.write("| Metric | Value |\n|---|---:|\n")
+        for label, value in metric_rows:
+            file.write(f"| {label} | {format_metric(value)} |\n")
+
+        file.write("\n## Classification Report\n\n")
+        file.write("| Class | Precision | Recall | F1-score | Support |\n")
+        file.write("|---|---:|---:|---:|---:|\n")
+        for label, values in class_rows:
+            file.write(
+                f"| {label} | {values['precision']:.4f} | {values['recall']:.4f} | "
+                f"{values['f1-score']:.4f} | {int(values['support']):,} |\n"
+            )
+
+        file.write("\n## Figure\n\n")
+        file.write(f"![Ranking Model Metrics]({chart_name})\n")
+
+
 def parse_args():
     """Parse training-size and candidate-source options."""
     parser = argparse.ArgumentParser(description="Train the suggestion ranking model.")
@@ -571,6 +686,7 @@ def main():
     accuracy = accuracy_score(y_test, predictions)
     roc_auc = roc_auc_score(y_test, probabilities)
     report = classification_report(y_test, predictions, digits=4)
+    report_dict = classification_report(y_test, predictions, digits=4, output_dict=True)
     ranking_metrics = evaluate_ranking(model, X_test, y_test, rows_test)
 
     log_progress("Saving model and report...")
@@ -615,9 +731,28 @@ def main():
         file.write(f"MRR: {ranking_metrics['mrr']:.4f}\n\n")
         file.write(report)
 
+    write_metrics_chart(
+        METRICS_CHART_FILE,
+        [
+            ("Accuracy", accuracy),
+            ("ROC AUC", roc_auc),
+            ("Top-1", ranking_metrics["top_1_accuracy"]),
+            ("Top-3", ranking_metrics["top_3_accuracy"]),
+            ("MRR", ranking_metrics["mrr"]),
+        ],
+    )
+    write_markdown_report(
+        MARKDOWN_REPORT_FILE,
+        metadata,
+        report_dict,
+        METRICS_CHART_FILE,
+    )
+
     print(f"Saved model to {MODEL_FILE}")
     print(f"Saved metadata to {METADATA_FILE}")
     print(f"Saved report to {REPORT_FILE}")
+    print(f"Saved Markdown report to {MARKDOWN_REPORT_FILE}")
+    print(f"Saved metrics chart to {METRICS_CHART_FILE}")
 
 
 if __name__ == "__main__":

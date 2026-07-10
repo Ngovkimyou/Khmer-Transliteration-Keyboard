@@ -1,27 +1,27 @@
 Ranking Model Report
 ====================
 
-Training candidates: 2021
-Manual candidates: 1
-Selection history candidates: 160
-Word-pair context candidates: 266
-Positive candidates: 315
-Negative candidates: 1706
-Accuracy: 0.9704
-ROC AUC: 0.9886
+Training candidates: 60544
+Manual candidates: 416
+Selection history candidates: 4716
+Word-pair context candidates: 5415
+Positive candidates: 5121
+Negative candidates: 55423
+Accuracy: 0.9794
+ROC AUC: 0.9952
 
 Ranking metrics
 ---------------
-Ranking groups: 62
-Top-1 accuracy: 0.9839
-Top-3 accuracy: 1.0000
-MRR: 0.9892
+Ranking groups: 996
+Top-1 accuracy: 0.9890
+Top-3 accuracy: 0.9980
+MRR: 0.9935
 
               precision    recall  f1-score   support
 
-           0     0.9911    0.9737    0.9823       342
-           1     0.8696    0.9524    0.9091        63
+           0     0.9973    0.9802    0.9887     11085
+           1     0.8189    0.9717    0.8888      1024
 
-    accuracy                         0.9704       405
-   macro avg     0.9303    0.9630    0.9457       405
-weighted avg     0.9722    0.9704    0.9709       405
+    accuracy                         0.9794     12109
+   macro avg     0.9081    0.9759    0.9387     12109
+weighted avg     0.9823    0.9794    0.9802     12109
