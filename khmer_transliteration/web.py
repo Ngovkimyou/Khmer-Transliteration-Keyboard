@@ -4,6 +4,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from typing import Any
 
 from khmer_transliteration.collection import append_examples
 from khmer_transliteration.history import record_selection
@@ -30,6 +31,7 @@ class SelectionEvent(BaseModel):
     q: str = ""
     khmer: str = ""
     previous_khmer: str = ""
+    compound_segments: list[Any] = []
 
 
 @app.get("/")
@@ -91,6 +93,7 @@ def select(event: SelectionEvent):
         normalized,
         event.khmer,
         previous_khmer=event.previous_khmer,
+        compound_segments=event.compound_segments,
     )
 
     return {

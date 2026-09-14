@@ -84,8 +84,27 @@ def increment_row(rows, key_fields, key_values):
     return row
 
 
-def record_selection(user_input, khmer, previous_khmer=""):
-    """Record a candidate selection and, when available, its previous-word pair."""
+def normalize_compound_segments(compound_segments=None):
+    """Return Khmer segment text from optional compound-segment metadata."""
+    if not compound_segments:
+        return []
+
+    segments = []
+
+    for segment in compound_segments:
+        if isinstance(segment, dict):
+            khmer = segment.get("khmer", "")
+        else:
+            khmer = str(segment)
+
+        if khmer:
+            segments.append(khmer)
+
+    return segments
+
+
+def record_selection(user_input, khmer, previous_khmer="", compound_segments=None):
+    """Record selection history, previous-word context, and internal compound pairs."""
     normalized = normalize_input(user_input)
 
     if not normalized or not khmer:
@@ -110,27 +129,42 @@ def record_selection(user_input, khmer, previous_khmer=""):
     )
 
     pair_count = 0
+    compound_pair_count = 0
+    segment_khmers = normalize_compound_segments(compound_segments)
 
-    if previous_khmer:
+    if previous_khmer or len(segment_khmers) > 1:
         pair_rows = read_counter_rows(
             WORD_PAIR_FREQUENCY_FILE,
             PAIR_FIELDNAMES,
         )
+
+    if previous_khmer:
         pair_row = increment_row(
             pair_rows,
             ["previous_khmer", "current_khmer"],
             [previous_khmer, khmer],
         )
+        pair_count = int(pair_row["count"])
+
+    for previous_segment, current_segment in zip(segment_khmers, segment_khmers[1:]):
+        pair_row = increment_row(
+            pair_rows,
+            ["previous_khmer", "current_khmer"],
+            [previous_segment, current_segment],
+        )
+        compound_pair_count += int(pair_row["count"])
+
+    if previous_khmer or len(segment_khmers) > 1:
         write_counter_rows(
             WORD_PAIR_FREQUENCY_FILE,
             PAIR_FIELDNAMES,
             pair_rows,
         )
-        pair_count = int(pair_row["count"])
 
     return {
         "selection_count": int(selection_row["count"]),
         "pair_count": pair_count,
+        "compound_pair_count": compound_pair_count,
     }
 
 
