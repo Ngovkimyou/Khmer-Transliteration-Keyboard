@@ -115,7 +115,17 @@ class EngineState:
         query = str(request.get("q", ""))
         khmer = str(request.get("khmer", ""))
         previous_word = str(request.get("previous_word", ""))
-        counts = record_selection(query, khmer, previous_khmer=previous_word)
+        compound_segments = request.get("compound_segments") or self.find_compound_segments(
+            query,
+            khmer,
+            previous_word,
+        )
+        counts = record_selection(
+            query,
+            khmer,
+            previous_khmer=previous_word,
+            compound_segments=compound_segments,
+        )
 
         return {
             "ok": True,
@@ -123,8 +133,30 @@ class EngineState:
             "query": query,
             "khmer": khmer,
             "previous_word": previous_word,
+            "compound_segments": compound_segments,
             **counts,
         }
+
+    def find_compound_segments(self, query: str, khmer: str, previous_word: str = "") -> list:
+        """Recover compound segments for a selected candidate when the IME omits them."""
+        if not query or not khmer:
+            return []
+
+        suggestions = get_suggestions(
+            query,
+            dataset=self.dataset,
+            rules=self.rules,
+            ranking_model=self.ranking_model,
+            previous_word=previous_word,
+            limit=100,
+            min_rule_score=None,
+        )
+
+        for suggestion in suggestions:
+            if suggestion.get("khmer") == khmer:
+                return suggestion.get("compound_segments", [])
+
+        return []
 
     def suggest(self, request: dict) -> dict:
         """Generate ranked Khmer suggestions using the already-loaded engine."""
